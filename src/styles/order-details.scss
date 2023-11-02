@@ -1,9 +1,13 @@
 .order-details {
-  margin: 40px 0 0;
+  margin: 16px 0 0;
   padding: 16px 24px 14px;
   border: none;
   background-color: $color-background-white;
   border-radius: 16px;
+
+  &_place_top {
+    margin-top: 40px;
+  }
 
   &__top {
     display: flex;
@@ -110,5 +114,32 @@
   &__refund-tip {
     color: $color-text-green;
     border-bottom: 1px dashed $color-text-green;
+  }
+
+  &__payment {
+    margin: 16px 0 10px;
+  }
+
+  &__payment-method {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__card-number {
+    margin: 0;
+    margin-right: 4px;
+  }
+
+  &__card-date {
+    margin: 0;
+  }
+
+  &__payment-tip {
+    margin: 0;
+    padding-top: 8px;
+    font-size: 13px;
+    line-height: 16px;
+    color: $color-system-gray;
   }
 }

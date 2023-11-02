@@ -265,7 +265,7 @@
               </template>
             </ul>
           </fieldset>
-          <fieldset class="order-details">
+          <fieldset class="order-details order-details_place_top">
             <div class="order-details__top">
               <h3 class="order-details__title">Способ доставки</h3>
               <button class="order-details__edit" type="button">
@@ -340,6 +340,28 @@
               Обратная доставка товаров на склад при отказе &mdash;
               <span class="order-details__refund-tip">бесплатно</span>
             </p>
+          </fieldset>
+          <fieldset class="order-details">
+            <div class="order-details__top">
+              <h3 class="order-details__title">Способ оплаты</h3>
+              <button class="order-details__edit" type="button">
+                Изменить
+              </button>
+            </div>
+            <div class="order-details__payment">
+              <div class="order-details__payment-method">
+                <img
+                  class="order-details__payment-logo"
+                  src="<%=require('./images/svg/mir-pay_icon.svg')%>"
+                  alt="Логотип платежной системы"
+                />
+                <p class="order-details__card-number">1234 56•• •••• 1234</p>
+                <p class="order-details__card-date">01/30</p>
+              </div>
+              <p class="order-details__payment-tip">
+                Спишем оплату с карты при получении
+              </p>
+            </div>
           </fieldset>
         </fieldset>
         <fieldset class="cart__summary"></fieldset>
