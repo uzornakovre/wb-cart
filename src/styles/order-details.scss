@@ -1,0 +1,114 @@
+.order-details {
+  margin: 40px 0 0;
+  padding: 16px 24px 14px;
+  border: none;
+  background-color: $color-background-white;
+  border-radius: 16px;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+  }
+
+  &__edit {
+    margin-top: 6px;
+    padding: 0;
+    font-weight: 700;
+    line-height: 24px;
+    background-color: transparent;
+    color: $color-interface-accent-1;
+    border: none;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+
+  &__table {
+    display: grid;
+    grid-template-columns: 155px auto;
+    align-items: start;
+    justify-items: start;
+    row-gap: 16px;
+    column-gap: 30px;
+    margin: 16px 0 24px;
+  }
+
+  &__table-heading {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  &__tooltip {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  &__rating-star {
+    height: 100%;
+  }
+
+  &__rating {
+    margin-right: 5px;
+  }
+
+  &__product-image {
+    width: 40px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__product-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    list-style: none;
+  }
+
+  &__product {
+    position: relative;
+    height: 56px;
+  }
+
+  &__refund {
+    position: relative;
+    padding-left: 30px;
+    padding-top: 3px;
+    font-size: 13px;
+    line-height: 16px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 22px;
+      height: 22px;
+      top: 0;
+      left: 0;
+      background-image: url("./images/svg/check-mark_icon_2.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  &__refund-tip {
+    color: $color-text-green;
+    border-bottom: 1px dashed $color-text-green;
+  }
+}

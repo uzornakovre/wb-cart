@@ -1,0 +1,25 @@
+.counter {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -4px;
+  right: 8px;
+  min-width: 16px;
+  height: 16px;
+  background-color: $color-system-orange;
+  color: $color-system-white;
+  border-radius: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 180%;
+
+  &_place_order-details {
+    right: -5px;
+    padding: 0 2px;
+  }
+}
+
+.counter__value {
+  margin: 0;
+}
