@@ -363,6 +363,74 @@
               </p>
             </div>
           </fieldset>
+          <fieldset class="order-details">
+            <div class="order-details__top">
+              <h3 class="order-details__title">Получатель</h3>
+            </div>
+            <div class="order-details__recipient-info">
+              <div
+                class="order-details__input-wrapper order-details__input-wrapper_wide"
+              >
+                <input
+                  class="order-details__input"
+                  type="text"
+                  id="firstname"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="firstname"
+                  >Имя</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div
+                class="order-details__input-wrapper order-details__input-wrapper_wide"
+              >
+                <input class="order-details__input"" type="text" id="lastname"
+                placeholder=" " />
+                <label class="order-details__input-label" for="lastname"
+                  >Фамилия</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div class="order-details__input-wrapper">
+                <input
+                  class="order-details__input"
+                  type="email"
+                  id="email"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="email"
+                  >Почта</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div class="order-details__input-wrapper">
+                <input
+                  class="order-details__input"
+                  type="tel"
+                  id="phone"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="phone"
+                  >Телефон</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div class="order-details__input-wrapper">
+                <input
+                  class="order-details__input order-details__input_with-tip"
+                  type="text"
+                  id="inn"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="inn">ИНН</label>
+                <span
+                  class="order-details__input-error order-details__input-error_tip"
+                  >Для таможенного оформления</span
+                >
+              </div>
+            </div>
+          </fieldset>
         </fieldset>
         <fieldset class="cart__summary"></fieldset>
       </form>
