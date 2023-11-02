@@ -109,48 +109,129 @@
                 type="button"
               ></button>
             </div>
+            <!-- Список доступных товаров в корзине -->
             <ul class="cart__items-list">
-              <li class="cart__item">
-                <div class="checkbox">
-                  <input
-                    class="checkbox__input"
-                    type="checkbox"
-                    id="item-1"
-                    checked
-                  />
-                  <label
-                    class="checkbox__label checkbox__label_with-content"
-                    for="item-1"
-                  >
-                    <div class="cart__item-info">
-                      <img
-                        class="cart__item-image"
-                        src="<%=require('./images/item_1.jpg')%>"
-                        alt="Изображение товара Футболка"
-                      />
+              <template id="product-template">
+                <li class="cart__item">
+                  <div class="checkbox">
+                    <input
+                      class="checkbox__input"
+                      type="checkbox"
+                      id=""
+                      checked
+                    />
+                    <label
+                      class="checkbox__label checkbox__label_with-content"
+                      for=""
+                    >
+                      <div class="cart__item-info">
+                        <img class="cart__item-image" src="#" alt="" />
+                        <div class="cart__item-description">
+                          <h3 class="cart__item-name"></h3>
+                          <ul class="cart__item-properties">
+                            <li class="cart__properties-item">
+                              <p
+                                class="cart__item-property cart__item-property_type_color"
+                              ></p>
+                            </li>
+                            <li class="cart__properties-item">
+                              <p
+                                class="cart__item-property cart__item-property_type_size"
+                              ></p>
+                            </li>
+                          </ul>
+                          <p class="cart__item-store"></p>
+                          <div class="cart__item-seller">
+                            <p class="cart__item-seller-name"></p>
+                            <button
+                              class="cart__item-seller-info"
+                              type="button"
+                            ></button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cart__item-order">
+                        <div class="cart__item-counter">
+                          <button
+                            class="cart__item-counter-button cart__item-counter-button_type_minus cart__item-counter-button_disabled"
+                            type="button"
+                          >
+                            &ndash;
+                          </button>
+                          <p class="cart__item-counter-value">1</p>
+                          <button
+                            class="cart__item-counter-button cart__item-counter-button_type_plus"
+                            type="button"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <span class="cart__item-warning"></span>
+                        <div class="cart__item-actions">
+                          <button
+                            class="cart__item-button cart__item-button_type_like"
+                            type="button"
+                          ></button>
+                          <button
+                            class="cart__item-button cart__item-button_type_remove"
+                            type="button"
+                          ></button>
+                        </div>
+                      </div>
+                      <div class="cart__item-price">
+                        <div class="cart__item-price-total">
+                          <span class="cart__item-price-total-value"></span>
+                          <span class="cart__item-price-currency"> сом</span>
+                        </div>
+                        <span class="cart__item-price-old"></span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </fieldset>
+          <!-- Список товаров, отсутствующих на складе -->
+          <fieldset class="cart__items">
+            <div class="cart__items-top">
+              <p class="cart__items-not-available">
+                Отсутствуют ·
+                <span class="cart__items-not-available-counter">3</span> товара
+              </p>
+              <button
+                class="cart__arrow cart__arrow_direction_down"
+                type="button"
+              ></button>
+            </div>
+            <ul class="cart__items-list cart__items-list_out-of-stock">
+              <template id="out-of-stock-template">
+                <li class="cart__item">
+                  <div class="cart__item-not-available">
+                    <div class="cart__item-info cart__item-info_not-available">
+                      <img class="cart__item-image" src="" alt="" />
                       <div class="cart__item-description">
-                        <h3 class="cart__item-name">
-                          Футболка UZcotton мужская
-                        </h3>
+                        <h3
+                          class="cart__item-name cart__item-name_not-available"
+                        ></h3>
                         <ul class="cart__item-properties">
-                          <li>
-                            <p class="cart__item-property">
-                              Цвет:
-                              <span class="card__item-property-value"
-                                >белый</span
-                              >
-                            </p>
+                          <li class="cart__properties-item">
+                            <p
+                              class="cart__item-property cart__item-property_type_color"
+                            ></p>
                           </li>
-                          <li>
-                            <p class="cart__item-property">
-                              Размер:
-                              <span class="cart__item-property-value">56</span>
-                            </p>
+                          <li class="cart__properties-item">
+                            <p
+                              class="cart__item-property cart__item-property_type_size"
+                            ></p>
                           </li>
                         </ul>
-                        <p class="cart__item-store">Коледино WB</p>
-                        <div class="cart__item-seller">
-                          <p class="cart__item-seller-name">OOO Вайлдберриз</p>
+                        <p
+                          class="cart__item-store cart__item-store_disabled"
+                        ></p>
+                        <div
+                          class="cart__item-seller cart__item-seller_disabled"
+                        >
+                          <p class="cart__item-seller-name"></p>
                           <button
                             class="cart__item-seller-info"
                             type="button"
@@ -159,103 +240,9 @@
                       </div>
                     </div>
                     <div class="cart__item-order">
-                      <div class="cart__item-counter">
-                        <button
-                          class="cart__item-counter-button cart__item-counter-button_type_minus cart__item-counter-button_disabled"
-                          type="button"
-                        >
-                          &ndash;
-                        </button>
-                        <p class="cart__item-counter-value">1</p>
-                        <button
-                          class="cart__item-counter-button cart__item-counter-button_type_plus"
-                          type="button"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <span class="cart__item-warning">Осталось 2 шт.</span>
-                      <div class="cart__item-actions">
-                        <button
-                          class="cart__item-button cart__item-button_type_like"
-                          type="button"
-                        ></button>
-                        <button
-                          class="cart__item-button cart__item-button_type_remove"
-                          type="button"
-                        ></button>
-                      </div>
-                    </div>
-                    <div class="cart__item-price">
-                      <p class="cart__item-price-total">
-                        522<span class="cart__item-price-currency"> сом</span>
-                      </p>
-                      <p class="cart__item-price-old">1051 сом</p>
-                    </div>
-                  </label>
-                </div>
-              </li>
-              <li class="cart__item">
-                <div class="checkbox">
-                  <input
-                    class="checkbox__input"
-                    type="checkbox"
-                    id="item-2"
-                    checked
-                  />
-                  <label
-                    class="checkbox__label checkbox__label_with-content"
-                    for="item-2"
-                  >
-                    <div class="cart__item-info">
-                      <img
-                        class="cart__item-image"
-                        src="<%=require('./images/item_2.jpg')%>"
-                        alt="Изображение товара Чехол для телефона"
-                      />
-                      <div class="cart__item-description">
-                        <h3 class="cart__item-name">
-                          Силиконовый чехол картхолдер (отверстия) для карт,
-                          прозрачный кейс бампер на Apple iPhone XR, MobiSafe
-                        </h3>
-                        <ul class="cart__item-properties">
-                          <li>
-                            <p class="cart__item-property">
-                              Цвет:
-                              <span class="cart__item-property-value"
-                                >прозрачный</span
-                              >
-                            </p>
-                          </li>
-                        </ul>
-                        <p class="cart__item-store">Коледино WB</p>
-                        <div class="cart__item-seller">
-                          <p class="cart__item-seller-name">
-                            OOO Мегапрофстиль
-                          </p>
-                          <button
-                            class="cart__item-seller-info"
-                            type="button"
-                          ></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="cart__item-order">
-                      <div class="cart__item-counter">
-                        <button
-                          class="cart__item-counter-button cart__item-counter-button_type_minus"
-                          type="button"
-                        >
-                          &ndash;
-                        </button>
-                        <p class="cart__item-counter-value">200</p>
-                        <button
-                          class="cart__item-counter-button cart__item-counter-button_type_plus"
-                          type="button"
-                        >
-                          +
-                        </button>
-                      </div>
+                      <div
+                        class="cart__item-counter cart__item-counter_disabled"
+                      ></div>
                       <span
                         class="cart__item-warning cart__item-warning_empty"
                       ></span>
@@ -270,283 +257,12 @@
                         ></button>
                       </div>
                     </div>
-                    <div class="cart__item-price">
-                      <p
-                        class="cart__item-price-total cart__item-price-total_small"
-                      >
-                        2 100 047<span class="cart__item-price-currency">
-                          сом</span
-                        >
-                      </p>
-                      <p class="cart__item-price-old">2 300 047 сом</p>
-                    </div>
-                  </label>
-                </div>
-              </li>
-              <li class="cart__item">
-                <div class="checkbox">
-                  <input
-                    class="checkbox__input"
-                    type="checkbox"
-                    id="item-3"
-                    checked
-                  />
-                  <label
-                    class="checkbox__label checkbox__label_with-content"
-                    for="item-3"
-                  >
-                    <div class="cart__item-info">
-                      <img
-                        class="cart__item-image"
-                        src="<%=require('./images/item_3.jpg')%>"
-                        alt="Изображение товара Чехол для телефона"
-                      />
-                      <div class="cart__item-description">
-                        <h3 class="cart__item-name">
-                          Карандаши цветные Faber&#8209;Castell "Замок", набор
-                          24 цвета, заточенные, шестигранные,
-                          Faber&#8209;Castell
-                        </h3>
-                        <ul
-                          class="cart__item-properties cart__item-properties_empty"
-                        ></ul>
-                        <p class="cart__item-store">Коледино WB</p>
-                        <div class="cart__item-seller">
-                          <p class="cart__item-seller-name">OOO Вайлдберриз</p>
-                          <button
-                            class="cart__item-seller-info"
-                            type="button"
-                          ></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="cart__item-order">
-                      <div class="cart__item-counter">
-                        <button
-                          class="cart__item-counter-button cart__item-counter-button_type_minus"
-                          type="button"
-                        >
-                          &ndash;
-                        </button>
-                        <p class="cart__item-counter-value">2</p>
-                        <button
-                          class="cart__item-counter-button cart__item-counter-button_type_plus"
-                          type="button"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <span class="cart__item-warning">Осталось 2 шт.</span>
-                      <div class="cart__item-actions">
-                        <button
-                          class="cart__item-button cart__item-button_type_like"
-                          type="button"
-                        ></button>
-                        <button
-                          class="cart__item-button cart__item-button_type_remove"
-                          type="button"
-                        ></button>
-                      </div>
-                    </div>
-                    <div class="cart__item-price">
-                      <p class="cart__item-price-total">
-                        494<span class="cart__item-price-currency"> сом</span>
-                      </p>
-                      <p class="cart__item-price-old">950 сом</p>
-                    </div>
-                  </label>
-                </div>
-              </li>
-            </ul>
-          </fieldset>
-          <fieldset class="cart__items">
-            <div class="cart__items-top">
-              <p class="cart__items-not-available">
-                Отсутствуют ·
-                <span class="cart__items-not-available-counter">3</span> товара
-              </p>
-              <button
-                class="cart__arrow cart__arrow_direction_down"
-                type="button"
-              ></button>
-            </div>
-            <ul class="cart__items-list">
-              <li class="cart__item">
-                <div class="cart__item-not-available">
-                  <div class="cart__item-info cart__item-info_not-available">
-                    <img
-                      class="cart__item-image"
-                      src="<%=require('./images/item_1.jpg')%>"
-                      alt="Изображение товара Футболка"
-                    />
-                    <div class="cart__item-description">
-                      <h3 class="cart__item-name cart__item-name_not-available">
-                        Футболка UZcotton мужская
-                      </h3>
-                      <ul class="cart__item-properties">
-                        <li>
-                          <p class="cart__item-property">
-                            Цвет:
-                            <span class="card__item-property-value">белый</span>
-                          </p>
-                        </li>
-                        <li>
-                          <p class="cart__item-property">
-                            Размер:
-                            <span class="cart__item-property-value">56</span>
-                          </p>
-                        </li>
-                      </ul>
-                      <p class="cart__item-store cart__item-store_disabled">
-                        Коледино WB
-                      </p>
-                      <div class="cart__item-seller cart__item-seller_disabled">
-                        <p class="cart__item-seller-name">OOO Вайлдберриз</p>
-                        <button
-                          class="cart__item-seller-info"
-                          type="button"
-                        ></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="cart__item-order">
                     <div
-                      class="cart__item-counter cart__item-counter_disabled"
+                      class="cart__item-price cart__item-price_disabled"
                     ></div>
-                    <span
-                      class="cart__item-warning cart__item-warning_empty"
-                    ></span>
-                    <div class="cart__item-actions">
-                      <button
-                        class="cart__item-button cart__item-button_type_like"
-                        type="button"
-                      ></button>
-                      <button
-                        class="cart__item-button cart__item-button_type_remove"
-                        type="button"
-                      ></button>
-                    </div>
                   </div>
-                  <div class="cart__item-price cart__item-price_disabled"></div>
-                </div>
-              </li>
-              <li class="cart__item">
-                <div class="cart__item-not-available">
-                  <div class="cart__item-info cart__item-info_not-available">
-                    <img
-                      class="cart__item-image"
-                      src="<%=require('./images/item_2.jpg')%>"
-                      alt="Изображение товара Чехол для телефона"
-                    />
-                    <div class="cart__item-description">
-                      <h3 class="cart__item-name cart__item-name_not-available">
-                        Силиконовый чехол картхолдер (отверстия) для карт,
-                        прозрачный кейс бампер на Apple iPhone XR, MobiSafe
-                      </h3>
-                      <ul class="cart__item-properties">
-                        <li>
-                          <p class="cart__item-property">
-                            Цвет:
-                            <span class="cart__item-property-value"
-                              >прозрачный</span
-                            >
-                          </p>
-                        </li>
-                      </ul>
-                      <p class="cart__item-store cart__item-store_disabled">
-                        Коледино WB
-                      </p>
-                      <div class="cart__item-seller cart__item-seller_disabled">
-                        <p class="cart__item-seller-name">OOO Мегапрофстиль</p>
-                        <button
-                          class="cart__item-seller-info"
-                          type="button"
-                        ></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="cart__item-order">
-                    <div
-                      class="cart__item-counter cart__item-counter_disabled"
-                    ></div>
-                    <span
-                      class="cart__item-warning cart__item-warning_empty"
-                    ></span>
-                    <div class="cart__item-actions">
-                      <button
-                        class="cart__item-button cart__item-button_type_like"
-                        type="button"
-                      ></button>
-                      <button
-                        class="cart__item-button cart__item-button_type_remove"
-                        type="button"
-                      ></button>
-                    </div>
-                  </div>
-                  <div class="cart__item-price cart__item-price_disabled"></div>
-                </div>
-              </li>
-              <li class="cart__item">
-                <div class="cart__item-not-available">
-                  <div class="cart__item-info cart__item-info_not-available">
-                    <img
-                      class="cart__item-image cart__item-image_not-available"
-                      src="<%=require('./images/item_3.jpg')%>"
-                      alt="Изображение товара Чехол для телефона"
-                    />
-                    <div class="cart__item-description">
-                      <h3 class="cart__item-name cart__item-name_not-available">
-                        Карандаши цветные Faber&#8209;Castell "Замок", набор 24
-                        цвета, заточенные, шестигранные, Faber&#8209;Castell
-                      </h3>
-                      <ul
-                        class="cart__item-properties cart__item-properties_empty"
-                      ></ul>
-                      <p class="cart__item-store cart__item-store_disabled">
-                        Коледино WB
-                      </p>
-                      <div class="cart__item-seller cart__item-seller_disabled">
-                        <p class="cart__item-seller-name">OOO Вайлдберриз</p>
-                        <button
-                          class="cart__item-seller-info"
-                          type="button"
-                        ></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="cart__item-order">
-                    <div class="cart__item-counter cart__item-counter_disabled">
-                      <button
-                        class="cart__item-counter-button cart__item-counter-button_type_minus"
-                        type="button"
-                      >
-                        &ndash;
-                      </button>
-                      <p class="cart__item-counter-value"></p>
-                      <button
-                        class="cart__item-counter-button cart__item-counter-button_type_plus"
-                        type="button"
-                      >
-                        +
-                      </button>
-                    </div>
-                    <span
-                      class="cart__item-warning cart__item-warning_empty"
-                    ></span>
-                    <div class="cart__item-actions">
-                      <button
-                        class="cart__item-button cart__item-button_type_like"
-                        type="button"
-                      ></button>
-                      <button
-                        class="cart__item-button cart__item-button_type_remove"
-                        type="button"
-                      ></button>
-                    </div>
-                  </div>
-                  <div class="cart__item-price cart__item-price_disabled"></div>
-                </div>
-              </li>
+                </li>
+              </template>
             </ul>
           </fieldset>
         </fieldset>

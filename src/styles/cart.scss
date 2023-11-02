@@ -281,7 +281,13 @@
   }
 
   &__item-price-total {
-    margin: -4px 0 5px;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    margin: -4px 0 0;
+  }
+
+  &__item-price-total-value {
     font-size: 20px;
     font-weight: 700;
     line-height: 28px;
@@ -289,12 +295,15 @@
 
     &_small {
       font-size: 16px;
+      line-height: 24px;
       letter-spacing: -0.3px;
     }
   }
 
   &__item-price-currency {
     font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
   }
 
   &__item-price-old {
