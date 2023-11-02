@@ -80,13 +80,360 @@
                 />
               </svg>
               <p class="header__menu-button-name">Корзина</p>
-              <div class="header__menu-button-counter">
-                <p class="header__menu-button-counter-value">3</p>
+              <div class="counter">
+                <p class="counter__value">3</p>
               </div>
             </button>
           </li>
         </ul>
       </div>
     </header>
+    <main class="content">
+      <form class="cart">
+        <fieldset class="cart__order">
+          <h2 class="cart__title">Корзина</h2>
+          <fieldset class="cart__items">
+            <div class="cart__items-top">
+              <div class="checkbox checkbox_default">
+                <input
+                  class="checkbox__input"
+                  type="checkbox"
+                  id="select_all"
+                  checked
+                />
+                <label class="checkbox__label" for="select_all"></label>
+              </div>
+              <p class="cart__item-name cart__item-name_all">Выбрать все</p>
+              <button
+                class="cart__arrow cart__arrow_direction_down"
+                type="button"
+              ></button>
+            </div>
+            <!-- Список доступных товаров в корзине -->
+            <ul class="cart__items-list">
+              <template id="product-template">
+                <li class="cart__item">
+                  <div class="checkbox">
+                    <input
+                      class="checkbox__input"
+                      type="checkbox"
+                      id=""
+                      checked
+                    />
+                    <label
+                      class="checkbox__label checkbox__label_with-content"
+                      for=""
+                    >
+                      <div class="cart__item-info">
+                        <img class="cart__item-image" src="#" alt="" />
+                        <div class="cart__item-description">
+                          <h3 class="cart__item-name"></h3>
+                          <ul class="cart__item-properties">
+                            <li class="cart__properties-item">
+                              <p
+                                class="cart__item-property cart__item-property_type_color"
+                              ></p>
+                            </li>
+                            <li class="cart__properties-item">
+                              <p
+                                class="cart__item-property cart__item-property_type_size"
+                              ></p>
+                            </li>
+                          </ul>
+                          <p class="cart__item-store"></p>
+                          <div class="cart__item-seller">
+                            <p class="cart__item-seller-name"></p>
+                            <button
+                              class="cart__item-seller-info"
+                              type="button"
+                            ></button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cart__item-order">
+                        <div class="cart__item-counter">
+                          <button
+                            class="cart__item-counter-button cart__item-counter-button_type_minus cart__item-counter-button_disabled"
+                            type="button"
+                          >
+                            &ndash;
+                          </button>
+                          <p class="cart__item-counter-value">1</p>
+                          <button
+                            class="cart__item-counter-button cart__item-counter-button_type_plus"
+                            type="button"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <span class="cart__item-warning"></span>
+                        <div class="cart__item-actions">
+                          <button
+                            class="cart__item-button cart__item-button_type_like"
+                            type="button"
+                          ></button>
+                          <button
+                            class="cart__item-button cart__item-button_type_remove"
+                            type="button"
+                          ></button>
+                        </div>
+                      </div>
+                      <div class="cart__item-price">
+                        <div class="cart__item-price-total">
+                          <span class="cart__item-price-total-value"></span>
+                          <span class="cart__item-price-currency"> сом</span>
+                        </div>
+                        <span class="cart__item-price-old"></span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </fieldset>
+          <!-- Список товаров, отсутствующих на складе -->
+          <fieldset class="cart__items">
+            <div class="cart__items-top">
+              <p class="cart__items-not-available">
+                Отсутствуют ·
+                <span class="cart__items-not-available-counter">3</span> товара
+              </p>
+              <button
+                class="cart__arrow cart__arrow_direction_down"
+                type="button"
+              ></button>
+            </div>
+            <ul class="cart__items-list cart__items-list_out-of-stock">
+              <template id="out-of-stock-template">
+                <li class="cart__item">
+                  <div class="cart__item-not-available">
+                    <div class="cart__item-info cart__item-info_not-available">
+                      <img class="cart__item-image" src="" alt="" />
+                      <div class="cart__item-description">
+                        <h3
+                          class="cart__item-name cart__item-name_not-available"
+                        ></h3>
+                        <ul class="cart__item-properties">
+                          <li class="cart__properties-item">
+                            <p
+                              class="cart__item-property cart__item-property_type_color"
+                            ></p>
+                          </li>
+                          <li class="cart__properties-item">
+                            <p
+                              class="cart__item-property cart__item-property_type_size"
+                            ></p>
+                          </li>
+                        </ul>
+                        <p
+                          class="cart__item-store cart__item-store_disabled"
+                        ></p>
+                        <div
+                          class="cart__item-seller cart__item-seller_disabled"
+                        >
+                          <p class="cart__item-seller-name"></p>
+                          <button
+                            class="cart__item-seller-info"
+                            type="button"
+                          ></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cart__item-order">
+                      <div
+                        class="cart__item-counter cart__item-counter_disabled"
+                      ></div>
+                      <span
+                        class="cart__item-warning cart__item-warning_empty"
+                      ></span>
+                      <div class="cart__item-actions">
+                        <button
+                          class="cart__item-button cart__item-button_type_like"
+                          type="button"
+                        ></button>
+                        <button
+                          class="cart__item-button cart__item-button_type_remove"
+                          type="button"
+                        ></button>
+                      </div>
+                    </div>
+                    <div
+                      class="cart__item-price cart__item-price_disabled"
+                    ></div>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </fieldset>
+          <fieldset class="order-details order-details_place_top">
+            <div class="order-details__top">
+              <h3 class="order-details__title">Способ доставки</h3>
+              <button class="order-details__edit" type="button">
+                Изменить
+              </button>
+            </div>
+            <div class="order-details__table">
+              <h4 class="order-details__table-heading">Пункт выдачи</h4>
+              <div class="order-details__table-data">
+                <span class="order-details__description"
+                  >Бишкек, улица Ахматбека Суюмбаева, 12/1</span
+                >
+                <div class="order-details__tooltip">
+                  <img
+                    class="order-details__rating-star"
+                    src="<%=require('./images/svg/star_icon.svg')%>"
+                    alt=""
+                  />
+                  <span class="order-details__rating">4.99</span>
+                  <span class="order-details__opening-hours"
+                    >Ежедневно с 10 до 21
+                  </span>
+                </div>
+              </div>
+              <h4 class="order-details__table-heading">Стоимость доставки</h4>
+              <div class="order-details__table-data">
+                <span class="order-details__description">Бесплатно</span>
+              </div>
+              <h4 class="order-details__table-heading">5—6 февраля</h4>
+              <div class="order-details__table-data">
+                <ul class="order-details__product-list">
+                  <li class="order-details__product">
+                    <img
+                      class="order-details__product-image"
+                      src="<%=require('./images/item_1.jpg')%>"
+                      alt=""
+                    />
+                  </li>
+                  <li class="order-details__product">
+                    <img
+                      class="order-details__product-image"
+                      src="<%=require('./images/item_2.jpg')%>"
+                      alt=""
+                    />
+                  </li>
+                  <li class="order-details__product">
+                    <img
+                      class="order-details__product-image"
+                      src="<%=require('./images/item_3.jpg')%>"
+                      alt=""
+                    />
+                  </li>
+                </ul>
+              </div>
+              <h4 class="order-details__table-heading">7—8 февраля</h4>
+              <div class="order-details__table-data">
+                <ul class="order-details__product-list">
+                  <li class="order-details__product">
+                    <img
+                      class="order-details__product-image"
+                      src="<%=require('./images/item_1.jpg')%>"
+                      alt=""
+                    />
+                    <div class="counter counter_place_order-details">
+                      <p class="counter__value">16</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p class="order-details__refund">
+              Обратная доставка товаров на склад при отказе &mdash;
+              <span class="order-details__refund-tip">бесплатно</span>
+            </p>
+          </fieldset>
+          <fieldset class="order-details">
+            <div class="order-details__top">
+              <h3 class="order-details__title">Способ оплаты</h3>
+              <button class="order-details__edit" type="button">
+                Изменить
+              </button>
+            </div>
+            <div class="order-details__payment">
+              <div class="order-details__payment-method">
+                <img
+                  class="order-details__payment-logo"
+                  src="<%=require('./images/svg/mir-pay_icon.svg')%>"
+                  alt="Логотип платежной системы"
+                />
+                <p class="order-details__card-number">1234 56•• •••• 1234</p>
+                <p class="order-details__card-date">01/30</p>
+              </div>
+              <p class="order-details__payment-tip">
+                Спишем оплату с карты при получении
+              </p>
+            </div>
+          </fieldset>
+          <fieldset class="order-details">
+            <div class="order-details__top">
+              <h3 class="order-details__title">Получатель</h3>
+            </div>
+            <div class="order-details__recipient-info">
+              <div
+                class="order-details__input-wrapper order-details__input-wrapper_wide"
+              >
+                <input
+                  class="order-details__input"
+                  type="text"
+                  id="firstname"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="firstname"
+                  >Имя</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div
+                class="order-details__input-wrapper order-details__input-wrapper_wide"
+              >
+                <input class="order-details__input"" type="text" id="lastname"
+                placeholder=" " />
+                <label class="order-details__input-label" for="lastname"
+                  >Фамилия</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div class="order-details__input-wrapper">
+                <input
+                  class="order-details__input"
+                  type="email"
+                  id="email"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="email"
+                  >Почта</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div class="order-details__input-wrapper">
+                <input
+                  class="order-details__input"
+                  type="tel"
+                  id="phone"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="phone"
+                  >Телефон</label
+                >
+                <span class="order-details__input-error"></span>
+              </div>
+              <div class="order-details__input-wrapper">
+                <input
+                  class="order-details__input order-details__input_with-tip"
+                  type="text"
+                  id="inn"
+                  placeholder=" "
+                />
+                <label class="order-details__input-label" for="inn">ИНН</label>
+                <span
+                  class="order-details__input-error order-details__input-error_tip"
+                  >Для таможенного оформления</span
+                >
+              </div>
+            </div>
+          </fieldset>
+        </fieldset>
+        <fieldset class="cart__summary"></fieldset>
+      </form>
+    </main>
   </body>
 </html>

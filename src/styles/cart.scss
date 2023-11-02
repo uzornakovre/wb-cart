@@ -1,0 +1,343 @@
+.cart {
+  display: grid;
+  grid-template-columns: auto calc(381px + 24px * 2);
+  gap: 32px;
+
+  &__order {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  &__title {
+    margin: 11px 0 27px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: -0.28px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 0 36px;
+    padding: 0;
+    border: none;
+  }
+
+  &__items-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 24px;
+  }
+
+  &__item-name {
+    max-width: 275px;
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+
+    &_all {
+      margin: -4px 0 0;
+      padding-left: 33px;
+    }
+
+    &_not-available {
+      max-width: 309px;
+    }
+  }
+
+  &__arrow {
+    height: 100%;
+    width: 20px;
+    margin-left: auto;
+    border: none;
+    background-color: transparent;
+    background-image: url("./images/svg/arrow_icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+
+    &_direction_up {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid $color-background-black-transparent-10;
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+    padding-top: 12px;
+  }
+
+  &__item-not-available {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: auto 100px 110px;
+    gap: 16px;
+    color: $color-system-gray;
+  }
+
+  &__item-info {
+    display: grid;
+    grid-template-columns: 72px auto;
+    gap: 16px;
+    padding-left: 34px;
+
+    &_not-available {
+      padding: 0;
+    }
+  }
+
+  &__item-image {
+    width: 72px;
+    height: 96px;
+    object-fit: contain;
+    border-radius: 8px;
+
+    &_not-available {
+      filter: grayscale(1);
+    }
+  }
+
+  &__item-properties {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    font-size: 13px;
+    font-style: normal;
+    line-height: 16px;
+    list-style: none;
+    padding: 0;
+
+    &_empty {
+      display: none;
+    }
+  }
+
+  &__item-store {
+    margin: 8px 0 4px;
+    font-size: 13px;
+    line-height: 16px;
+    color: $color-system-gray;
+
+    &_disabled {
+      display: none;
+    }
+  }
+
+  &__item-seller {
+    display: flex;
+    gap: 8px;
+
+    &_disabled {
+      display: none;
+    }
+  }
+
+  &__item-seller-name {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 16px;
+    color: $color-system-gray;
+  }
+
+  &__item-seller-info {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    padding: 0;
+    background-color: transparent;
+    background-image: url("./images/svg/info_icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__item-property {
+    margin: 0;
+  }
+
+  &__item-warning {
+    color: $color-system-orange;
+    font-size: 13px;
+    line-height: 16px;
+
+    &_empty {
+      display: none;
+    }
+  }
+
+  &__item-order {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__item-counter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 4px;
+    height: 44px;
+    border-radius: 8px;
+    background-color: $color-background-white;
+
+    &_disabled {
+      display: none;
+    }
+  }
+
+  &__item-counter-button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &:active {
+      opacity: 0.3;
+    }
+
+    &_disabled {
+      opacity: 0.2;
+    }
+  }
+
+  &__item-actions {
+    display: flex;
+    gap: 16px;
+    align-self: flex-end;
+  }
+
+  &__item-button {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &:active {
+      opacity: 0.3;
+    }
+
+    &_type_like {
+      background-image: url("./images/svg/like_icon.svg");
+    }
+
+    &_type_remove {
+      background-image: url("./images/svg/trash_icon.svg");
+    }
+  }
+
+  &__item-price {
+    justify-self: end;
+    align-self: start;
+    text-align: end;
+
+    &_disabled {
+      visibility: hidden;
+    }
+  }
+
+  &__item-price-total {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    margin: -4px 0 0;
+  }
+
+  &__item-price-total-value {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+
+    &_small {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  &__item-price-currency {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  &__item-price-old {
+    margin: 0;
+    margin-left: auto;
+    width: fit-content;
+    font-size: 13px;
+    line-height: 16px;
+    color: $color-system-gray;
+    text-decoration: line-through;
+    border-bottom: 1px dashed $color-system-gray;
+    transition: all 0.2s linear;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__items-not-available {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &__summary {
+    box-sizing: border-box;
+    width: 100%;
+    height: 532px;
+    margin: 0;
+    padding: 16px 24px 24px;
+    border: none;
+    border-radius: 16px;
+    background-color: $color-background-white;
+    box-shadow: 0px 0px 1px 0px $color-background-black-transparent-30,
+      0px 2px 10px 0px $color-background-black-transparent-15;
+  }
+}
