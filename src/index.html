@@ -336,9 +336,9 @@
                 </ul>
               </div>
             </div>
-            <p class="order-details__refund">
+            <p class="refund">
               Обратная доставка товаров на склад при отказе &mdash;
-              <span class="order-details__refund-tip">бесплатно</span>
+              <span class="refund__tip">бесплатно</span>
             </p>
           </fieldset>
           <fieldset class="order-details">
@@ -349,14 +349,14 @@
               </button>
             </div>
             <div class="order-details__payment">
-              <div class="order-details__payment-method">
+              <div class="payment-method">
                 <img
-                  class="order-details__payment-logo"
+                  class="payment-method__logo"
                   src="<%=require('./images/svg/mir-pay_icon.svg')%>"
                   alt="Логотип платежной системы"
                 />
-                <p class="order-details__card-number">1234 56•• •••• 1234</p>
-                <p class="order-details__card-date">01/30</p>
+                <p class="payment-method__card-number">1234 56•• •••• 1234</p>
+                <p class="payment-method__card-date">01/30</p>
               </div>
               <p class="order-details__payment-tip">
                 Спишем оплату с карты при получении
@@ -432,8 +432,93 @@
             </div>
           </fieldset>
         </fieldset>
-        <fieldset class="cart__summary"></fieldset>
+        <fieldset class="cart__summary">
+          <table class="cart__summary-table">
+            <tr class="cart__summary-table-row">
+              <th class="cart__summary-table-heading left">Итого</th>
+              <th class="cart__summary-table-heading right">
+                2 101 063 <span class="cart__summary-currency">сом</span>
+              </th>
+            </tr>
+            <tr class="cart__summary-table-row">
+              <td class="cart__summary-table-data left">203 товара</td>
+              <td class="cart__summary-table-data right">2 302 048 сом</td>
+            </tr>
+            <tr class="cart__summary-table-row">
+              <td class="cart__summary-table-data left">Скидка</td>
+              <td class="cart__summary-table-data right">&ndash;200 985 сом</td>
+            </tr>
+            <tr class="cart__summary-table-row">
+              <td class="cart__summary-table-data left">Доставка</td>
+              <td class="cart__summary-table-data right">Бесплатно</td>
+            </tr>
+          </table>
+          <div class="cart__summary-delivery">
+            <h4 class="cart__summary-title">Доставка в пункт выдачи</h4>
+            <button class="cart__summary-edit" type="button"></button>
+            <p class="cart__summary-address">
+              Бишкек, улица Ахматбека Суюмбаева, 12/1
+            </p>
+            <p class="cart__summary-date">5–8 фев</p>
+            <p class="refund refund_place_summary">
+              Обратная доставка товаров на склад при отказе &mdash;
+              <span class="refund__tip">бесплатно</span>
+            </p>
+          </div>
+          <div class="cart__summary-payment">
+            <h4 class="cart__summary-title">Оплата картой</h4>
+            <button class="cart__summary-edit" type="button"></button>
+            <div class="payment-method payment-method_place_summary">
+              <img
+                class="payment-method__logo"
+                src="<%=require('./images/svg/mir-pay_icon.svg')%>"
+                alt="Логотип платежной системы"
+              />
+              <p
+                class="payment-method__card-number payment-method__card-number_place_summary"
+              >
+                1234 56•• •••• 1234
+              </p>
+              <p
+                class="payment-method__card-date payment-method__card-date_place_summary"
+              >
+                01/30
+              </p>
+            </div>
+            <div class="cart__summary-payment-option">
+              <input
+                class="checkbox__input"
+                type="checkbox"
+                id="pay_immediately"
+              />
+              <label
+                class="cart__summary-tip checkbox__label checkbox__label_place_summary"
+                for="pay_immediately"
+                >Списать оплату сразу</label
+              >
+              <p class="cart__summary-tip">
+                Спишем оплату с карты при получении
+              </p>
+            </div>
+          </div>
+          <div class="cart__submit">
+            <button class="cart__submit-button" type="submit">Заказать</button>
+            <p class="cart__summary-tip cart__summary-tip_type_agreement">
+              Соглашаюсь
+              <a class="cart__summary-tip_underlined" href="#" target="_blank"
+                >с правилами пользования торговой площадкой</a
+              >
+              и
+              <a class="cart__summary-tip_underlined" href="#" target="_blank"
+                >возврата</a
+              >
+            </p>
+          </div>
+        </fieldset>
       </form>
     </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022&ensp;ООО «Товары и точка»</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,27 @@
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &_place_summary {
+    margin: 4px 0 12px;
+  }
+
+  &__card-number {
+    margin: 0;
+    margin-right: 4px;
+
+    &_place_summary {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+
+  &__card-date {
+    margin: 0;
+
+    &_place_summary {
+      display: none;
+    }
+  }
+}
