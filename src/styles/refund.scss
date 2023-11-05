@@ -1,0 +1,36 @@
+.refund {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 3px;
+  font-size: 13px;
+  line-height: 16px;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 22px;
+    height: 22px;
+    top: 0;
+    left: 0;
+    background-image: url("./images/svg/check-mark_icon_2.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &_place_summary {
+    margin: 12px 0 4px;
+    padding: 8px 8px 10px 38px;
+    border-radius: 8px;
+    background-color: $color-background-smoky;
+
+    &::before {
+      top: 12px;
+      left: 8px;
+    }
+  }
+}
+
+.refund__tip {
+  color: $color-text-green;
+  border-bottom: 1px dashed $color-text-green-transparent-20;
+}
