@@ -520,5 +520,70 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022&ensp;ООО «Товары и точка»</p>
     </footer>
+
+    <div class="modal modal_type_payment-method modal_opened">
+      <div class="modal__container modal__container_type_payment-method">
+        <div class="modal__top">
+          <h2 class="modal__title">Способ доставки</h2>
+          <button class="modal__close-button" type="button"></button>
+        </div>
+        <div class="modal__delivery-type">
+          <button class="modal__delivery-type-button" type="button">
+            В пункт выдачи
+          </button>
+          <button
+            class="modal__delivery-type-button modal__delivery-type-button_active"
+            type="button"
+          >
+            Курьером
+          </button>
+        </div>
+        <form class="modal__delivery-address">
+          <h3 class="modal__delivery-address-title">Мои адреса</h3>
+          <ul class="modal__delivery-address-list">
+            <li class="modal__delivery-address-list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="address_1"
+                name="address"
+                value="Бишкек, улица Табышалиева, 57"
+              />
+              <label class="radio-button__label" for="address_1"
+                >Бишкек, улица Табышалиева, 57</label
+              >
+              <button class="radio-button__delete" type="button"></button>
+            </li>
+            <li class="modal__delivery-address-list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="address_2"
+                name="address"
+                value="Бишкек, улица Жукеева-Пудовкина, 77/1"
+              />
+              <label class="radio-button__label" for="address_2"
+                >Бишкек, улица Жукеева-Пудовкина, 77/1</label
+              >
+              <button class="radio-button__delete" type="button"></button>
+            </li>
+            <li class="modal__delivery-address-list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="address_3"
+                name="address"
+                value="Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1"
+              />
+              <label class="radio-button__label" for="address_3"
+                >Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</label
+              >
+              <button class="radio-button__delete" type="button"></button>
+            </li>
+          </ul>
+          <button class="modal__form-submit" type="submit">Выбрать</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
