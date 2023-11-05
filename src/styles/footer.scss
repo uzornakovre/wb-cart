@@ -1,0 +1,13 @@
+.footer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+
+  &__copyright {
+    margin: 0;
+    color: $color-background-white-transparent-70;
+    text-align: center;
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
