@@ -89,7 +89,7 @@
       </div>
     </header>
     <main class="content">
-      <form class="cart">
+      <form class="cart" name="cart" id="cart-form" novalidate>
         <fieldset class="cart__order">
           <h2 class="cart__title">Корзина</h2>
           <fieldset class="cart__items">
@@ -143,10 +143,19 @@
                           <p class="cart__item-store"></p>
                           <div class="cart__item-seller">
                             <p class="cart__item-seller-name"></p>
-                            <button
-                              class="cart__item-seller-info"
-                              type="button"
-                            ></button>
+                            <div class="cart__item-seller-info tooltip">
+                              <div
+                                class="cart__item-seller-info-content tooltip__content"
+                              >
+                                <h4 class="cart__item-seller-info-name"></h4>
+                                <p
+                                  class="cart__item-seller-info-text cart__item-seller-info-text_register-number"
+                                ></p>
+                                <p
+                                  class="cart__item-seller-info-text cart__item-seller-info-text_address"
+                                ></p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -183,7 +192,29 @@
                           <span class="cart__item-price-total-value"></span>
                           <span class="cart__item-price-currency"> сом</span>
                         </div>
-                        <span class="cart__item-price-old"></span>
+                        <div class="tooltip">
+                          <div class="tooltip__content">
+                            <div class="cart__item-price-tooltip">
+                              <div class="cart__item-price-tooltip-row">
+                                <p
+                                  class="cart__item-price-discount cart__item-price-discount_type_default"
+                                ></p>
+                                <p
+                                  class="cart__item-price-discount-value cart__item-price-discount-value_type_default"
+                                ></p>
+                              </div>
+                              <div class="cart__item-price-tooltip-row">
+                                <p
+                                  class="cart__item-price-discount cart__item-price-discount_type_user"
+                                ></p>
+                                <p
+                                  class="cart__item-price-discount-value cart__item-price-discount-value_type_user"
+                                ></p>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="cart__item-price-old"></span>
+                        </div>
                       </div>
                     </label>
                   </div>
@@ -268,7 +299,7 @@
           <fieldset class="order-details order-details_place_top">
             <div class="order-details__top">
               <h3 class="order-details__title">Способ доставки</h3>
-              <button class="order-details__edit" type="button">
+              <button class="order-details__edit delivery-edit" type="button">
                 Изменить
               </button>
             </div>
@@ -338,25 +369,32 @@
             </div>
             <p class="refund">
               Обратная доставка товаров на склад при отказе &mdash;
-              <span class="refund__tip">бесплатно</span>
+              <span class="refund__tip tooltip"
+                ><span class="tooltip__content"
+                  >Если товары вам не подойдут, мы вернем их обратно на склад —
+                  это бесплатно</span
+                ><span class="refund__tip-text">бесплатно</span></span
+              >
             </p>
           </fieldset>
           <fieldset class="order-details">
             <div class="order-details__top">
               <h3 class="order-details__title">Способ оплаты</h3>
-              <button class="order-details__edit" type="button">
+              <button class="order-details__edit payment-edit" type="button">
                 Изменить
               </button>
             </div>
             <div class="order-details__payment">
               <div class="payment-method">
                 <img
-                  class="payment-method__logo"
+                  class="payment-method__logo current-card-logo"
                   src="<%=require('./images/svg/mir-pay_icon.svg')%>"
                   alt="Логотип платежной системы"
                 />
-                <p class="payment-method__card-number">1234 56•• •••• 1234</p>
-                <p class="payment-method__card-date">01/30</p>
+                <p class="payment-method__card-number current-card-number">
+                  1234 56•• •••• 1234
+                </p>
+                <p class="payment-method__card-date current-card-date">01/30</p>
               </div>
               <p class="order-details__payment-tip">
                 Спишем оплату с карты при получении
@@ -376,21 +414,31 @@
                   type="text"
                   id="firstname"
                   placeholder=" "
+                  required
                 />
                 <label class="order-details__input-label" for="firstname"
                   >Имя</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_firstname"
+                ></span>
               </div>
               <div
                 class="order-details__input-wrapper order-details__input-wrapper_wide"
               >
-                <input class="order-details__input"" type="text" id="lastname"
-                placeholder=" " />
+                <input
+                  class="order-details__input"
+                  type="text"
+                  id="lastname"
+                  placeholder=" "
+                  required
+                />
                 <label class="order-details__input-label" for="lastname"
                   >Фамилия</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_lastname"
+                ></span>
               </div>
               <div class="order-details__input-wrapper">
                 <input
@@ -398,11 +446,14 @@
                   type="email"
                   id="email"
                   placeholder=" "
+                  required
                 />
                 <label class="order-details__input-label" for="email"
                   >Почта</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_email"
+                ></span>
               </div>
               <div class="order-details__input-wrapper">
                 <input
@@ -410,11 +461,16 @@
                   type="tel"
                   id="phone"
                   placeholder=" "
+                  maxlength="30"
+                  pattern="\+(\d) (\d{0,3}) (\d{0,3}) (\d{0,2}) (\d{0,2})"
+                  required
                 />
                 <label class="order-details__input-label" for="phone"
                   >Телефон</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_phone"
+                ></span>
               </div>
               <div class="order-details__input-wrapper">
                 <input
@@ -422,10 +478,14 @@
                   type="text"
                   id="inn"
                   placeholder=" "
+                  minlength="14"
+                  maxlength="14"
+                  pattern="[0-9]{14}"
+                  required
                 />
                 <label class="order-details__input-label" for="inn">ИНН</label>
                 <span
-                  class="order-details__input-error order-details__input-error_tip"
+                  class="order-details__input-error order-details__input-error_content_inn order-details__input-error_tip"
                   >Для таможенного оформления</span
                 >
               </div>
@@ -455,32 +515,43 @@
           </table>
           <div class="cart__summary-delivery">
             <h4 class="cart__summary-title">Доставка в пункт выдачи</h4>
-            <button class="cart__summary-edit" type="button"></button>
+            <button
+              class="cart__summary-edit delivery-edit"
+              type="button"
+            ></button>
             <p class="cart__summary-address">
               Бишкек, улица Ахматбека Суюмбаева, 12/1
             </p>
             <p class="cart__summary-date">5–8 фев</p>
             <p class="refund refund_place_summary">
               Обратная доставка товаров на склад при отказе &mdash;
-              <span class="refund__tip">бесплатно</span>
+              <span class="refund__tip tooltip"
+                ><span class="tooltip__content tooltip__content_place_summary"
+                  >Если товары вам не подойдут, мы вернем их обратно на склад —
+                  это бесплатно</span
+                ><span class="refund__tip-text">бесплатно</span></span
+              >
             </p>
           </div>
           <div class="cart__summary-payment">
             <h4 class="cart__summary-title">Оплата картой</h4>
-            <button class="cart__summary-edit" type="button"></button>
+            <button
+              class="cart__summary-edit payment-edit"
+              type="button"
+            ></button>
             <div class="payment-method payment-method_place_summary">
               <img
-                class="payment-method__logo"
+                class="payment-method__logo current-card-logo"
                 src="<%=require('./images/svg/mir-pay_icon.svg')%>"
                 alt="Логотип платежной системы"
               />
               <p
-                class="payment-method__card-number payment-method__card-number_place_summary"
+                class="payment-method__card-number payment-method__card-number_place_summary current-card-number"
               >
                 1234 56•• •••• 1234
               </p>
               <p
-                class="payment-method__card-date payment-method__card-date_place_summary"
+                class="payment-method__card-date payment-method__card-date_place_summary current-card-date"
               >
                 01/30
               </p>
@@ -502,7 +573,9 @@
             </div>
           </div>
           <div class="cart__submit">
-            <button class="cart__submit-button" type="submit">Заказать</button>
+            <button class="cart__submit-button" name="cart" type="submit">
+              Заказать
+            </button>
             <p class="cart__summary-tip cart__summary-tip_type_agreement">
               Соглашаюсь
               <a class="cart__summary-tip_underlined" href="#" target="_blank"
@@ -520,5 +593,108 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022&ensp;ООО «Товары и точка»</p>
     </footer>
+
+    <div class="modal modal_type_delivery-method">
+      <div class="modal__container modal__container_type_delivery-method">
+        <div class="modal__top">
+          <h2 class="modal__title">Способ доставки</h2>
+          <button class="modal__close-button" type="button"></button>
+        </div>
+        <div class="modal__delivery-type">
+          <button class="modal__delivery-type-button" type="button">
+            В пункт выдачи
+          </button>
+          <button
+            class="modal__delivery-type-button modal__delivery-type-button_active"
+            type="button"
+          >
+            Курьером
+          </button>
+        </div>
+        <form class="modal__form" id="delivery">
+          <h3 class="modal__form-title">Мои адреса</h3>
+          <ul class="modal__list">
+            <li class="modal__list-item radio-button">
+              <input
+                class="radio-button__input modal__form-input"
+                type="radio"
+                id="address_1"
+                name="address"
+                value="Бишкек, улица Табышалиева, 57"
+                checked
+              />
+              <label class="radio-button__label" for="address_1"
+                >Бишкек, улица Табышалиева, 57</label
+              >
+              <button class="radio-button__delete" type="button"></button>
+            </li>
+            <li class="modal__list-item radio-button">
+              <input
+                class="radio-button__input modal__form-input"
+                type="radio"
+                id="address_2"
+                name="address"
+                value="Бишкек, улица Жукеева-Пудовкина, 77/1"
+              />
+              <label class="radio-button__label" for="address_2"
+                >Бишкек, улица Жукеева-Пудовкина, 77/1</label
+              >
+              <button class="radio-button__delete" type="button"></button>
+            </li>
+            <li class="modal__list-item radio-button">
+              <input
+                class="radio-button__input modal__form-input"
+                type="radio"
+                id="address_3"
+                name="address"
+                value="Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1"
+              />
+              <label class="radio-button__label" for="address_3"
+                >Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</label
+              >
+              <button class="radio-button__delete" type="button"></button>
+            </li>
+          </ul>
+          <button class="modal__form-submit" type="submit">Выбрать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal_type_payment-method">
+      <div class="modal__container modal__container_type_payment-method">
+        <div class="modal__top">
+          <h2 class="modal__title">Способ оплаты</h2>
+          <button class="modal__close-button" type="button"></button>
+        </div>
+        <form class="modal__form modal__form_type_payment-method" id="payment">
+          <ul class="modal__list modal__list_type_payment-method">
+            <template id="payment-method-template">
+              <li class="modal__list-item radio-button">
+                <input
+                  class="radio-button__input modal__form-input"
+                  type="radio"
+                  id=""
+                  name="payment-method"
+                  value=""
+                />
+                <label class="radio-button__label" for=""
+                  ><div class="payment-method">
+                    <img class="payment-method__logo" src="#" alt="" />
+                    <p class="payment-method__card-number"></p>
+                    <p
+                      class="payment-method__card-date payment-method__card-date_place_modal"
+                    ></p></div
+                ></label>
+                <button
+                  class="radio-button__delete radio-button__delete_inactive"
+                  type="button"
+                ></button>
+              </li>
+            </template>
+          </ul>
+          <button class="modal__form-submit" type="submit">Выбрать</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

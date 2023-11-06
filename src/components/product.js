@@ -116,6 +116,29 @@ export class Product {
       this._warning.textContent = `Осталось ${this._productCount} шт.`;
     }
 
+    if (this._productCount) {
+      this._element.querySelector(".cart__item-seller-info-name").textContent =
+        this._productSellerFullName;
+      this._element.querySelector(
+        ".cart__item-seller-info-text_register-number"
+      ).textContent = `ОГРН: ${this._productSellerRegisterNumber}`;
+      this._element.querySelector(
+        ".cart__item-seller-info-text_address"
+      ).textContent = this._productSellerAddress;
+      this._element.querySelector(
+        ".cart__item-price-discount_type_default"
+      ).textContent = `Скидка ${this._productDiscount}%`;
+      this._element.querySelector(
+        ".cart__item-price-discount-value_type_default"
+      ).textContent = `-${300} сом`;
+      this._element.querySelector(
+        ".cart__item-price-discount_type_user"
+      ).textContent = `Скидка покупателя ${this._userDiscount}%`;
+      this._element.querySelector(
+        ".cart__item-price-discount-value_type_user"
+      ).textContent = `-${30} сом`;
+    }
+
     return this._element;
   }
 }

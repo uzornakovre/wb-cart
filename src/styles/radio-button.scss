@@ -1,0 +1,79 @@
+.radio-button {
+  display: flex;
+  justify-content: space-between;
+
+  &__input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + .radio-button__label::before {
+      width: 16px;
+      height: 16px;
+      border: none;
+      background-color: $color-interface-accent-1;
+      background-image: url("./images/svg/dot_icon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    & + .checkbox__label:hover::before {
+      opacity: 0.7;
+    }
+  }
+
+  &__label {
+    position: relative;
+    width: 85%;
+    height: 22px;
+    margin: 0;
+    padding-left: 28px;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      left: 2px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      content: "";
+      display: block;
+      background-color: transparent;
+      border-radius: 50%;
+      border: 1px solid $color-background-black-transparent-20;
+      transition: opacity 0.2s linear;
+
+      &:hover::before {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &__delete {
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    background-image: url("./images/svg/trash_icon_grey.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+
+    &_inactive {
+      display: none;
+    }
+  }
+}

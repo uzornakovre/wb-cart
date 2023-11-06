@@ -1,14 +1,104 @@
 import "../index.scss";
-import { PRODUCTS_LIST, USER_DISCOUNT } from "../utils/constants";
+import {
+  PRODUCTS_LIST,
+  USER_DISCOUNT,
+  PAYMENT_METHODS_LIST,
+  ADDRESSES_LIST,
+  paymentMethodModalElement,
+  deliveryMethodModalElement,
+  paymentForm,
+  deliveryForm,
+  paymentEditButtons,
+  deliveryEditButtons,
+  cartItemsList,
+  cartItemsListOutOfStock,
+  paymentMethodLogoElements,
+  cardNumberElements,
+  cardDateElements,
+  paymentMethodsList,
+  cartFormElement,
+  cartFormSubmitElement,
+} from "../utils/constants";
 import { Product } from "../components/product";
-import { Cart } from "../components/cart";
+import { CartSection } from "../components/cart-section";
+import ModalWithForm from "../components/modal-with-form";
+import { ModalSection } from "../components/modal-section";
+import { Card } from "../components/card";
 
-export const cartItemsList = document.querySelector(".cart__items-list");
-export const cartItemsListOutOfStock = document.querySelector(
-  ".cart__items-list_out-of-stock"
+// Модальные окна
+
+const paymentMethodModal = new ModalWithForm(
+  paymentMethodModalElement,
+  paymentForm,
+  submitPaymentForm
 );
 
-const productSection = new Cart(
+const deliveryMethodModal = new ModalWithForm(
+  deliveryMethodModalElement,
+  deliveryForm,
+  submitDeliveryForm
+);
+
+function submitPaymentForm(paymentMethod) {
+  const currentMethod = PAYMENT_METHODS_LIST.find(
+    (method) => method.name === paymentMethod
+  );
+
+  paymentMethodLogoElements.forEach((logo) => {
+    logo.src = currentMethod.logo;
+    logo.alt = `Логотип платежной системы ${currentMethod.name}`;
+  });
+
+  cardNumberElements.forEach((num) => {
+    num.textContent = currentMethod.card;
+  });
+
+  cardDateElements.forEach((date) => {
+    date.textContent = currentMethod.date;
+  });
+
+  paymentMethodModal.close();
+
+  return currentMethod;
+}
+
+function submitDeliveryForm(address) {
+  console.log(address);
+  const currentAddress = ADDRESSES_LIST.find((ad) => ad.value === address);
+  deliveryMethodModal.close();
+  console.log(currentAddress);
+}
+
+paymentMethodModal.setEventListeners();
+deliveryMethodModal.setEventListeners();
+
+paymentEditButtons.forEach((button) => {
+  button.addEventListener("click", () => paymentMethodModal.open());
+});
+deliveryEditButtons.forEach((button) => {
+  button.addEventListener("click", () => deliveryMethodModal.open());
+});
+
+const paymentMethodsSection = new ModalSection(
+  {
+    renderer: (itemData) => {
+      return createCardItem(itemData);
+    },
+  },
+  paymentMethodsList
+);
+
+function createCardItem(cardData) {
+  const cardItem = new Card(cardData, "#payment-method-template");
+  const item = cardItem.createItem();
+  return item;
+}
+
+paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
+
+// Карточки товаров
+
+const productSection = new CartSection(
   {
     renderer: (itemData) => {
       return createCartItem(itemData);
@@ -17,7 +107,7 @@ const productSection = new Cart(
   cartItemsList
 );
 
-const outOfStockSection = new Cart(
+const outOfStockSection = new CartSection(
   {
     renderer: (itemData) => {
       return createCartItem(itemData);
@@ -40,3 +130,20 @@ function createCartItem(itemData) {
 
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
+
+// Валидация полей ввода
+
+import { VALIDATION_SETTINGS } from "../utils/constants";
+
+import FormValidator from "../components/form-validator";
+
+const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
+
+// cartFormSubmitElement.addEventListener("click", handleOrderSubmit);
+
+// function handleOrderSubmit(evt) {
+//   evt.preventDefault();
+//   // cartForm.enableValidation();
+// }
+
+cartForm.enableValidation();

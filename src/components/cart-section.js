@@ -1,4 +1,4 @@
-export class Cart {
+export class CartSection {
   constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
     this._container = containerSelector;

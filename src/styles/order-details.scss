@@ -146,6 +146,11 @@
       font-size: 13px;
       line-height: 16px;
     }
+
+    &_error {
+      color: $color-system-orange;
+      border-color: $color-system-orange;
+    }
   }
 
   &__input-label {
@@ -161,5 +166,10 @@
     min-height: 14px;
     font-size: 12px;
     line-height: 14px;
+    color: $color-system-orange;
+
+    &_tip {
+      color: $color-text-black;
+    }
   }
 }

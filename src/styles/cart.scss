@@ -179,6 +179,25 @@
     cursor: pointer;
   }
 
+  &__item-seller-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__item-seller-info-name {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+  }
+
+  &__item-seller-info-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
   &__item-property {
     margin: 0;
   }
@@ -323,6 +342,31 @@
     }
   }
 
+  &__item-price-tooltip {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  &__item-price-tooltip-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__item-price-discount {
+    margin: 0;
+    color: $color-system-gray;
+  }
+
+  &__item-price-discount-value {
+    margin: 0;
+  }
+
   &__items-not-available {
     font-size: 16px;
     font-weight: 600;
@@ -445,6 +489,16 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
   }
 
   &__summary-tip {
