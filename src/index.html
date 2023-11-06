@@ -521,8 +521,8 @@
       <p class="footer__copyright">&copy; 2022&ensp;ООО «Товары и точка»</p>
     </footer>
 
-    <div class="modal modal_type_payment-method modal_opened">
-      <div class="modal__container modal__container_type_payment-method">
+    <div class="modal modal_type_delivery-method">
+      <div class="modal__container modal__container_type_delivery-method">
         <div class="modal__top">
           <h2 class="modal__title">Способ доставки</h2>
           <button class="modal__close-button" type="button"></button>
@@ -538,10 +538,10 @@
             Курьером
           </button>
         </div>
-        <form class="modal__delivery-address">
-          <h3 class="modal__delivery-address-title">Мои адреса</h3>
-          <ul class="modal__delivery-address-list">
-            <li class="modal__delivery-address-list-item radio-button">
+        <form class="modal__form">
+          <h3 class="modal__form-title">Мои адреса</h3>
+          <ul class="modal__list">
+            <li class="modal__list-item radio-button">
               <input
                 class="radio-button__input"
                 type="radio"
@@ -554,7 +554,7 @@
               >
               <button class="radio-button__delete" type="button"></button>
             </li>
-            <li class="modal__delivery-address-list-item radio-button">
+            <li class="modal__list-item radio-button">
               <input
                 class="radio-button__input"
                 type="radio"
@@ -567,7 +567,7 @@
               >
               <button class="radio-button__delete" type="button"></button>
             </li>
-            <li class="modal__delivery-address-list-item radio-button">
+            <li class="modal__list-item radio-button">
               <input
                 class="radio-button__input"
                 type="radio"
@@ -579,6 +579,133 @@
                 >Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</label
               >
               <button class="radio-button__delete" type="button"></button>
+            </li>
+          </ul>
+          <button class="modal__form-submit" type="submit">Выбрать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal_type_payment-method modal_opened">
+      <div class="modal__container modal__container_type_payment-method">
+        <div class="modal__top">
+          <h2 class="modal__title">Способ оплаты</h2>
+          <button class="modal__close-button" type="button"></button>
+        </div>
+        <form class="modal__form modal__form_type_payment-method">
+          <ul class="modal__list modal__list_type_payment-method">
+            <li class="modal__list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="payment-method_1"
+                name="payment-method"
+                value="1234 56•• •••• 1234"
+                checked
+              />
+              <label class="radio-button__label" for="payment-method_1"
+                ><div class="payment-method">
+                  <img
+                    class="payment-method__logo"
+                    src="<%=require('./images/svg/mir-pay_icon.svg')%>"
+                    alt="Логотип платежной системы"
+                  />
+                  <p class="payment-method__card-number">1234 56•• •••• 1234</p>
+                  <p
+                    class="payment-method__card-date payment-method__card-date_place_modal"
+                  >
+                    01/30
+                  </p>
+                </div></label
+              >
+              <button
+                class="radio-button__delete radio-button__delete_inactive"
+                type="button"
+              ></button>
+            </li>
+            <li class="modal__delivery-address-list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="payment-method_2"
+                name="payment-method"
+                value="1234 56•• •••• 1234"
+              />
+              <label class="radio-button__label" for="payment-method_2"
+                ><div class="payment-method">
+                  <img
+                    class="payment-method__logo"
+                    src="<%=require('./images/svg/visa_icon.svg')%>"
+                    alt="Логотип платежной системы"
+                  />
+                  <p class="payment-method__card-number">1234 56•• •••• 1234</p>
+                  <p
+                    class="payment-method__card-date payment-method__card-date_place_modal"
+                  >
+                    01/30
+                  </p>
+                </div></label
+              >
+              <button
+                class="radio-button__delete radio-button__delete_inactive"
+                type="button"
+              ></button>
+            </li>
+            <li class="modal__list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="payment-method_3"
+                name="payment-method"
+                value="1234 56•• •••• 1234"
+              />
+              <label class="radio-button__label" for="payment-method_3"
+                ><div class="payment-method">
+                  <img
+                    class="payment-method__logo"
+                    src="<%=require('./images/svg/mastercard_icon.svg')%>"
+                    alt="Логотип платежной системы"
+                  />
+                  <p class="payment-method__card-number">1234 56•• •••• 1234</p>
+                  <p
+                    class="payment-method__card-date payment-method__card-date_place_modal"
+                  >
+                    01/30
+                  </p>
+                </div></label
+              >
+              <button
+                class="radio-button__delete radio-button__delete_inactive"
+                type="button"
+              ></button>
+            </li>
+            <li class="modal__list-item radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="payment-method_4"
+                name="payment-method"
+                value="1234 56•• •••• 1234"
+              />
+              <label class="radio-button__label" for="payment-method_4"
+                ><div class="payment-method">
+                  <img
+                    class="payment-method__logo"
+                    src="<%=require('./images/svg/maestro_icon.svg')%>"
+                    alt="Логотип платежной системы"
+                  />
+                  <p class="payment-method__card-number">1234 56•• •••• 1234</p>
+                  <p
+                    class="payment-method__card-date payment-method__card-date_place_modal"
+                  >
+                    01/30
+                  </p>
+                </div></label
+              >
+              <button
+                class="radio-button__delete radio-button__delete_inactive"
+                type="button"
+              ></button>
             </li>
           </ul>
           <button class="modal__form-submit" type="submit">Выбрать</button>

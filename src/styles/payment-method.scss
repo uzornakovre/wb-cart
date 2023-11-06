@@ -20,7 +20,8 @@
   &__card-date {
     margin: 0;
 
-    &_place_summary {
+    &_place_summary,
+    &_place_modal {
       display: none;
     }
   }

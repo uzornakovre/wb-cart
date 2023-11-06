@@ -29,6 +29,10 @@
     border-radius: 16px;
     box-shadow: 0px 4px 10px 0px $color-background-black-transparent-20;
     background-color: $color-background-white;
+
+    &_type_payment-method {
+      width: 400px;
+    }
   }
 
   &__top {
@@ -106,14 +110,18 @@
     }
   }
 
-  &__delivery-address {
-    min-height: 266px;
+  &__form {
+    height: 266px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    &_type_payment-method {
+      height: 326px;
+    }
   }
 
-  &__delivery-address-title {
+  &__form-title {
     margin: 0;
     margin-bottom: 12px;
     font-size: 13px;
@@ -121,7 +129,7 @@
     line-height: 16px;
   }
 
-  &__delivery-address-list {
+  &__list {
     display: flex;
     flex-direction: column;
     gap: 22px;
@@ -130,6 +138,10 @@
     list-style: none;
     font-size: 16px;
     line-height: 24px;
+
+    &_type_payment-method {
+      gap: 18px;
+    }
   }
 
   &__form-submit {
@@ -144,5 +156,15 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
   }
 }
