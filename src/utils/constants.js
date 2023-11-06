@@ -1,6 +1,42 @@
 import tShirtImg from "../images/item_1.jpg";
 import caseImg from "../images/item_2.jpg";
 import pencilsImg from "../images/item_3.jpg";
+import mirLogo from "../images/svg/mir-pay_icon.svg";
+import visaLogo from "../images/svg/visa_icon.svg";
+import masterCardLogo from "../images/svg/mastercard_icon.svg";
+import maestroLogo from "../images/svg/maestro_icon.svg";
+
+export const cartItemsList = document.querySelector(".cart__items-list");
+export const cartItemsListOutOfStock = document.querySelector(
+  ".cart__items-list_out-of-stock"
+);
+
+export const paymentEditButtons = document.querySelectorAll(".payment-edit");
+export const deliveryEditButtons = document.querySelectorAll(".delivery-edit");
+
+export const paymentMethodModalElement = document.querySelector(
+  ".modal_type_payment-method"
+);
+export const deliveryMethodModalElement = document.querySelector(
+  ".modal_type_delivery-method"
+);
+export const paymentForm = paymentMethodModalElement.querySelector("#payment");
+export const deliveryForm =
+  deliveryMethodModalElement.querySelector("#delivery");
+
+export const paymentMethodsList = paymentMethodModalElement.querySelector(
+  ".modal__list_type_payment-method"
+);
+export const deliveryMethodsList = deliveryMethodModalElement.querySelector(
+  ".modal__list_type_delivery-method"
+);
+
+export const paymentMethodLogoElements =
+  document.querySelectorAll(".current-card-logo");
+export const cardNumberElements = document.querySelectorAll(
+  ".current-card-number"
+);
+export const cardDateElements = document.querySelectorAll(".current-card-date");
 
 export const PRODUCTS_LIST = [
   {
@@ -125,28 +161,28 @@ export const PAYMENT_METHODS_LIST = [
     name: "mir",
     card: "1234 56•• •••• 1234",
     date: "01/30",
-    logo: "./images/svg/mir-pay_icon.svg",
+    logo: mirLogo,
   },
   {
     id: "payment-method_2",
     name: "visa",
-    card: "1234 56•• •••• 1234",
-    date: "01/30",
-    logo: "./images/svg/visa_icon.svg",
+    card: "2345 56•• •••• 1234",
+    date: "02/30",
+    logo: visaLogo,
   },
   {
     id: "payment-method_3",
     name: "mastercard",
-    card: "1234 56•• •••• 1234",
-    date: "01/30",
-    logo: "./images/svg/mastercard_icon.svg",
+    card: "3456 56•• •••• 1234",
+    date: "03/30",
+    logo: masterCardLogo,
   },
   {
     id: "payment-method_4",
     name: "maestro",
-    card: "1234 56•• •••• 1234",
-    date: "01/30",
-    logo: "./images/svg/maestro_icon.svg",
+    card: "4567 56•• •••• 1234",
+    date: "04/30",
+    logo: maestroLogo,
   },
 ];
 
