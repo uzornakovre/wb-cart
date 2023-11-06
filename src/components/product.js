@@ -1,7 +1,6 @@
 export class Product {
   constructor(
-    productData,
-    userDiscount,
+    { productData, handleDeleteClick, handleLikeClick, userDiscount },
     productTemplateSelector,
     outOfStockTemplateSelector
   ) {
@@ -18,6 +17,8 @@ export class Product {
     this._productDiscount = productData.discount;
     this._productCount = productData.count;
     this._userDiscount = userDiscount;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
     this._productTemplateSelector = productTemplateSelector;
     this._outOfStockTemplateSelector = outOfStockTemplateSelector;
   }
@@ -40,6 +41,19 @@ export class Product {
     return cartItem;
   }
 
+  _setEventListeners() {
+    this._itemDeleteButton = this._element.querySelector(
+      ".cart__item-button_type_remove"
+    );
+
+    this._likeButton = this._element.querySelector(
+      ".cart__item-button_type_like"
+    );
+
+    this._itemDeleteButton.addEventListener("click", this._handleDeleteClick);
+    this._likeButton.addEventListener("click", this._handleLikeClick);
+  }
+
   _calculateTotalPrice() {
     const totalDiscount = this._productDiscount + this._userDiscount;
     const totalPrice =
@@ -56,6 +70,8 @@ export class Product {
     } else {
       this._element = this._getOutOfStockProductTemplate();
     }
+
+    this._setEventListeners();
 
     this._checkbox = this._element.querySelector(".checkbox__input");
     this._checkboxLabel = this._element.querySelector(".checkbox__label");
@@ -140,5 +156,23 @@ export class Product {
     }
 
     return this._element;
+  }
+
+  removeItem() {
+    this._element.remove();
+  }
+
+  toggleLike() {
+    this._likeButton = this._element.querySelector(
+      ".cart__item-button_type_like"
+    );
+
+    if (
+      !this._likeButton.classList.contains("cart__item-button_type_like-active")
+    ) {
+      this._likeButton.classList.add("cart__item-button_type_like-active");
+    } else {
+      this._likeButton.classList.remove("cart__item-button_type_like-active");
+    }
   }
 }

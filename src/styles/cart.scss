@@ -260,6 +260,12 @@
     display: flex;
     gap: 16px;
     align-self: flex-end;
+    transition: all 0.2s linear;
+    opacity: 0;
+  }
+
+  &__item:hover &__item-actions {
+    opacity: 1;
   }
 
   &__item-button {
@@ -273,20 +279,32 @@
     transition: all 0.2s linear;
     cursor: pointer;
 
-    &:hover {
-      opacity: 0.5;
-    }
-
     &:active {
       opacity: 0.3;
     }
 
     &_type_like {
       background-image: url("./images/svg/like_icon.svg");
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &_type_like-active {
+      background-image: url("./images/svg/like_icon_violet.svg");
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
 
     &_type_remove {
       background-image: url("./images/svg/trash_icon.svg");
+
+      &:hover {
+        background-image: url("./images/svg/trash_icon_orange.svg");
+      }
     }
   }
 

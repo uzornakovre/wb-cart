@@ -118,8 +118,16 @@ const outOfStockSection = new CartSection(
 
 function createCartItem(itemData) {
   const productItem = new Product(
-    itemData,
-    USER_DISCOUNT,
+    {
+      productData: itemData,
+      handleDeleteClick: () => {
+        productItem.removeItem();
+      },
+      handleLikeClick: () => {
+        productItem.toggleLike();
+      },
+      userDiscount: USER_DISCOUNT,
+    },
     "#product-template",
     "#out-of-stock-template"
   );
@@ -138,12 +146,5 @@ import { VALIDATION_SETTINGS } from "../utils/constants";
 import FormValidator from "../components/form-validator";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
-
-// cartFormSubmitElement.addEventListener("click", handleOrderSubmit);
-
-// function handleOrderSubmit(evt) {
-//   evt.preventDefault();
-//   // cartForm.enableValidation();
-// }
 
 cartForm.enableValidation();
