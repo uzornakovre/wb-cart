@@ -16,6 +16,8 @@ import {
   cardNumberElements,
   cardDateElements,
   paymentMethodsList,
+  cartFormElement,
+  cartFormSubmitElement,
 } from "../utils/constants";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
@@ -128,3 +130,20 @@ function createCartItem(itemData) {
 
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
+
+// Валидация полей ввода
+
+import { VALIDATION_SETTINGS } from "../utils/constants";
+
+import FormValidator from "../components/form-validator";
+
+const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
+
+// cartFormSubmitElement.addEventListener("click", handleOrderSubmit);
+
+// function handleOrderSubmit(evt) {
+//   evt.preventDefault();
+//   // cartForm.enableValidation();
+// }
+
+cartForm.enableValidation();

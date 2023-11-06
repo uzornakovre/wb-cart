@@ -6,6 +6,10 @@ import visaLogo from "../images/svg/visa_icon.svg";
 import masterCardLogo from "../images/svg/mastercard_icon.svg";
 import maestroLogo from "../images/svg/maestro_icon.svg";
 
+export const cartFormElement = document.querySelector("#cart-form");
+export const cartFormSubmitElement = document.querySelector(
+  ".cart__submit-button"
+);
 export const cartItemsList = document.querySelector(".cart__items-list");
 export const cartItemsListOutOfStock = document.querySelector(
   ".cart__items-list_out-of-stock"
@@ -37,6 +41,41 @@ export const cardNumberElements = document.querySelectorAll(
   ".current-card-number"
 );
 export const cardDateElements = document.querySelectorAll(".current-card-date");
+
+export const VALIDATION_SETTINGS = {
+  formSelector: "#cart-form",
+  inputSelector: ".order-details__input",
+  errorSelector: ".order-details__input-error",
+  submitButtonSelector: ".cart__submit-button",
+  inputErrorClass: "order-details__input_error",
+  inputTipClass: "order-details__input-error_tip",
+  validationMessages: [
+    {
+      id: "firstname",
+      valueMissing: "Укажите имя",
+    },
+    {
+      id: "lastname",
+      valueMissing: "Укажите фамилию",
+    },
+    {
+      id: "email",
+      valueMissing: "Укажите электронную почту",
+      typeMismatch: "Проверьте адрес электронной почты",
+    },
+    {
+      id: "phone",
+      valueMissing: "Укажите номер телефона",
+      patternMismatch: "Формат: +9 999 999 99 99",
+    },
+    {
+      id: "inn",
+      valueMissing: "Укажите ИНН",
+      tooShort: "Проверьте ИНН",
+      patternMismatch: "Проверьте ИНН",
+    },
+  ],
+};
 
 export const PRODUCTS_LIST = [
   {

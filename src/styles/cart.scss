@@ -489,6 +489,16 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
   }
 
   &__summary-tip {

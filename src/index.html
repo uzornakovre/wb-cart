@@ -89,7 +89,7 @@
       </div>
     </header>
     <main class="content">
-      <form class="cart">
+      <form class="cart" name="cart" id="cart-form" novalidate>
         <fieldset class="cart__order">
           <h2 class="cart__title">Корзина</h2>
           <fieldset class="cart__items">
@@ -414,21 +414,31 @@
                   type="text"
                   id="firstname"
                   placeholder=" "
+                  required
                 />
                 <label class="order-details__input-label" for="firstname"
                   >Имя</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_firstname"
+                ></span>
               </div>
               <div
                 class="order-details__input-wrapper order-details__input-wrapper_wide"
               >
-                <input class="order-details__input"" type="text" id="lastname"
-                placeholder=" " />
+                <input
+                  class="order-details__input"
+                  type="text"
+                  id="lastname"
+                  placeholder=" "
+                  required
+                />
                 <label class="order-details__input-label" for="lastname"
                   >Фамилия</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_lastname"
+                ></span>
               </div>
               <div class="order-details__input-wrapper">
                 <input
@@ -436,11 +446,14 @@
                   type="email"
                   id="email"
                   placeholder=" "
+                  required
                 />
                 <label class="order-details__input-label" for="email"
                   >Почта</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_email"
+                ></span>
               </div>
               <div class="order-details__input-wrapper">
                 <input
@@ -448,11 +461,16 @@
                   type="tel"
                   id="phone"
                   placeholder=" "
+                  maxlength="30"
+                  pattern="\+(\d) (\d{0,3}) (\d{0,3}) (\d{0,2}) (\d{0,2})"
+                  required
                 />
                 <label class="order-details__input-label" for="phone"
                   >Телефон</label
                 >
-                <span class="order-details__input-error"></span>
+                <span
+                  class="order-details__input-error order-details__input-error_content_phone"
+                ></span>
               </div>
               <div class="order-details__input-wrapper">
                 <input
@@ -460,10 +478,14 @@
                   type="text"
                   id="inn"
                   placeholder=" "
+                  minlength="14"
+                  maxlength="14"
+                  pattern="[0-9]{14}"
+                  required
                 />
                 <label class="order-details__input-label" for="inn">ИНН</label>
                 <span
-                  class="order-details__input-error order-details__input-error_tip"
+                  class="order-details__input-error order-details__input-error_content_inn order-details__input-error_tip"
                   >Для таможенного оформления</span
                 >
               </div>
@@ -551,7 +573,9 @@
             </div>
           </div>
           <div class="cart__submit">
-            <button class="cart__submit-button" type="submit">Заказать</button>
+            <button class="cart__submit-button" name="cart" type="submit">
+              Заказать
+            </button>
             <p class="cart__summary-tip cart__summary-tip_type_agreement">
               Соглашаюсь
               <a class="cart__summary-tip_underlined" href="#" target="_blank"
