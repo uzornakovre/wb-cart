@@ -150,32 +150,35 @@ export const PAYMENT_METHODS_LIST = [
   },
 ];
 
-export const USER_ADDRESSES_LIST = [
+export const ADDRESSES_LIST = [
   {
     id: "address_1",
     value: "Бишкек, улица Табышалиева, 57",
+    type: "courier",
   },
   {
     id: "address_2",
     value: "Бишкек, улица Жукеева-Пудовкина, 77/1",
+    type: "courier",
   },
   {
     id: "address_3",
     value: "Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1",
+    type: "courier",
   },
-];
-
-export const PICKUP_POINTS_LIST = [
   {
     id: "address_1",
     value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
+    type: "pickup-point",
   },
   {
     id: "address_2",
     value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
+    type: "pickup-point",
   },
   {
     id: "address_3",
     value: "г. Бишкек, улица Табышалиева, д. 57",
+    type: "pickup-point",
   },
 ];
