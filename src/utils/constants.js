@@ -114,7 +114,7 @@ export const PRODUCTS_LIST = [
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
-    price: 15000000,
+    price: 15000,
     discount: 55,
     inStock: 300,
     startCartCount: 200,
@@ -134,7 +134,7 @@ export const PRODUCTS_LIST = [
     },
     price: 950,
     discount: 20,
-    inStock: 2,
+    inStock: 3,
     startCartCount: 2,
   },
   {

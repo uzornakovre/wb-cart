@@ -33,18 +33,9 @@ export class Product {
     this._outOfStockTemplateSelector = outOfStockTemplateSelector;
   }
 
-  _getProductTemplate() {
+  _getProductTemplate(selector) {
     const cartItem = document
-      .querySelector(this._productTemplateSelector)
-      .content.querySelector(".cart__item")
-      .cloneNode(true);
-
-    return cartItem;
-  }
-
-  _getOutOfStockProductTemplate() {
-    const cartItem = document
-      .querySelector(this._outOfStockTemplateSelector)
+      .querySelector(selector)
       .content.querySelector(".cart__item")
       .cloneNode(true);
 
@@ -75,20 +66,96 @@ export class Product {
   }
 
   _calculateTotalPrice() {
-    const totalDiscount = this._productDiscount + this._userDiscount;
-    const totalPrice =
-      this._productPrice - (this._productPrice / 100) * totalDiscount;
+    this._totalPrice = this._productPrice * this._productCartCount;
+    this._productDiscountValue = Math.floor(
+      (this._totalPrice / 100) * this._productDiscount
+    );
+    this._userDiscountValue = Math.floor(
+      (this._totalPrice / 100) * this._userDiscount
+    );
 
-    return totalPrice;
+    let totalDiscount = this._productDiscountValue + this._userDiscountValue;
+    let totalPriceWithDiscount =
+      this._productPrice * this._productCartCount - totalDiscount;
+
+    return totalPriceWithDiscount;
+  }
+
+  _renderTotalPrice() {
+    this._totalPriceWithDiscount = this._calculateTotalPrice();
+    this._price.textContent = `${this._totalPrice} сом`;
+
+    this._totalPriceValue &&
+      (this._totalPriceValue.textContent = this._totalPriceWithDiscount);
+    this._element.querySelector(
+      ".cart__item-price-discount_type_default"
+    ).textContent = `Скидка ${this._productDiscount}%`;
+    this._element.querySelector(
+      ".cart__item-price-discount-value_type_default"
+    ).textContent = `-${this._productDiscountValue} сом`;
+    this._element.querySelector(
+      ".cart__item-price-discount_type_user"
+    ).textContent = `Скидка покупателя ${this._userDiscount}%`;
+    this._element.querySelector(
+      ".cart__item-price-discount-value_type_user"
+    ).textContent = `-${this._userDiscountValue} сом`;
+  }
+
+  removeItem() {
+    this._element.remove();
+  }
+
+  toggleLike() {
+    this._likeButton = this._element.querySelector(
+      ".cart__item-button_type_like"
+    );
+
+    if (
+      !this._likeButton.classList.contains("cart__item-button_type_like-active")
+    ) {
+      this._likeButton.classList.add("cart__item-button_type_like-active");
+    } else {
+      this._likeButton.classList.remove("cart__item-button_type_like-active");
+    }
+  }
+
+  increaseCount() {
+    this._productCartCount++;
+    this._renderProductCartCount();
+    this._renderTotalPrice();
+  }
+
+  decreaseCount() {
+    this._productCartCount--;
+    this._renderProductCartCount();
+    this._renderTotalPrice();
+  }
+
+  _renderProductCartCount() {
+    this._counter.textContent = this._productCartCount;
+
+    if (this._productCartCount === 1) {
+      this._minusButton.setAttribute("disabled", true);
+    } else {
+      this._minusButton.removeAttribute("disabled");
+    }
+
+    if (this._productCartCount === this._productInStock) {
+      this._plusButton.setAttribute("disabled", true);
+    } else {
+      this._plusButton.removeAttribute("disabled");
+    }
   }
 
   createItem() {
     this._totalPrice = this._calculateTotalPrice();
 
     if (this._productInStock) {
-      this._element = this._getProductTemplate();
+      this._element = this._getProductTemplate(this._productTemplateSelector);
     } else {
-      this._element = this._getOutOfStockProductTemplate();
+      this._element = this._getProductTemplate(
+        this._outOfStockTemplateSelector
+      );
     }
 
     this._setEventListeners();
@@ -123,8 +190,6 @@ export class Product {
       this._productStore;
     this._element.querySelector(".cart__item-seller-name").textContent =
       this._productSellerName;
-    this._totalPriceValue &&
-      (this._totalPriceValue.textContent = this._totalPrice);
     this._price && (this._price.textContent = `${this._productPrice} сом`);
 
     this._counter = this._element.querySelector(".cart__item-counter-value");
@@ -165,64 +230,11 @@ export class Product {
       this._element.querySelector(
         ".cart__item-seller-info-text_address"
       ).textContent = this._productSellerAddress;
-      this._element.querySelector(
-        ".cart__item-price-discount_type_default"
-      ).textContent = `Скидка ${this._productDiscount}%`;
-      this._element.querySelector(
-        ".cart__item-price-discount-value_type_default"
-      ).textContent = `-${300} сом`;
-      this._element.querySelector(
-        ".cart__item-price-discount_type_user"
-      ).textContent = `Скидка покупателя ${this._userDiscount}%`;
-      this._element.querySelector(
-        ".cart__item-price-discount-value_type_user"
-      ).textContent = `-${30} сом`;
+
+      this._renderTotalPrice();
+      this._renderProductCartCount();
     }
 
     return this._element;
-  }
-
-  removeItem() {
-    this._element.remove();
-  }
-
-  toggleLike() {
-    this._likeButton = this._element.querySelector(
-      ".cart__item-button_type_like"
-    );
-
-    if (
-      !this._likeButton.classList.contains("cart__item-button_type_like-active")
-    ) {
-      this._likeButton.classList.add("cart__item-button_type_like-active");
-    } else {
-      this._likeButton.classList.remove("cart__item-button_type_like-active");
-    }
-  }
-
-  increaseCount() {
-    this._productCartCount++;
-    this._renderProductCartCount();
-  }
-
-  decreaseCount() {
-    this._productCartCount--;
-    this._renderProductCartCount();
-  }
-
-  _renderProductCartCount() {
-    this._counter.textContent = this._productCartCount;
-
-    if (this._productCartCount === 0) {
-      this._minusButton.setAttribute("disabled", true);
-    } else {
-      this._minusButton.removeAttribute("disabled");
-    }
-
-    if (this._productCartCount === this._productInStock) {
-      this._plusButton.setAttribute("disabled", true);
-    } else {
-      this._plusButton.removeAttribute("disabled");
-    }
   }
 }
