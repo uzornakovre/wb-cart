@@ -126,6 +126,12 @@ function createCartItem(itemData) {
       handleLikeClick: () => {
         productItem.toggleLike();
       },
+      handleMinusClick: () => {
+        productItem.decreaseCount();
+      },
+      handlePlusClick: () => {
+        productItem.increaseCount();
+      },
       userDiscount: USER_DISCOUNT,
     },
     "#product-template",

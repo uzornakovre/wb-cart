@@ -96,7 +96,8 @@ export const PRODUCTS_LIST = [
     },
     price: 1305,
     discount: 50,
-    count: 2,
+    inStock: 2,
+    startCartCount: 1,
   },
   {
     id: "prod-2",
@@ -115,7 +116,8 @@ export const PRODUCTS_LIST = [
     },
     price: 15000000,
     discount: 55,
-    count: 300,
+    inStock: 300,
+    startCartCount: 200,
   },
   {
     id: "prod-3",
@@ -132,7 +134,8 @@ export const PRODUCTS_LIST = [
     },
     price: 950,
     discount: 20,
-    count: 2,
+    inStock: 2,
+    startCartCount: 2,
   },
   {
     id: "prod-4",
@@ -152,7 +155,8 @@ export const PRODUCTS_LIST = [
     },
     price: 1305,
     discount: 50,
-    count: 0,
+    inStock: 0,
+    startCartCount: 0,
   },
   {
     id: "prod-5",
@@ -171,7 +175,8 @@ export const PRODUCTS_LIST = [
     },
     price: 15000000,
     discount: 55,
-    count: 0,
+    inStock: 0,
+    startCartCount: 0,
   },
   {
     id: "prod-6",
@@ -188,7 +193,8 @@ export const PRODUCTS_LIST = [
     },
     price: 950,
     discount: 20,
-    count: 0,
+    inStock: 0,
+    startCartCount: 0,
   },
 ];
 

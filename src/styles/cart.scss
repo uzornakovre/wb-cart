@@ -235,6 +235,7 @@
 
   &__item-counter-button {
     padding: 0;
+    width: 30px;
     background-color: transparent;
     border: none;
     font-size: 20px;
@@ -251,7 +252,7 @@
       opacity: 0.3;
     }
 
-    &_disabled {
+    &:disabled {
       opacity: 0.2;
     }
   }

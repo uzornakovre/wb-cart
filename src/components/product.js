@@ -1,6 +1,13 @@
 export class Product {
   constructor(
-    { productData, handleDeleteClick, handleLikeClick, userDiscount },
+    {
+      productData,
+      handleDeleteClick,
+      handleLikeClick,
+      handleMinusClick,
+      handlePlusClick,
+      userDiscount,
+    },
     productTemplateSelector,
     outOfStockTemplateSelector
   ) {
@@ -15,10 +22,13 @@ export class Product {
     this._productSellerAddress = productData.seller.address;
     this._productPrice = productData.price;
     this._productDiscount = productData.discount;
-    this._productCount = productData.count;
+    this._productInStock = productData.inStock;
+    this._productCartCount = productData.startCartCount;
     this._userDiscount = userDiscount;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
+    this._handleMinusClick = handleMinusClick;
+    this._handlePlusClick = handlePlusClick;
     this._productTemplateSelector = productTemplateSelector;
     this._outOfStockTemplateSelector = outOfStockTemplateSelector;
   }
@@ -45,13 +55,23 @@ export class Product {
     this._itemDeleteButton = this._element.querySelector(
       ".cart__item-button_type_remove"
     );
-
     this._likeButton = this._element.querySelector(
       ".cart__item-button_type_like"
+    );
+    this._minusButton = this._element.querySelector(
+      ".cart__item-counter-button_type_minus"
+    );
+    this._plusButton = this._element.querySelector(
+      ".cart__item-counter-button_type_plus"
     );
 
     this._itemDeleteButton.addEventListener("click", this._handleDeleteClick);
     this._likeButton.addEventListener("click", this._handleLikeClick);
+
+    this._minusButton &&
+      this._minusButton.addEventListener("click", this._handleMinusClick);
+    this._plusButton &&
+      this._plusButton.addEventListener("click", this._handlePlusClick);
   }
 
   _calculateTotalPrice() {
@@ -65,7 +85,7 @@ export class Product {
   createItem() {
     this._totalPrice = this._calculateTotalPrice();
 
-    if (this._productCount) {
+    if (this._productInStock) {
       this._element = this._getProductTemplate();
     } else {
       this._element = this._getOutOfStockProductTemplate();
@@ -94,7 +114,7 @@ export class Product {
 
     this._image.src = this._productImage;
     this._image.alt = `Изоборажение ${this._productName}`;
-    !this._productCount &&
+    !this._productInStock &&
       this._image.classList.add("cart__item-image_not-available");
 
     this._element.querySelector(".cart__item-name").textContent =
@@ -107,9 +127,13 @@ export class Product {
       (this._totalPriceValue.textContent = this._totalPrice);
     this._price && (this._price.textContent = `${this._productPrice} сом`);
 
-    if (this._totalPrice > 999999 && this._productCount) {
+    this._counter = this._element.querySelector(".cart__item-counter-value");
+
+    this._counter && (this._counter.textContent = this._productCartCount);
+
+    if (this._totalPrice > 999999 && this._productInStock) {
       this._totalPriceValue.classList.add("cart__item-price-total-value_small");
-    } else if (this._productCount) {
+    } else if (this._productInStock) {
       this._totalPriceValue.classList.remove(
         "cart__item-price-total-value_small"
       );
@@ -125,14 +149,14 @@ export class Product {
         (this._size.textContent = `Размер: ${this._productProperties.size}`);
     }
 
-    if (this._productCount > 3 || !this._productCount) {
+    if (this._productInStock > 3 || !this._productInStock) {
       this._warning.classList.add("cart__item-warning_empty");
     } else {
       this._warning.classList.remove("cart__item-warning_empty");
-      this._warning.textContent = `Осталось ${this._productCount} шт.`;
+      this._warning.textContent = `Осталось ${this._productInStock} шт.`;
     }
 
-    if (this._productCount) {
+    if (this._productInStock) {
       this._element.querySelector(".cart__item-seller-info-name").textContent =
         this._productSellerFullName;
       this._element.querySelector(
@@ -173,6 +197,32 @@ export class Product {
       this._likeButton.classList.add("cart__item-button_type_like-active");
     } else {
       this._likeButton.classList.remove("cart__item-button_type_like-active");
+    }
+  }
+
+  increaseCount() {
+    this._productCartCount++;
+    this._renderProductCartCount();
+  }
+
+  decreaseCount() {
+    this._productCartCount--;
+    this._renderProductCartCount();
+  }
+
+  _renderProductCartCount() {
+    this._counter.textContent = this._productCartCount;
+
+    if (this._productCartCount === 0) {
+      this._minusButton.setAttribute("disabled", true);
+    } else {
+      this._minusButton.removeAttribute("disabled");
+    }
+
+    if (this._productCartCount === this._productInStock) {
+      this._plusButton.setAttribute("disabled", true);
+    } else {
+      this._plusButton.removeAttribute("disabled");
     }
   }
 }
