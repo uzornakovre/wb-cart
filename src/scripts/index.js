@@ -17,7 +17,8 @@ import {
   cardDateElements,
   paymentMethodsList,
   cartFormElement,
-  cartFormSubmitElement,
+  cartProductsInStockAccordionButton,
+  cartProductsOutOfStockAccordionButton,
 } from "../utils/constants";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
@@ -95,6 +96,46 @@ function createCardItem(cardData) {
 }
 
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
+
+// Аккордеон
+
+function handleCartProductsInStockAccordionButtonClick() {
+  if (!cartItemsList.classList.contains("cart__items-list_visible")) {
+    cartItemsList.classList.add("cart__items-list_visible");
+    cartProductsInStockAccordionButton.classList.remove(
+      "cart__arrow_direction_up"
+    );
+  } else {
+    cartItemsList.classList.remove("cart__items-list_visible");
+    cartProductsInStockAccordionButton.classList.add(
+      "cart__arrow_direction_up"
+    );
+  }
+}
+
+function handleCartProductsOutOfStockAccordionButtonClick() {
+  if (!cartItemsListOutOfStock.classList.contains("cart__items-list_visible")) {
+    cartItemsListOutOfStock.classList.add("cart__items-list_visible");
+    cartProductsOutOfStockAccordionButton.classList.remove(
+      "cart__arrow_direction_up"
+    );
+  } else {
+    cartItemsListOutOfStock.classList.remove("cart__items-list_visible");
+    cartProductsOutOfStockAccordionButton.classList.add(
+      "cart__arrow_direction_up"
+    );
+  }
+}
+
+cartProductsInStockAccordionButton.addEventListener(
+  "click",
+  handleCartProductsInStockAccordionButtonClick
+);
+
+cartProductsOutOfStockAccordionButton.addEventListener(
+  "click",
+  handleCartProductsOutOfStockAccordionButtonClick
+);
 
 // Карточки товаров
 

@@ -104,13 +104,10 @@
                 <label class="checkbox__label" for="select_all"></label>
               </div>
               <p class="cart__item-name cart__item-name_all">Выбрать все</p>
-              <button
-                class="cart__arrow cart__arrow_direction_down"
-                type="button"
-              ></button>
+              <button class="cart__arrow" type="button" id="in-stock"></button>
             </div>
             <!-- Список доступных товаров в корзине -->
-            <ul class="cart__items-list">
+            <ul class="cart__items-list cart__items-list_visible">
               <template id="product-template">
                 <li class="cart__item">
                   <div class="checkbox">
@@ -232,9 +229,12 @@
               <button
                 class="cart__arrow cart__arrow_direction_down"
                 type="button"
+                id="out-of-stock"
               ></button>
             </div>
-            <ul class="cart__items-list cart__items-list_out-of-stock">
+            <ul
+              class="cart__items-list cart__items-list_out-of-stock cart__items-list_visible"
+            >
               <template id="out-of-stock-template">
                 <li class="cart__item">
                   <div class="cart__item-not-available">

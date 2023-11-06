@@ -84,6 +84,15 @@
     padding: 0;
     list-style: none;
     border-top: 1px solid $color-background-black-transparent-10;
+    transition: all 0.4s ease-out;
+    overflow: hidden;
+    visibility: hidden;
+    max-height: 0;
+
+    &_visible {
+      max-height: 480px;
+      visibility: visible;
+    }
   }
 
   &__item {

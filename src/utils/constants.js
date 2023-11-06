@@ -41,6 +41,10 @@ export const cardNumberElements = document.querySelectorAll(
   ".current-card-number"
 );
 export const cardDateElements = document.querySelectorAll(".current-card-date");
+export const cartProductsInStockAccordionButton =
+  document.querySelector("#in-stock");
+export const cartProductsOutOfStockAccordionButton =
+  document.querySelector("#out-of-stock");
 
 export const VALIDATION_SETTINGS = {
   formSelector: "#cart-form",
