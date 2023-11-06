@@ -143,10 +143,19 @@
                           <p class="cart__item-store"></p>
                           <div class="cart__item-seller">
                             <p class="cart__item-seller-name"></p>
-                            <button
-                              class="cart__item-seller-info"
-                              type="button"
-                            ></button>
+                            <div class="cart__item-seller-info tooltip">
+                              <div
+                                class="cart__item-seller-info-content tooltip__content"
+                              >
+                                <h4 class="cart__item-seller-info-name"></h4>
+                                <p
+                                  class="cart__item-seller-info-text cart__item-seller-info-text_register-number"
+                                ></p>
+                                <p
+                                  class="cart__item-seller-info-text cart__item-seller-info-text_address"
+                                ></p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -183,7 +192,29 @@
                           <span class="cart__item-price-total-value"></span>
                           <span class="cart__item-price-currency"> сом</span>
                         </div>
-                        <span class="cart__item-price-old"></span>
+                        <div class="tooltip">
+                          <div class="tooltip__content">
+                            <div class="cart__item-price-tooltip">
+                              <div class="cart__item-price-tooltip-row">
+                                <p
+                                  class="cart__item-price-discount cart__item-price-discount_type_default"
+                                ></p>
+                                <p
+                                  class="cart__item-price-discount-value cart__item-price-discount-value_type_default"
+                                ></p>
+                              </div>
+                              <div class="cart__item-price-tooltip-row">
+                                <p
+                                  class="cart__item-price-discount cart__item-price-discount_type_user"
+                                ></p>
+                                <p
+                                  class="cart__item-price-discount-value cart__item-price-discount-value_type_user"
+                                ></p>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="cart__item-price-old"></span>
+                        </div>
                       </div>
                     </label>
                   </div>
@@ -338,7 +369,12 @@
             </div>
             <p class="refund">
               Обратная доставка товаров на склад при отказе &mdash;
-              <span class="refund__tip">бесплатно</span>
+              <span class="refund__tip tooltip"
+                ><span class="tooltip__content"
+                  >Если товары вам не подойдут, мы вернем их обратно на склад —
+                  это бесплатно</span
+                ><span class="refund__tip-text">бесплатно</span></span
+              >
             </p>
           </fieldset>
           <fieldset class="order-details">
@@ -467,7 +503,12 @@
             <p class="cart__summary-date">5–8 фев</p>
             <p class="refund refund_place_summary">
               Обратная доставка товаров на склад при отказе &mdash;
-              <span class="refund__tip">бесплатно</span>
+              <span class="refund__tip tooltip"
+                ><span class="tooltip__content tooltip__content_place_summary"
+                  >Если товары вам не подойдут, мы вернем их обратно на склад —
+                  это бесплатно</span
+                ><span class="refund__tip-text">бесплатно</span></span
+              >
             </p>
           </div>
           <div class="cart__summary-payment">

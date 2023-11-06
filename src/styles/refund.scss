@@ -28,9 +28,13 @@
       left: 8px;
     }
   }
-}
 
-.refund__tip {
-  color: $color-text-green;
-  border-bottom: 1px dashed $color-text-green-transparent-20;
+  &__tip {
+    color: $color-text-green;
+    border-bottom: 1px dashed $color-text-green-transparent-20;
+  }
+
+  &__tip-text {
+    cursor: pointer;
+  }
 }

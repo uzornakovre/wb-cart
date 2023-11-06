@@ -51,7 +51,7 @@ export const PRODUCTS_LIST = [
     seller: {
       name: "ООО Вайлдберриз",
       fullName: "OOO «Вайлдберриз»",
-      registerNumber: 5167746237148,
+      registerNumber: "5167746237148",
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
@@ -70,7 +70,7 @@ export const PRODUCTS_LIST = [
     seller: {
       name: "ООО Мегапрофстиль",
       fullName: "OOO «МЕГАПРОФСТИЛЬ»",
-      registerNumber: 5167746237148,
+      registerNumber: "5167746237148",
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
@@ -87,7 +87,7 @@ export const PRODUCTS_LIST = [
     seller: {
       name: "ООО Вайлдберриз",
       fullName: "OOO «МЕГАПРОФСТИЛЬ»",
-      registerNumber: 5167746237148,
+      registerNumber: "5167746237148",
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
@@ -107,7 +107,7 @@ export const PRODUCTS_LIST = [
     seller: {
       name: "ООО Вайлдберриз",
       fullName: "OOO «Вайлдберриз»",
-      registerNumber: 5167746237148,
+      registerNumber: "5167746237148",
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
@@ -126,7 +126,7 @@ export const PRODUCTS_LIST = [
     seller: {
       name: "ООО Мегапрофстиль",
       fullName: "OOO «МЕГАПРОФСТИЛЬ»",
-      registerNumber: 5167746237148,
+      registerNumber: "5167746237148",
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
@@ -143,7 +143,7 @@ export const PRODUCTS_LIST = [
     seller: {
       name: "ООО Вайлдберриз",
       fullName: "OOO «МЕГАПРОФСТИЛЬ»",
-      registerNumber: 5167746237148,
+      registerNumber: "5167746237148",
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
