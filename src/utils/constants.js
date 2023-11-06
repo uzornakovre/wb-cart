@@ -118,3 +118,64 @@ export const PRODUCTS_LIST = [
 ];
 
 export const USER_DISCOUNT = 10;
+
+export const PAYMENT_METHODS_LIST = [
+  {
+    id: "payment-method_1",
+    name: "mir",
+    card: "1234 56•• •••• 1234",
+    date: "01/30",
+    logo: "./images/svg/mir-pay_icon.svg",
+  },
+  {
+    id: "payment-method_2",
+    name: "visa",
+    card: "1234 56•• •••• 1234",
+    date: "01/30",
+    logo: "./images/svg/visa_icon.svg",
+  },
+  {
+    id: "payment-method_3",
+    name: "mastercard",
+    card: "1234 56•• •••• 1234",
+    date: "01/30",
+    logo: "./images/svg/mastercard_icon.svg",
+  },
+  {
+    id: "payment-method_4",
+    name: "maestro",
+    card: "1234 56•• •••• 1234",
+    date: "01/30",
+    logo: "./images/svg/maestro_icon.svg",
+  },
+];
+
+export const USER_ADDRESSES_LIST = [
+  {
+    id: "address_1",
+    value: "Бишкек, улица Табышалиева, 57",
+  },
+  {
+    id: "address_2",
+    value: "Бишкек, улица Жукеева-Пудовкина, 77/1",
+  },
+  {
+    id: "address_3",
+    value: "Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1",
+  },
+];
+
+export const PICKUP_POINTS_LIST = [
+  {
+    id: "address_1",
+    value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
+  },
+  {
+    id: "address_2",
+    value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
+  },
+  {
+    id: "address_3",
+    value: "г. Бишкек, улица Табышалиева, д. 57",
+  },
+];
