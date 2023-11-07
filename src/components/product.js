@@ -84,8 +84,8 @@ export class Product {
   }
 
   _renderTotalPrice() {
-    this._totalPriceWithDiscount = this._calculateTotalPrice();
-    this._price.textContent = `${this._totalPrice} сом`;
+    this._totalPriceWithDiscount = this._calculateTotalPrice().toLocaleString();
+    this._price.textContent = `${this._totalPrice.toLocaleString()} сом`;
 
     this._totalPriceValue &&
       (this._totalPriceValue.textContent = this._totalPriceWithDiscount);
@@ -195,7 +195,8 @@ export class Product {
       this._productStore;
     this._element.querySelector(".cart__item-seller-name").textContent =
       this._productSellerName;
-    this._price && (this._price.textContent = `${this.productPrice} сом`);
+    this._price &&
+      (this._price.textContent = `${this.productPrice.toLocaleString()} сом`);
 
     this._counter = this._element.querySelector(".cart__item-counter-value");
 

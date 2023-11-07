@@ -289,9 +289,9 @@ const renderSummaryData = () => {
   const totalItems = document.querySelector("#summary-total-items");
   const { totalPrice, totalDiscount, totalItemsCount } = getSummaryData();
 
-  finalPrice.textContent = totalPrice - totalDiscount;
-  price.textContent = totalPrice;
-  discount.textContent = totalDiscount;
+  finalPrice.textContent = (totalPrice - totalDiscount).toLocaleString();
+  price.textContent = totalPrice.toLocaleString();
+  discount.textContent = totalDiscount.toLocaleString();
   totalItems.textContent = totalItemsCount;
 };
 

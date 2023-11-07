@@ -243,6 +243,11 @@
     }
   }
 
+  &__item-counter-value {
+    min-width: 30px;
+    text-align: center;
+  }
+
   &__item-counter-button {
     padding: 0;
     width: 30px;
