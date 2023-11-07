@@ -81,7 +81,7 @@
               </svg>
               <p class="header__menu-button-name">Корзина</p>
               <div class="counter">
-                <p class="counter__value">3</p>
+                <p class="counter__value" id="header-counter">3</p>
               </div>
             </button>
           </li>
@@ -96,7 +96,7 @@
             <div class="cart__items-top">
               <div class="checkbox checkbox_default">
                 <input
-                  class="checkbox__input"
+                  class="checkbox__input option"
                   type="checkbox"
                   id="select_all"
                   checked
@@ -112,8 +112,9 @@
                 <li class="cart__item">
                   <div class="checkbox">
                     <input
-                      class="checkbox__input"
+                      class="checkbox__input sub-option"
                       type="checkbox"
+                      name="cart_item"
                       id=""
                       checked
                     />

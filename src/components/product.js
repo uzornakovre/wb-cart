@@ -20,11 +20,11 @@ export class Product {
     this._productSellerFullName = productData.seller.fullName;
     this._productSellerRegisterNumber = productData.seller.registerNumber;
     this._productSellerAddress = productData.seller.address;
-    this._productPrice = productData.price;
-    this._productDiscount = productData.discount;
+    this.productPrice = productData.price;
+    this.productDiscount = productData.discount;
     this._productInStock = productData.inStock;
-    this._productCartCount = productData.startCartCount;
-    this._userDiscount = userDiscount;
+    this.productCartCount = productData.startCartCount;
+    this.userDiscount = userDiscount;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._handleMinusClick = handleMinusClick;
@@ -66,17 +66,17 @@ export class Product {
   }
 
   _calculateTotalPrice() {
-    this._totalPrice = this._productPrice * this._productCartCount;
-    this._productDiscountValue = Math.floor(
-      (this._totalPrice / 100) * this._productDiscount
+    this._totalPrice = this.productPrice * this.productCartCount;
+    this.productDiscountValue = Math.floor(
+      (this._totalPrice / 100) * this.productDiscount
     );
-    this._userDiscountValue = Math.floor(
-      (this._totalPrice / 100) * this._userDiscount
+    this.userDiscountValue = Math.floor(
+      (this._totalPrice / 100) * this.userDiscount
     );
 
-    let totalDiscount = this._productDiscountValue + this._userDiscountValue;
+    let totalDiscount = this.productDiscountValue + this.userDiscountValue;
     let totalPriceWithDiscount =
-      this._productPrice * this._productCartCount - totalDiscount;
+      this.productPrice * this.productCartCount - totalDiscount;
 
     return totalPriceWithDiscount;
   }
@@ -89,20 +89,23 @@ export class Product {
       (this._totalPriceValue.textContent = this._totalPriceWithDiscount);
     this._element.querySelector(
       ".cart__item-price-discount_type_default"
-    ).textContent = `Скидка ${this._productDiscount}%`;
+    ).textContent = `Скидка ${this.productDiscount}%`;
     this._element.querySelector(
       ".cart__item-price-discount-value_type_default"
-    ).textContent = `-${this._productDiscountValue} сом`;
+    ).textContent = `-${this.productDiscountValue} сом`;
     this._element.querySelector(
       ".cart__item-price-discount_type_user"
-    ).textContent = `Скидка покупателя ${this._userDiscount}%`;
+    ).textContent = `Скидка покупателя ${this.userDiscount}%`;
     this._element.querySelector(
       ".cart__item-price-discount-value_type_user"
-    ).textContent = `-${this._userDiscountValue} сом`;
+    ).textContent = `-${this.userDiscountValue} сом`;
   }
 
   removeItem() {
+    const checkbox = this._element.querySelector(".sub-option");
+    checkbox.checked = false;
     this._element.remove();
+    checkbox.dispatchEvent(new Event("input"));
   }
 
   toggleLike() {
@@ -120,27 +123,27 @@ export class Product {
   }
 
   increaseCount() {
-    this._productCartCount++;
+    this.productCartCount++;
     this._renderProductCartCount();
     this._renderTotalPrice();
   }
 
   decreaseCount() {
-    this._productCartCount--;
+    this.productCartCount--;
     this._renderProductCartCount();
     this._renderTotalPrice();
   }
 
   _renderProductCartCount() {
-    this._counter.textContent = this._productCartCount;
+    this._counter.textContent = this.productCartCount;
 
-    if (this._productCartCount === 1) {
+    if (this.productCartCount === 1) {
       this._minusButton.setAttribute("disabled", true);
     } else {
       this._minusButton.removeAttribute("disabled");
     }
 
-    if (this._productCartCount === this._productInStock) {
+    if (this.productCartCount === this._productInStock) {
       this._plusButton.setAttribute("disabled", true);
     } else {
       this._plusButton.removeAttribute("disabled");
@@ -190,11 +193,11 @@ export class Product {
       this._productStore;
     this._element.querySelector(".cart__item-seller-name").textContent =
       this._productSellerName;
-    this._price && (this._price.textContent = `${this._productPrice} сом`);
+    this._price && (this._price.textContent = `${this.productPrice} сом`);
 
     this._counter = this._element.querySelector(".cart__item-counter-value");
 
-    this._counter && (this._counter.textContent = this._productCartCount);
+    this._counter && (this._counter.textContent = this.productCartCount);
 
     if (this._totalPrice > 999999 && this._productInStock) {
       this._totalPriceValue.classList.add("cart__item-price-total-value_small");

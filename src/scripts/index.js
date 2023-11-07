@@ -137,6 +137,10 @@ cartProductsOutOfStockAccordionButton.addEventListener(
   handleCartProductsOutOfStockAccordionButtonClick
 );
 
+// Переменные для итоговых данных
+
+const summaryCartItems = [];
+
 // Карточки товаров
 
 const productSection = new CartSection(
@@ -179,6 +183,7 @@ function createCartItem(itemData) {
     "#out-of-stock-template"
   );
 
+  summaryCartItems.push(productItem);
   const item = productItem.createItem();
   return item;
 }
@@ -195,3 +200,72 @@ import FormValidator from "../components/form-validator";
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
 
 cartForm.enableValidation();
+
+// Чекбоксы товаров
+
+const handleCartItemsCheckboxes = () => {
+  const checkAllCartItems = document.querySelector(".option");
+  const headerCounter = document.querySelector("#header-counter");
+
+  const getCartItemCheckboxes = () => {
+    return () => document.querySelectorAll(".sub-option");
+  };
+
+  const getCheckedCount = () => {
+    return () => document.querySelectorAll(".sub-option:checked").length;
+  };
+
+  const checkedCount = getCheckedCount();
+  const cartItemCheckboxes = getCartItemCheckboxes();
+
+  cartItemCheckboxes().forEach((checkbox) => {
+    checkbox.addEventListener("input", () => {
+      if (checkedCount() < cartItemCheckboxes().length) {
+        checkAllCartItems.checked = false;
+      } else checkAllCartItems.checked = true;
+
+      headerCounter.textContent = checkedCount();
+    });
+  });
+
+  checkAllCartItems.addEventListener("input", () => {
+    cartItemCheckboxes().forEach((checkbox) => {
+      checkbox.checked = checkAllCartItems.checked;
+      headerCounter.textContent = checkedCount();
+    });
+  });
+};
+
+handleCartItemsCheckboxes();
+
+// Получение итоговых данных для корзины
+
+const getSummaryData = () => {
+  const summaryData = {
+    totalPrice: null,
+    totalDiscount: null,
+    totalCount: null,
+  };
+
+  summaryCartItems.forEach((item) => {
+    let userDiscountValue = Math.floor(
+      (item.productPrice / 100) * item.userDiscount
+    );
+    let productDiscountValue = Math.floor(
+      (item.productPrice / 100) * item.productDiscount
+    );
+    let currentItemTotalDiscountValue =
+      userDiscountValue + productDiscountValue;
+
+    summaryData.totalCount += item.productCartCount;
+    summaryData.totalPrice += item.productPrice * item.productCartCount;
+    summaryData.totalDiscount +=
+      currentItemTotalDiscountValue * item.productCartCount;
+  });
+
+  return () => summaryData;
+};
+
+const summaryData = getSummaryData();
+
+// Отображение итоговых данных корзины
