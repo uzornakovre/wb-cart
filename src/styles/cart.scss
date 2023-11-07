@@ -1,8 +1,12 @@
 .cart {
   display: grid;
-  grid-template-columns: auto calc(381px + 24px * 2);
+  grid-template-columns: auto 429px;
   gap: 32px;
   padding-bottom: 26px;
+
+  @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
+    grid-template-columns: auto 303px;
+  }
 
   &__order {
     margin: 0;
@@ -557,6 +561,10 @@
     &_type_agreement {
       padding-top: 4px;
       padding-left: 21px;
+
+      @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
+        max-width: 230px;
+      }
     }
 
     &_type_agreement::before {
