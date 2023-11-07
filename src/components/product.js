@@ -56,7 +56,9 @@ export class Product {
       ".cart__item-counter-button_type_plus"
     );
 
-    this._itemDeleteButton.addEventListener("click", this._handleDeleteClick);
+    this._itemDeleteButton.addEventListener("click", () =>
+      this._handleDeleteClick(this._productId)
+    );
     this._likeButton.addEventListener("click", this._handleLikeClick);
 
     this._minusButton &&

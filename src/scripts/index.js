@@ -40,7 +40,7 @@ const deliveryMethodModal = new ModalWithForm(
   submitDeliveryForm
 );
 
-function submitPaymentForm(paymentMethod) {
+const submitPaymentForm = (paymentMethod) => {
   const currentMethod = PAYMENT_METHODS_LIST.find(
     (method) => method.name === paymentMethod
   );
@@ -61,14 +61,14 @@ function submitPaymentForm(paymentMethod) {
   paymentMethodModal.close();
 
   return currentMethod;
-}
+};
 
-function submitDeliveryForm(address) {
+const submitDeliveryForm = (address) => {
   console.log(address);
   const currentAddress = ADDRESSES_LIST.find((ad) => ad.value === address);
   deliveryMethodModal.close();
   console.log(currentAddress);
-}
+};
 
 paymentMethodModal.setEventListeners();
 deliveryMethodModal.setEventListeners();
@@ -89,17 +89,17 @@ const paymentMethodsSection = new ModalSection(
   paymentMethodsList
 );
 
-function createCardItem(cardData) {
+const createCardItem = (cardData) => {
   const cardItem = new Card(cardData, "#payment-method-template");
   const item = cardItem.createItem();
   return item;
-}
+};
 
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
 
 // Аккордеон
 
-function handleCartProductsInStockAccordionButtonClick() {
+const handleCartProductsInStockAccordionButtonClick = () => {
   if (!cartItemsList.classList.contains("cart__items-list_visible")) {
     cartItemsList.classList.add("cart__items-list_visible");
     cartProductsInStockAccordionButton.classList.remove(
@@ -111,9 +111,9 @@ function handleCartProductsInStockAccordionButtonClick() {
       "cart__arrow_direction_up"
     );
   }
-}
+};
 
-function handleCartProductsOutOfStockAccordionButtonClick() {
+const handleCartProductsOutOfStockAccordionButtonClick = () => {
   if (!cartItemsListOutOfStock.classList.contains("cart__items-list_visible")) {
     cartItemsListOutOfStock.classList.add("cart__items-list_visible");
     cartProductsOutOfStockAccordionButton.classList.remove(
@@ -125,7 +125,7 @@ function handleCartProductsOutOfStockAccordionButtonClick() {
       "cart__arrow_direction_up"
     );
   }
-}
+};
 
 cartProductsInStockAccordionButton.addEventListener(
   "click",
@@ -139,9 +139,45 @@ cartProductsOutOfStockAccordionButton.addEventListener(
 
 // Переменные для итоговых данных
 
-const summaryCartItems = [];
+let summaryCartItems = [];
 
 // Карточки товаров
+
+const createCartItem = (itemData) => {
+  const productItem = new Product(
+    {
+      productData: itemData,
+      handleDeleteClick: (id) => {
+        productItem.removeItem();
+        summaryCartItems = summaryCartItems.filter(
+          (item) => item._productId !== id
+        );
+        getSummaryData();
+        renderSummaryData();
+      },
+      handleLikeClick: () => {
+        productItem.toggleLike();
+      },
+      handleMinusClick: () => {
+        productItem.decreaseCount();
+        getSummaryData();
+        renderSummaryData();
+      },
+      handlePlusClick: () => {
+        productItem.increaseCount();
+        getSummaryData();
+        renderSummaryData();
+      },
+      userDiscount: USER_DISCOUNT,
+    },
+    "#product-template",
+    "#out-of-stock-template"
+  );
+
+  summaryCartItems.push(productItem);
+  const item = productItem.createItem();
+  return item;
+};
 
 const productSection = new CartSection(
   {
@@ -161,40 +197,12 @@ const outOfStockSection = new CartSection(
   cartItemsListOutOfStock
 );
 
-function createCartItem(itemData) {
-  const productItem = new Product(
-    {
-      productData: itemData,
-      handleDeleteClick: () => {
-        productItem.removeItem();
-      },
-      handleLikeClick: () => {
-        productItem.toggleLike();
-      },
-      handleMinusClick: () => {
-        productItem.decreaseCount();
-      },
-      handlePlusClick: () => {
-        productItem.increaseCount();
-      },
-      userDiscount: USER_DISCOUNT,
-    },
-    "#product-template",
-    "#out-of-stock-template"
-  );
-
-  summaryCartItems.push(productItem);
-  const item = productItem.createItem();
-  return item;
-}
-
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
 
 // Валидация полей ввода
 
 import { VALIDATION_SETTINGS } from "../utils/constants";
-
 import FormValidator from "../components/form-validator";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
@@ -225,6 +233,8 @@ const handleCartItemsCheckboxes = () => {
       } else checkAllCartItems.checked = true;
 
       headerCounter.textContent = checkedCount();
+      getSummaryData();
+      renderSummaryData();
     });
   });
 
@@ -232,6 +242,8 @@ const handleCartItemsCheckboxes = () => {
     cartItemCheckboxes().forEach((checkbox) => {
       checkbox.checked = checkAllCartItems.checked;
       headerCounter.textContent = checkedCount();
+      getSummaryData();
+      renderSummaryData();
     });
   });
 };
@@ -241,10 +253,10 @@ handleCartItemsCheckboxes();
 // Получение итоговых данных для корзины
 
 const getSummaryData = () => {
-  const summaryData = {
-    totalPrice: null,
-    totalDiscount: null,
-    totalCount: null,
+  const data = {
+    totalPrice: 0,
+    totalDiscount: 0,
+    totalItemsCount: 0,
   };
 
   summaryCartItems.forEach((item) => {
@@ -257,15 +269,30 @@ const getSummaryData = () => {
     let currentItemTotalDiscountValue =
       userDiscountValue + productDiscountValue;
 
-    summaryData.totalCount += item.productCartCount;
-    summaryData.totalPrice += item.productPrice * item.productCartCount;
-    summaryData.totalDiscount +=
-      currentItemTotalDiscountValue * item.productCartCount;
+    if (item._checkbox && item._checkbox.checked) {
+      data.totalItemsCount += item.productCartCount;
+      data.totalPrice += item.productPrice * item.productCartCount;
+      data.totalDiscount +=
+        currentItemTotalDiscountValue * item.productCartCount;
+    }
   });
 
-  return () => summaryData;
+  return data;
 };
 
-const summaryData = getSummaryData();
-
 // Отображение итоговых данных корзины
+
+const renderSummaryData = () => {
+  const finalPrice = document.querySelector("#summary-price-with-discount");
+  const price = document.querySelector("#summary-price");
+  const discount = document.querySelector("#summary-discount");
+  const totalItems = document.querySelector("#summary-total-items");
+  const { totalPrice, totalDiscount, totalItemsCount } = getSummaryData();
+
+  finalPrice.textContent = totalPrice - totalDiscount;
+  price.textContent = totalPrice;
+  discount.textContent = totalDiscount;
+  totalItems.textContent = totalItemsCount;
+};
+
+renderSummaryData();
