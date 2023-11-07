@@ -9,7 +9,7 @@ export default class ModalWithForm extends Modal {
 
   open() {
     super.open();
-    this._form.reset();
+    // this._form.reset();
   }
 
   _getInputValues() {
@@ -24,12 +24,4 @@ export default class ModalWithForm extends Modal {
       this._submitFunction(this._getInputValues());
     });
   }
-
-  // renderLoading(isLoading, submitType) {
-  //   if (isLoading) {
-  //     this._modal.querySelector('.modal__form-submit').textContent = 'Сохранение...';
-  //   } else {
-  //     this._modal.querySelector('.modal__form-submit').textContent = submitType;
-  //   }
-  // }
 }

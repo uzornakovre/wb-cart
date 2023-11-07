@@ -19,6 +19,8 @@ import {
   cartFormElement,
   cartProductsInStockAccordionButton,
   cartProductsOutOfStockAccordionButton,
+  immediatelyPaymentOption,
+  cartFormSubmitElement,
 } from "../utils/constants";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
@@ -26,22 +28,14 @@ import ModalWithForm from "../components/modal-with-form";
 import { ModalSection } from "../components/modal-section";
 import { Card } from "../components/card";
 
+// Переменные для итоговых данных
+
+let summaryCartItems = [];
+
 // Модальные окна
 
-const paymentMethodModal = new ModalWithForm(
-  paymentMethodModalElement,
-  paymentForm,
-  submitPaymentForm
-);
-
-const deliveryMethodModal = new ModalWithForm(
-  deliveryMethodModalElement,
-  deliveryForm,
-  submitDeliveryForm
-);
-
 const submitPaymentForm = (paymentMethod) => {
-  const currentMethod = PAYMENT_METHODS_LIST.find(
+  let currentMethod = PAYMENT_METHODS_LIST.find(
     (method) => method.name === paymentMethod
   );
 
@@ -59,16 +53,25 @@ const submitPaymentForm = (paymentMethod) => {
   });
 
   paymentMethodModal.close();
-
-  return currentMethod;
 };
 
 const submitDeliveryForm = (address) => {
-  console.log(address);
   const currentAddress = ADDRESSES_LIST.find((ad) => ad.value === address);
   deliveryMethodModal.close();
   console.log(currentAddress);
 };
+
+const paymentMethodModal = new ModalWithForm(
+  paymentMethodModalElement,
+  paymentForm,
+  submitPaymentForm
+);
+
+const deliveryMethodModal = new ModalWithForm(
+  deliveryMethodModalElement,
+  deliveryForm,
+  submitDeliveryForm
+);
 
 paymentMethodModal.setEventListeners();
 deliveryMethodModal.setEventListeners();
@@ -136,10 +139,6 @@ cartProductsOutOfStockAccordionButton.addEventListener(
   "click",
   handleCartProductsOutOfStockAccordionButtonClick
 );
-
-// Переменные для итоговых данных
-
-let summaryCartItems = [];
 
 // Карточки товаров
 
@@ -296,3 +295,14 @@ const renderSummaryData = () => {
 };
 
 renderSummaryData();
+
+const toggleImmediatelyPaymentOption = () => {
+  if (immediatelyPaymentOption.checked) {
+    cartFormSubmitElement.textContent = `Оплатить ${getSummaryData().totalPrice.toLocaleString()} сом`;
+  } else cartFormSubmitElement.textContent = "Заказать";
+};
+
+immediatelyPaymentOption.addEventListener(
+  "change",
+  toggleImmediatelyPaymentOption
+);

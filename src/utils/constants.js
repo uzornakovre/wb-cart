@@ -10,6 +10,8 @@ export const cartFormElement = document.querySelector("#cart-form");
 export const cartFormSubmitElement = document.querySelector(
   ".cart__submit-button"
 );
+export const immediatelyPaymentOption =
+  document.querySelector("#pay_immediately");
 export const cartItemsList = document.querySelector(".cart__items-list");
 export const cartItemsListOutOfStock = document.querySelector(
   ".cart__items-list_out-of-stock"
