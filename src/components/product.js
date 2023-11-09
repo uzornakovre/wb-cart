@@ -105,9 +105,12 @@ export class Product {
 
   removeItem() {
     const checkbox = this._element.querySelector(".sub-option");
-    checkbox.checked = false;
     this._element.remove();
-    checkbox.dispatchEvent(new Event("input"));
+
+    if (checkbox) {
+      checkbox.checked = false;
+      checkbox.dispatchEvent(new Event("input"));
+    }
   }
 
   toggleLike() {
