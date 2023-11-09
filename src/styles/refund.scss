@@ -5,6 +5,12 @@
   font-size: 13px;
   line-height: 16px;
 
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding-top: 7px;
+    padding-left: 38px;
+    max-width: 242px;
+  }
+
   &::before {
     position: absolute;
     content: "";
@@ -15,6 +21,11 @@
     background-image: url("./images/svg/check-mark_icon_2.svg");
     background-repeat: no-repeat;
     background-position: center;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      top: 10px;
+      left: 8px;
+    }
   }
 
   &_place_summary {
