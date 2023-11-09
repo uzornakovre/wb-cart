@@ -44,7 +44,7 @@
       top: 2px;
       content: "";
       display: block;
-      background-color: transparent;
+      background-color: $color-background-white;
       border-radius: 7px;
       border: 1px solid $color-background-black-transparent-20;
       transition: opacity 0.2s linear;
@@ -59,23 +59,35 @@
       padding-left: 30px;
 
       &::before {
-        // width: 20px;
-        // height: 20px;
         top: 2px;
-        // background-color: transparent;
-        // border: 1px solid $color-background-black-transparent-20;
       }
     }
 
     &_with-content {
       width: 100%;
       height: fit-content;
-      display: grid;
-      grid-template-columns: auto 100px 110px;
+      // display: grid;
+      // grid-template-columns: auto 100px 110px;
+      // grid-template-areas: "item-info item-order item-price";
       gap: 16px;
+
+      @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+        padding-left: 0;
+        // grid-template-columns: minmax(250px, auto) 100px;
+        // grid-template-areas:
+        //   "item-info item-price"
+        //   "item-info item-order";
+      }
 
       &::before {
         top: 37px;
+        z-index: 1;
+
+        @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+          top: 4px;
+          left: 4px;
+          gap: 10px;
+        }
       }
     }
   }

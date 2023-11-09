@@ -5,4 +5,16 @@
   padding: 24px;
   border-radius: 24px;
   background-color: $color-background-smoky;
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    padding: 20px;
+  }
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    padding: 16px;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding: 0;
+  }
 }

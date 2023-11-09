@@ -127,12 +127,12 @@
                         <div class="cart__item-description">
                           <h3 class="cart__item-name"></h3>
                           <ul class="cart__item-properties">
-                            <li class="cart__properties-item">
+                            <li class="cart__item-properties-item">
                               <p
                                 class="cart__item-property cart__item-property_type_color"
                               ></p>
                             </li>
-                            <li class="cart__properties-item">
+                            <li class="cart__item-properties-item">
                               <p
                                 class="cart__item-property cart__item-property_type_size"
                               ></p>
@@ -156,64 +156,65 @@
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="cart__item-order">
-                        <div class="cart__item-counter">
-                          <button
-                            class="cart__item-counter-button cart__item-counter-button_type_minus"
-                            type="button"
-                          >
-                            &ndash;
-                          </button>
-                          <p class="cart__item-counter-value">1</p>
-                          <button
-                            class="cart__item-counter-button cart__item-counter-button_type_plus"
-                            type="button"
-                          >
-                            +
-                          </button>
+                        <div class="cart__item-size"></div>
+                        <div class="cart__item-order">
+                          <div class="cart__item-counter">
+                            <button
+                              class="cart__item-counter-button cart__item-counter-button_type_minus"
+                              type="button"
+                            >
+                              &ndash;
+                            </button>
+                            <p class="cart__item-counter-value">1</p>
+                            <button
+                              class="cart__item-counter-button cart__item-counter-button_type_plus"
+                              type="button"
+                            >
+                              +
+                            </button>
+                          </div>
+                          <span class="cart__item-warning"></span>
+                          <div class="cart__item-actions">
+                            <button
+                              class="cart__item-button cart__item-button_type_like"
+                              type="button"
+                            ></button>
+                            <button
+                              class="cart__item-button cart__item-button_type_remove"
+                              type="button"
+                            ></button>
+                          </div>
                         </div>
-                        <span class="cart__item-warning"></span>
-                        <div class="cart__item-actions">
-                          <button
-                            class="cart__item-button cart__item-button_type_like"
-                            type="button"
-                          ></button>
-                          <button
-                            class="cart__item-button cart__item-button_type_remove"
-                            type="button"
-                          ></button>
-                        </div>
-                      </div>
-                      <div class="cart__item-price">
-                        <div class="cart__item-price-total">
-                          <span class="cart__item-price-total-value"></span>
-                          <span class="cart__item-price-currency"> сом</span>
-                        </div>
-                        <div class="tooltip">
-                          <div
-                            class="tooltip__content tooltip__content_place_discount"
-                          >
-                            <div class="cart__item-price-tooltip">
-                              <div class="cart__item-price-tooltip-row">
-                                <p
-                                  class="cart__item-price-discount cart__item-price-discount_type_default"
-                                ></p>
-                                <p
-                                  class="cart__item-price-discount-value cart__item-price-discount-value_type_default"
-                                ></p>
-                              </div>
-                              <div class="cart__item-price-tooltip-row">
-                                <p
-                                  class="cart__item-price-discount cart__item-price-discount_type_user"
-                                ></p>
-                                <p
-                                  class="cart__item-price-discount-value cart__item-price-discount-value_type_user"
-                                ></p>
+                        <div class="cart__item-price">
+                          <div class="cart__item-price-total">
+                            <span class="cart__item-price-total-value"></span>
+                            <span class="cart__item-price-currency"> сом</span>
+                          </div>
+                          <div class="tooltip">
+                            <div
+                              class="tooltip__content tooltip__content_place_discount"
+                            >
+                              <div class="cart__item-price-tooltip">
+                                <div class="cart__item-price-tooltip-row">
+                                  <p
+                                    class="cart__item-price-discount cart__item-price-discount_type_default"
+                                  ></p>
+                                  <p
+                                    class="cart__item-price-discount-value cart__item-price-discount-value_type_default"
+                                  ></p>
+                                </div>
+                                <div class="cart__item-price-tooltip-row">
+                                  <p
+                                    class="cart__item-price-discount cart__item-price-discount_type_user"
+                                  ></p>
+                                  <p
+                                    class="cart__item-price-discount-value cart__item-price-discount-value_type_user"
+                                  ></p>
+                                </div>
                               </div>
                             </div>
+                            <span class="cart__item-price-old"></span>
                           </div>
-                          <span class="cart__item-price-old"></span>
                         </div>
                       </div>
                     </label>
@@ -240,39 +241,34 @@
             >
               <template id="out-of-stock-template">
                 <li class="cart__item">
-                  <div class="cart__item-not-available">
-                    <div class="cart__item-info cart__item-info_not-available">
-                      <img class="cart__item-image" src="" alt="" />
-                      <div class="cart__item-description">
-                        <h3
-                          class="cart__item-name cart__item-name_not-available"
-                        ></h3>
-                        <ul class="cart__item-properties">
-                          <li class="cart__properties-item">
-                            <p
-                              class="cart__item-property cart__item-property_type_color"
-                            ></p>
-                          </li>
-                          <li class="cart__properties-item">
-                            <p
-                              class="cart__item-property cart__item-property_type_size"
-                            ></p>
-                          </li>
-                        </ul>
-                        <p
-                          class="cart__item-store cart__item-store_disabled"
-                        ></p>
-                        <div
-                          class="cart__item-seller cart__item-seller_disabled"
-                        >
-                          <p class="cart__item-seller-name"></p>
-                          <button
-                            class="cart__item-seller-info"
-                            type="button"
-                          ></button>
-                        </div>
+                  <div class="cart__item-info cart__item-info_not-available">
+                    <img class="cart__item-image" src="" alt="" />
+                    <div class="cart__item-description">
+                      <h3
+                        class="cart__item-name cart__item-name_not-available"
+                      ></h3>
+                      <ul class="cart__item-properties">
+                        <li class="cart__item-properties-item">
+                          <p
+                            class="cart__item-property cart__item-property_type_color"
+                          ></p>
+                        </li>
+                        <li class="cart__item-properties-item">
+                          <p
+                            class="cart__item-property cart__item-property_type_size"
+                          ></p>
+                        </li>
+                      </ul>
+                      <p class="cart__item-store cart__item-store_disabled"></p>
+                      <div class="cart__item-seller cart__item-seller_disabled">
+                        <p class="cart__item-seller-name"></p>
+                        <button
+                          class="cart__item-seller-info"
+                          type="button"
+                        ></button>
                       </div>
                     </div>
+                    <div class="cart__item-size"></div>
                     <div class="cart__item-order">
                       <div
                         class="cart__item-counter cart__item-counter_disabled"

@@ -178,6 +178,7 @@ export class Product {
       ".cart__item-property_type_color"
     );
     this._size = this._element.querySelector(".cart__item-property_type_size");
+    this._sizeIcon = this._element.querySelector(".cart__item-size");
 
     if (this._checkbox) {
       this._checkbox.id = this._productId;
@@ -218,6 +219,11 @@ export class Product {
         (this._color.textContent = `Цвет: ${this._productProperties.color}`);
       this._productProperties.size &&
         (this._size.textContent = `Размер: ${this._productProperties.size}`);
+    }
+
+    if (this._productProperties && this._productProperties.size) {
+      this._sizeIcon.classList.add("cart__item-size_visible");
+      this._sizeIcon.textContent = this._productProperties.size;
     }
 
     if (this._productInStock > 3 || !this._productInStock) {

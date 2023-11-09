@@ -297,8 +297,11 @@ const renderSummaryData = () => {
 renderSummaryData();
 
 const toggleImmediatelyPaymentOption = () => {
+  const { totalPrice, totalDiscount } = getSummaryData();
+  const finalPrice = totalPrice - totalDiscount;
+
   if (immediatelyPaymentOption.checked) {
-    cartFormSubmitElement.textContent = `Оплатить ${getSummaryData().totalPrice.toLocaleString()} сом`;
+    cartFormSubmitElement.textContent = `Оплатить ${finalPrice.toLocaleString()} сом`;
   } else cartFormSubmitElement.textContent = "Заказать";
 };
 
