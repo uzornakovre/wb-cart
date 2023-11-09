@@ -60,23 +60,17 @@
 
       &::before {
         top: 2px;
+        background-color: transparent;
       }
     }
 
     &_with-content {
       width: 100%;
       height: fit-content;
-      // display: grid;
-      // grid-template-columns: auto 100px 110px;
-      // grid-template-areas: "item-info item-order item-price";
       gap: 16px;
 
       @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
         padding-left: 0;
-        // grid-template-columns: minmax(250px, auto) 100px;
-        // grid-template-areas:
-        //   "item-info item-price"
-        //   "item-info item-order";
       }
 
       &::before {

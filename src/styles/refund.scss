@@ -34,6 +34,12 @@
     border-radius: 8px;
     background-color: $color-background-smoky;
 
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      background-color: $color-background-smoky-dark;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
     &::before {
       top: 12px;
       left: 8px;

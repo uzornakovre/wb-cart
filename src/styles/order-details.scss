@@ -12,6 +12,10 @@
 
   &_place_top {
     margin-top: 40px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin-top: 32px;
+    }
   }
 
   &__top {

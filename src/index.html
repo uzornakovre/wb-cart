@@ -240,7 +240,7 @@
               class="cart__items-list cart__items-list_out-of-stock cart__items-list_visible"
             >
               <template id="out-of-stock-template">
-                <li class="cart__item">
+                <li class="cart__item cart__item_not-available">
                   <div class="cart__item-info cart__item-info_not-available">
                     <img class="cart__item-image" src="" alt="" />
                     <div class="cart__item-description">
@@ -529,16 +529,16 @@
               Бишкек, улица Ахматбека Суюмбаева, 12/1
             </p>
             <p class="cart__summary-date">5–8 фев</p>
-            <p class="refund refund_place_summary">
-              Обратная доставка товаров на&nbsp;склад при отказе &mdash;
-              <span class="refund__tip tooltip"
-                ><span class="tooltip__content tooltip__content_place_summary"
-                  >Если товары вам не подойдут, мы вернем их обратно
-                  на&nbsp;склад — это бесплатно</span
-                ><span class="refund__tip-text">бесплатно</span></span
-              >
-            </p>
           </div>
+          <p class="refund refund_place_summary">
+            Обратная доставка товаров на&nbsp;склад при отказе &mdash;
+            <span class="refund__tip tooltip"
+              ><span class="tooltip__content tooltip__content_place_summary"
+                >Если товары вам не подойдут, мы вернем их обратно на&nbsp;склад
+                — это бесплатно</span
+              ><span class="refund__tip-text">бесплатно</span></span
+            >
+          </p>
           <div class="cart__summary-payment">
             <h4 class="cart__summary-title">Оплата картой</h4>
             <button
@@ -562,21 +562,19 @@
                 01/30
               </p>
             </div>
-            <div class="cart__summary-payment-option">
-              <input
-                class="checkbox__input"
-                type="checkbox"
-                id="pay_immediately"
-              />
-              <label
-                class="cart__summary-tip checkbox__label checkbox__label_place_summary"
-                for="pay_immediately"
-                >Списать оплату сразу</label
-              >
-              <p class="cart__summary-tip">
-                Спишем оплату с карты при получении
-              </p>
-            </div>
+          </div>
+          <div class="cart__summary-payment-option">
+            <input
+              class="checkbox__input"
+              type="checkbox"
+              id="pay_immediately"
+            />
+            <label
+              class="cart__summary-tip checkbox__label checkbox__label_place_summary"
+              for="pay_immediately"
+              >Списать оплату сразу</label
+            >
+            <p class="cart__summary-tip">Спишем оплату с карты при получении</p>
           </div>
           <div class="cart__submit">
             <button class="cart__submit-button" name="cart" type="submit">
