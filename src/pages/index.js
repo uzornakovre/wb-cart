@@ -3,6 +3,10 @@ import {
   PRODUCTS_LIST,
   USER_DISCOUNT,
   PAYMENT_METHODS_LIST,
+  USER_ADDRESSES_LIST,
+  PICKUP_POINTS_ADDRESSES_LIST,
+} from "../utils/constants";
+import {
   paymentMethodModalElement,
   deliveryMethodModalElement,
   paymentForm,
@@ -27,9 +31,7 @@ import {
   deliveryTypeDetailsElement,
   deliveryTypeSummaryElement,
   pickupPointDetailsElement,
-  USER_ADDRESSES_LIST,
-  PICKUP_POINTS_ADDRESSES_LIST,
-} from "../utils/constants";
+} from "../utils/elements";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
 import ModalWithForm from "../components/modal-with-form";
