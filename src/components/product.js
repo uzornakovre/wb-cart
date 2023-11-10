@@ -1,3 +1,5 @@
+// Компонент карточки товара в корзине
+
 export class Product {
   constructor(
     {

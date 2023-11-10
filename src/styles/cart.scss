@@ -150,12 +150,8 @@
     max-height: 0;
 
     &_visible {
-      max-height: 500px;
+      max-height: 1000px;
       visibility: visible;
-
-      @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
-        max-height: 800px;
-      }
 
       @media screen and (max-width: calc($screen-width-mobile - 1px)) {
         gap: 0;
@@ -746,7 +742,7 @@
   }
 
   &__summary-payment {
-    margin-top: 24px;
+    margin-top: 22px;
     @media screen and (max-width: calc($screen-width-tablet - 1px)) {
       display: none;
     }

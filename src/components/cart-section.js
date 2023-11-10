@@ -1,3 +1,5 @@
+// Компонент секции для рендера элементов корзины
+
 export class CartSection {
   constructor({ renderer }, containerSelector) {
     this._renderer = renderer;

@@ -1,3 +1,5 @@
+// Компонент секции для рендера элементов списка в модальных окнах
+
 export class ModalSection {
   constructor({ renderer }, containerSelector) {
     this._renderer = renderer;

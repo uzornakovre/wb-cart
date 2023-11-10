@@ -1,5 +1,7 @@
 import Modal from "./modal";
 
+// Компонент секции для рендера элементов списка в модальных окнах
+
 export default class ModalWithForm extends Modal {
   constructor(modalSelector, form, submitFunction, optionalFunction) {
     super(modalSelector);
@@ -10,7 +12,6 @@ export default class ModalWithForm extends Modal {
 
   open() {
     super.open();
-    // this._form.reset();
   }
 
   _getInputValues() {

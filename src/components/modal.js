@@ -1,3 +1,5 @@
+// Компонент модального окна
+
 export default class Modal {
   constructor(modal) {
     this._modal = modal;

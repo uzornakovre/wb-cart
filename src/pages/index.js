@@ -5,7 +5,7 @@ import {
   PAYMENT_METHODS_LIST,
   USER_ADDRESSES_LIST,
   PICKUP_POINTS_ADDRESSES_LIST,
-} from "../utils/constants";
+} from "../utils/mock-data";
 import {
   paymentMethodModalElement,
   deliveryMethodModalElement,
@@ -34,6 +34,11 @@ import {
   earliestDeliveryItemList,
   lateDeliveryItemList,
 } from "../utils/elements";
+import {
+  GENITIVE_CASE_MONTH_LIST,
+  VALIDATION_SETTINGS,
+} from "../utils/constants";
+import FormValidator from "../components/form-validator";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
 import ModalWithForm from "../components/modal-with-form";
@@ -48,18 +53,22 @@ import { DeliveryProduct } from "../components/delivery-product";
 let summaryCartItems = [];
 let deliveryType = "courier";
 
-// Модальные окна
+// МОДАЛЬНЫЕ ОКНА
+
+// Обработчик выбора метода доставки
 
 const changeDeliveryType = (type) => {
   deliveryType = type;
   if (type === "courier") {
-    deliverySection.clear();
-    deliverySection.renderItems(USER_ADDRESSES_LIST);
+    deliveryAddressSection.clear();
+    deliveryAddressSection.renderItems(USER_ADDRESSES_LIST);
   } else {
-    deliverySection.clear();
-    deliverySection.renderItems(PICKUP_POINTS_ADDRESSES_LIST);
+    deliveryAddressSection.clear();
+    deliveryAddressSection.renderItems(PICKUP_POINTS_ADDRESSES_LIST);
   }
 };
+
+// Обработчик отправки формы выбора метода платежа
 
 const submitPaymentForm = (paymentMethod) => {
   let currentMethod = PAYMENT_METHODS_LIST.find(
@@ -82,6 +91,8 @@ const submitPaymentForm = (paymentMethod) => {
   paymentMethodModal.close();
 };
 
+// Обработчик отправки формы выбора метода доставки
+
 const submitDeliveryForm = (address) => {
   addressElements.forEach((elem) => {
     elem.textContent = address;
@@ -100,6 +111,8 @@ const submitDeliveryForm = (address) => {
   deliveryMethodModal.close();
 };
 
+// Экзкмпляры модальных окон
+
 const paymentMethodModal = new ModalWithForm(
   paymentMethodModalElement,
   paymentForm,
@@ -114,6 +127,8 @@ const deliveryMethodModal = new ModalWithForm(
   changeDeliveryType
 );
 
+// Слушатели событий в модальных окнах
+
 paymentMethodModal.setEventListeners();
 deliveryMethodModal.setEventListeners();
 
@@ -123,6 +138,8 @@ paymentEditButtons.forEach((button) => {
 deliveryEditButtons.forEach((button) => {
   button.addEventListener("click", () => deliveryMethodModal.open());
 });
+
+// Экземпляры секций (списков) в модальных окнах
 
 const paymentMethodsSection = new ModalSection(
   {
@@ -141,6 +158,8 @@ const deliveryAddressSection = new ModalSection(
   },
   deliveryMethodsList
 );
+
+// Функции, отвечающие за наполнение секций модальных окон
 
 const createCardItem = (cardData) => {
   const cardItem = new Card(cardData, "#payment-method-template");
@@ -165,7 +184,9 @@ const createDeliveryAddress = (deliveryData) => {
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
 deliveryAddressSection.renderItems(USER_ADDRESSES_LIST);
 
-// Аккордеон
+// АККОРДЕОН
+
+// Обработчик раскрытия/закрытия списка товаров в наличии
 
 const handleCartProductsInStockAccordionButtonClick = () => {
   if (!cartItemsList.classList.contains("cart__items-list_visible")) {
@@ -181,6 +202,8 @@ const handleCartProductsInStockAccordionButtonClick = () => {
   }
 };
 
+// Обработчик раскрытия/закрытия списка отсутствующих товаров
+
 const handleCartProductsOutOfStockAccordionButtonClick = () => {
   if (!cartItemsListOutOfStock.classList.contains("cart__items-list_visible")) {
     cartItemsListOutOfStock.classList.add("cart__items-list_visible");
@@ -195,6 +218,8 @@ const handleCartProductsOutOfStockAccordionButtonClick = () => {
   }
 };
 
+// Слушатели событий для кнопок
+
 cartProductsInStockAccordionButton.addEventListener(
   "click",
   handleCartProductsInStockAccordionButtonClick
@@ -205,7 +230,9 @@ cartProductsOutOfStockAccordionButton.addEventListener(
   handleCartProductsOutOfStockAccordionButtonClick
 );
 
-// Карточки товаров
+// КАРТОЧКИ ТОВАРОВ
+
+// Функция создания экземпляра элемента корзины (продукта)
 
 const createCartItem = (itemData) => {
   const productItem = new Product(
@@ -243,11 +270,21 @@ const createCartItem = (itemData) => {
   return item;
 };
 
-const createDeliveryItem = (product) => {
+// Функции создания экземпляров продуктов для отображения в блоке доставки
+
+const createEarliestDeliveryItem = (product) => {
   const deliveryItem = new DeliveryProduct(product, "#products_for_delivery");
-  const item = deliveryItem.createItem();
+  const item = deliveryItem.createEarliestItem();
   return item;
 };
+
+const createLateDeliveryItem = (product) => {
+  const deliveryItem = new DeliveryProduct(product, "#products_for_delivery");
+  const item = deliveryItem.createLateItem();
+  return item;
+};
+
+// Экзкмпляры секций (списков) в корзине
 
 const productSection = new CartSection(
   {
@@ -270,7 +307,7 @@ const outOfStockSection = new CartSection(
 const deliveryEarliestSection = new CartSection(
   {
     renderer: (itemData) => {
-      return createDeliveryItem(itemData);
+      return createEarliestDeliveryItem(itemData);
     },
   },
   earliestDeliveryItemList
@@ -279,27 +316,48 @@ const deliveryEarliestSection = new CartSection(
 const deliveryLateSection = new CartSection(
   {
     renderer: (itemData) => {
-      return createDeliveryItem(itemData);
+      return createLateDeliveryItem(itemData);
     },
   },
   lateDeliveryItemList
 );
 
+// Получение списка товаров на доставку, скрытие заголовков при отсутсвии товаров
+
+const getDeliveryItems = (items) => {
+  let earliest = items.filter((i) => {
+    if (i.delivery && i.delivery.length && i._checkbox.checked) return i;
+  });
+
+  let late = items.filter((i) => {
+    if (i.delivery && i.delivery.length === 2 && i._checkbox.checked) return i;
+  });
+
+  if (!earliest.length) {
+    document.querySelector("#earliest_date").textContent = "";
+  }
+
+  if (!late.length) {
+    document.querySelector("#late_date").textContent = "";
+  }
+  return { earliest, late };
+};
+
+// Обработчик отображения товаров на доставку
+
+const renderDeliveryItems = () => {
+  deliveryEarliestSection.clear();
+  deliveryEarliestSection.renderItems(
+    getDeliveryItems(summaryCartItems).earliest
+  );
+  deliveryLateSection.clear();
+  deliveryLateSection.renderItems(getDeliveryItems(summaryCartItems).late);
+};
+
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
-deliveryEarliestSection.renderItems(summaryCartItems);
-deliveryLateSection.renderItems(summaryCartItems);
 
-// Валидация полей ввода
-
-import { VALIDATION_SETTINGS } from "../utils/constants";
-import FormValidator from "../components/form-validator";
-
-const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
-
-cartForm.enableValidation();
-
-// Чекбоксы товаров
+// Обработчик чекбоксов товаров
 
 const handleCartItemsCheckboxes = () => {
   const checkAllCartItems = document.querySelector(".option");
@@ -356,6 +414,9 @@ const getSummaryData = () => {
     totalPrice: 0,
     totalDiscount: 0,
     totalItemsCount: 0,
+    earliestDate: new Date(summaryCartItems[0].delivery[0].date[0]).getDate(),
+    lateDate: 0,
+    month: "",
   };
 
   summaryCartItems.forEach((item) => {
@@ -373,11 +434,22 @@ const getSummaryData = () => {
       data.totalPrice += item.productPrice * item.productCartCount;
       data.totalDiscount +=
         currentItemTotalDiscountValue * item.productCartCount;
+
+      item.delivery.forEach((del) => {
+        del.date.forEach((d) => {
+          if (data.lateDate < new Date(d).getDate()) {
+            data.lateDate = new Date(d).getDate();
+          }
+          data.month = new Date(d).getMonth();
+        });
+      });
     }
   });
 
   return data;
 };
+
+// ИТОГОВЫЕ ДАННЫЕ ПО ЗАКАЗУ
 
 // Отображение итоговых данных корзины
 
@@ -386,7 +458,15 @@ const renderSummaryData = () => {
   const price = document.querySelector("#summary-price");
   const discount = document.querySelector("#summary-discount");
   const totalItems = document.querySelector("#summary-total-items");
-  const { totalPrice, totalDiscount, totalItemsCount } = getSummaryData();
+  const deliveryDate = document.querySelector(".cart__summary-date");
+  const {
+    totalPrice,
+    totalDiscount,
+    totalItemsCount,
+    earliestDate,
+    lateDate,
+    month,
+  } = getSummaryData();
 
   finalPrice.textContent = (totalPrice - totalDiscount).toLocaleString();
   price.textContent = totalPrice.toLocaleString();
@@ -395,14 +475,20 @@ const renderSummaryData = () => {
     totalItemsCount +
     " " +
     declOfNum(totalItemsCount, ["товар", "товара", "товаров"]);
+  if (!month) {
+    deliveryDate.textContent = "Выберите товар для рассчета времени доставки";
+  } else {
+    deliveryDate.textContent = `${earliestDate}-${lateDate} ${GENITIVE_CASE_MONTH_LIST[
+      month
+    ]?.slice(0, 3)}`;
+  }
 
-  deliveryEarliestSection.clear();
-  deliveryEarliestSection.renderItems(summaryCartItems);
-  deliveryLateSection.clear();
-  deliveryLateSection.renderItems(summaryCartItems);
+  renderDeliveryItems();
 };
 
 renderSummaryData();
+
+// Переключение опции моментальной оплаты
 
 const toggleImmediatelyPaymentOption = () => {
   const { totalPrice, totalDiscount } = getSummaryData();
@@ -417,3 +503,9 @@ immediatelyPaymentOption.addEventListener(
   "change",
   toggleImmediatelyPaymentOption
 );
+
+// ВАЛИДАЦИЯ ПОЛЕЙ ВВОДА
+
+const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
+
+cartForm.enableValidation();
