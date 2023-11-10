@@ -19,9 +19,26 @@
       0px 2px 10px 0px $color-background-black-transparent-15;
     cursor: pointer;
 
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      left: -130px;
+      width: 130px;
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile - 187px)) {
+      left: 60px;
+    }
+
     &_place_summary {
       top: 35px;
       left: -250px;
+
+      @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+        left: -130px;
+      }
+
+      @media screen and (max-width: calc($screen-width-mobile - 189px)) {
+        left: 60px;
+      }
     }
 
     &_place_discount {
