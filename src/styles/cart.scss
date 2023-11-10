@@ -4,6 +4,10 @@
   gap: 32px;
   padding-bottom: 26px;
 
+  @media screen and (min-width: calc($screen-width-desktop-l + 1px)) {
+    grid-template-columns: auto 600px;
+  }
+
   @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
     grid-template-columns: auto 303px;
   }
@@ -72,6 +76,10 @@
     font-weight: 400;
     line-height: 24px;
 
+    @media screen and (min-width: calc($screen-width-desktop-l + 1px)) {
+      max-width: 100%;
+    }
+
     @media screen and (max-width: calc($screen-width-tablet - 1px)) {
       font-size: 14px;
       line-height: 20px;
@@ -102,6 +110,10 @@
 
     &_not-available {
       max-width: 309px;
+
+      @media screen and (min-width: calc($screen-width-desktop-l + 1px)) {
+        max-width: 100%;
+      }
     }
   }
 

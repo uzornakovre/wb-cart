@@ -166,6 +166,10 @@
     margin-top: 38px;
     margin-bottom: 10px;
 
+    @media screen and (min-width: calc($screen-width-desktop-l + 1px)) {
+      max-width: 100%;
+    }
+
     @media screen and (max-width: calc($screen-width-tablet - 1px)) {
       margin-top: 22px;
       gap: 31px;
