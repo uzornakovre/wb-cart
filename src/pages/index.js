@@ -299,6 +299,14 @@ const calculateDeliveryItems = (items) => {
   let late = items.filter((i) => {
     if (i.delivery && i.delivery.length === 2 && i._checkbox.checked) return i;
   });
+
+  if (!earliest.length) {
+    document.querySelector("#earliest_date").textContent = "";
+  }
+
+  if (!late.length) {
+    document.querySelector("#late_date").textContent = "";
+  }
   return { earliest, late };
 };
 
@@ -318,7 +326,10 @@ outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
 
 // Валидация полей ввода
 
-import { VALIDATION_SETTINGS } from "../utils/constants";
+import {
+  GENITIVE_CASE_MONTH_LIST,
+  VALIDATION_SETTINGS,
+} from "../utils/constants";
 import FormValidator from "../components/form-validator";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
@@ -382,6 +393,9 @@ const getSummaryData = () => {
     totalPrice: 0,
     totalDiscount: 0,
     totalItemsCount: 0,
+    earliestDate: new Date(summaryCartItems[0].delivery[0].date[0]).getDate(),
+    lateDate: 0,
+    month: "",
   };
 
   summaryCartItems.forEach((item) => {
@@ -399,6 +413,15 @@ const getSummaryData = () => {
       data.totalPrice += item.productPrice * item.productCartCount;
       data.totalDiscount +=
         currentItemTotalDiscountValue * item.productCartCount;
+
+      item.delivery.forEach((del) => {
+        del.date.forEach((d) => {
+          if (data.lateDate < new Date(d).getDate()) {
+            data.lateDate = new Date(d).getDate();
+          }
+          data.month = new Date(d).getMonth();
+        });
+      });
     }
   });
 
@@ -412,7 +435,15 @@ const renderSummaryData = () => {
   const price = document.querySelector("#summary-price");
   const discount = document.querySelector("#summary-discount");
   const totalItems = document.querySelector("#summary-total-items");
-  const { totalPrice, totalDiscount, totalItemsCount } = getSummaryData();
+  const deliveryDate = document.querySelector(".cart__summary-date");
+  const {
+    totalPrice,
+    totalDiscount,
+    totalItemsCount,
+    earliestDate,
+    lateDate,
+    month,
+  } = getSummaryData();
 
   finalPrice.textContent = (totalPrice - totalDiscount).toLocaleString();
   price.textContent = totalPrice.toLocaleString();
@@ -421,8 +452,14 @@ const renderSummaryData = () => {
     totalItemsCount +
     " " +
     declOfNum(totalItemsCount, ["товар", "товара", "товаров"]);
+  if (!month) {
+    deliveryDate.textContent = "Выберите товар для рассчета времени доставки";
+  } else {
+    deliveryDate.textContent = `${earliestDate}-${lateDate} ${GENITIVE_CASE_MONTH_LIST[
+      month
+    ]?.slice(0, 3)}`;
+  }
 
-  console.log(summaryCartItems);
   renderDeliveryItems();
 };
 

@@ -1,3 +1,5 @@
+import { GENITIVE_CASE_MONTH_LIST } from "../utils/constants";
+
 export class DeliveryProduct {
   constructor(product, templateSelector) {
     this._id = product.id;
@@ -9,15 +11,24 @@ export class DeliveryProduct {
   }
 
   _getItemsTemplate() {
-    const address = document
+    const item = document
       .querySelector(this._templateSelector)
       .content.querySelector(".order-details__product")
       .cloneNode(true);
 
-    return address;
+    return item;
+  }
+
+  _getDeliveryDates(from) {
+    const earliestDate = new Date(from.date[0]).getDate();
+    const lateDate = new Date(from.date[1]).getDate();
+    const month = new Date(from.date[1]).getMonth();
+    return `${earliestDate}—${lateDate} ${GENITIVE_CASE_MONTH_LIST[month]}`;
   }
 
   createEarliestItem() {
+    document.querySelector("#earliest_date").textContent =
+      this._getDeliveryDates(this._delivery[0]);
     this._element = this._getItemsTemplate();
     this._imageElement = this._element.querySelector(
       ".order-details__product-image"
@@ -35,6 +46,9 @@ export class DeliveryProduct {
   }
 
   createLateItem() {
+    document.querySelector("#late_date").textContent = this._getDeliveryDates(
+      this._delivery[1]
+    );
     this._element = this._getItemsTemplate();
     this._imageElement = this._element.querySelector(
       ".order-details__product-image"
