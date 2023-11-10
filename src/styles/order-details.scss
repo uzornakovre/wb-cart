@@ -5,8 +5,17 @@
   background-color: $color-background-white;
   border-radius: 16px;
 
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    margin-top: 12px;
+    padding: 16px 16px 10px;
+  }
+
   &_place_top {
     margin-top: 40px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin-top: 32px;
+    }
   }
 
   &__top {
@@ -20,6 +29,12 @@
     font-weight: 700;
     line-height: 32px;
     letter-spacing: -0.24px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: -0.2px;
+    }
   }
 
   &__edit {
@@ -32,6 +47,10 @@
     border: none;
     transition: all 0.2s linear;
     cursor: pointer;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin-top: 4px;
+    }
 
     &:hover {
       opacity: 0.7;
@@ -50,11 +69,42 @@
     row-gap: 16px;
     column-gap: 30px;
     margin: 16px 0 24px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin: 0;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
   }
 
   &__table-heading {
     margin: 0;
     font-weight: 600;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      &:nth-of-type(1) {
+        margin-top: 8px;
+      }
+
+      &:nth-of-type(2) {
+        margin-top: 16px;
+      }
+
+      &:nth-of-type(3),
+      &:nth-of-type(4) {
+        margin-top: 16px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  &__table-data {
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      &:nth-of-type(3),
+      &:nth-of-type(4) {
+        margin-bottom: 6px;
+      }
+    }
   }
 
   &__tooltip {
@@ -93,6 +143,10 @@
 
   &__payment {
     margin: 16px 0 10px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin: 8px 0 16px;
+    }
   }
 
   &__payment-tip {
@@ -111,6 +165,12 @@
     max-width: 700px;
     margin-top: 38px;
     margin-bottom: 10px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin-top: 22px;
+      gap: 31px;
+      grid-template-columns: 1fr;
+    }
   }
 
   &__input-wrapper {
@@ -119,9 +179,17 @@
     object-fit: cover;
     grid-column: span 2;
 
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      grid-column: auto;
+    }
+
     &_wide {
       grid-column: span 3;
       grid-row: span 2;
+
+      @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+        grid-column: auto;
+      }
     }
   }
 

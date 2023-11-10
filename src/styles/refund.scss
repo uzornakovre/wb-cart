@@ -1,31 +1,42 @@
 .refund {
   position: relative;
-  padding-left: 30px;
-  padding-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 10px;
   font-size: 13px;
   line-height: 16px;
 
-  &::before {
-    position: absolute;
-    content: "";
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding-top: 22px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding: 22px 9px 13px;
+  }
+
+  &__icon {
+    min-width: 22px;
     width: 22px;
     height: 22px;
-    top: 0;
-    left: 0;
     background-image: url("./images/svg/check-mark_icon_2.svg");
     background-repeat: no-repeat;
     background-position: center;
   }
 
+  &__text {
+    margin: 0;
+  }
+
   &_place_summary {
-    margin: 12px 0 4px;
-    padding: 8px 8px 10px 38px;
+    margin: 14px 0 4px;
+    padding: 8px 8px 10px;
     border-radius: 8px;
     background-color: $color-background-smoky;
 
-    &::before {
-      top: 12px;
-      left: 8px;
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      background-color: $color-background-smoky-dark;
+      margin-top: 18px;
+      margin-bottom: 18px;
     }
   }
 

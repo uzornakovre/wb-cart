@@ -6,42 +6,6 @@ import visaLogo from "../images/svg/visa_icon.svg";
 import masterCardLogo from "../images/svg/mastercard_icon.svg";
 import maestroLogo from "../images/svg/maestro_icon.svg";
 
-export const cartFormElement = document.querySelector("#cart-form");
-export const cartFormSubmitElement = document.querySelector(
-  ".cart__submit-button"
-);
-export const cartItemsList = document.querySelector(".cart__items-list");
-export const cartItemsListOutOfStock = document.querySelector(
-  ".cart__items-list_out-of-stock"
-);
-
-export const paymentEditButtons = document.querySelectorAll(".payment-edit");
-export const deliveryEditButtons = document.querySelectorAll(".delivery-edit");
-
-export const paymentMethodModalElement = document.querySelector(
-  ".modal_type_payment-method"
-);
-export const deliveryMethodModalElement = document.querySelector(
-  ".modal_type_delivery-method"
-);
-export const paymentForm = paymentMethodModalElement.querySelector("#payment");
-export const deliveryForm =
-  deliveryMethodModalElement.querySelector("#delivery");
-
-export const paymentMethodsList = paymentMethodModalElement.querySelector(
-  ".modal__list_type_payment-method"
-);
-export const deliveryMethodsList = deliveryMethodModalElement.querySelector(
-  ".modal__list_type_delivery-method"
-);
-
-export const paymentMethodLogoElements =
-  document.querySelectorAll(".current-card-logo");
-export const cardNumberElements = document.querySelectorAll(
-  ".current-card-number"
-);
-export const cardDateElements = document.querySelectorAll(".current-card-date");
-
 export const VALIDATION_SETTINGS = {
   formSelector: "#cart-form",
   inputSelector: ".order-details__input",
@@ -96,7 +60,14 @@ export const PRODUCTS_LIST = [
     },
     price: 1305,
     discount: 50,
-    count: 2,
+    inStock: 2,
+    startCartCount: 1,
+    delivery: [
+      {
+        items: 2,
+        date: ["2023-02-05", "2023-02-06"],
+      },
+    ],
   },
   {
     id: "prod-2",
@@ -113,9 +84,20 @@ export const PRODUCTS_LIST = [
       address:
         "129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34",
     },
-    price: 15000000,
+    price: 15000,
     discount: 55,
-    count: 300,
+    inStock: 300,
+    startCartCount: 200,
+    delivery: [
+      {
+        items: 150,
+        date: ["2023-02-05", "2023-02-06"],
+      },
+      {
+        items: 150,
+        date: ["2023-02-07", "2023-02-08"],
+      },
+    ],
   },
   {
     id: "prod-3",
@@ -132,7 +114,14 @@ export const PRODUCTS_LIST = [
     },
     price: 950,
     discount: 20,
-    count: 2,
+    inStock: 3,
+    startCartCount: 2,
+    delivery: [
+      {
+        items: 3,
+        date: ["2023-02-05", "2023-02-06"],
+      },
+    ],
   },
   {
     id: "prod-4",
@@ -152,7 +141,9 @@ export const PRODUCTS_LIST = [
     },
     price: 1305,
     discount: 50,
-    count: 0,
+    inStock: 0,
+    startCartCount: 0,
+    delivery: null,
   },
   {
     id: "prod-5",
@@ -171,7 +162,9 @@ export const PRODUCTS_LIST = [
     },
     price: 15000000,
     discount: 55,
-    count: 0,
+    inStock: 0,
+    startCartCount: 0,
+    delivery: null,
   },
   {
     id: "prod-6",
@@ -188,7 +181,9 @@ export const PRODUCTS_LIST = [
     },
     price: 950,
     discount: 20,
-    count: 0,
+    inStock: 0,
+    startCartCount: 0,
+    delivery: null,
   },
 ];
 
@@ -225,7 +220,7 @@ export const PAYMENT_METHODS_LIST = [
   },
 ];
 
-export const ADDRESSES_LIST = [
+export const USER_ADDRESSES_LIST = [
   {
     id: "address_1",
     value: "Бишкек, улица Табышалиева, 57",
@@ -241,18 +236,21 @@ export const ADDRESSES_LIST = [
     value: "Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1",
     type: "courier",
   },
+];
+
+export const PICKUP_POINTS_ADDRESSES_LIST = [
   {
-    id: "address_1",
+    id: "address_4",
     value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
     type: "pickup-point",
   },
   {
-    id: "address_2",
+    id: "address_5",
     value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
     type: "pickup-point",
   },
   {
-    id: "address_3",
+    id: "address_6",
     value: "г. Бишкек, улица Табышалиева, д. 57",
     type: "pickup-point",
   },

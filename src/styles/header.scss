@@ -11,12 +11,22 @@
     padding: 17px 0;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      padding: 14px 13px;
+    }
   }
 
   &__left {
     display: flex;
     gap: 16px;
     margin-left: 24px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin: 0;
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 
   &__burger-menu-button {
@@ -39,6 +49,13 @@
     &:active {
       opacity: 0.5;
     }
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background-image: url("./images/svg/burger-menu_icon_mobile.svg");
+    }
   }
 
   &__title {
@@ -50,11 +67,23 @@
     font-variant: all-small-caps;
     letter-spacing: 3.5px;
     text-transform: uppercase;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin-top: -4px;
+      max-width: 205px;
+      font-size: 26px;
+      line-height: 24px;
+      letter-spacing: 3.4px;
+    }
   }
 
   &__search-form {
     position: relative;
     width: 100%;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      display: none;
+    }
   }
 
   &__search-form-input {
@@ -106,7 +135,27 @@
 
   &__search-button {
     display: none;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    background-image: url("./images/svg/search_icon_white.svg");
+    background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      display: block;
+    }
   }
 
   &__menu {
@@ -116,6 +165,10 @@
     padding: 0;
     padding-right: 20px;
     list-style: none;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      display: none;
+    }
   }
 
   &__menu-button {

@@ -11,6 +11,12 @@ export class ModalSection {
     });
   }
 
+  clear() {
+    Array.from(this._container.getElementsByTagName("li")).forEach((item) => {
+      item.remove();
+    });
+  }
+
   _addItem(item) {
     this._container.append(item);
   }

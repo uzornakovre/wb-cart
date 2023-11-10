@@ -6,7 +6,7 @@ export class CartSection {
 
   renderItems(productItems) {
     productItems.forEach((item) => {
-      if (item.count) {
+      if (item.inStock || item._productInStock) {
         this._item = this._renderer(item);
         this._addItem(this._item);
       }
@@ -15,10 +15,16 @@ export class CartSection {
 
   renderOutOfStockItems(productItems) {
     productItems.forEach((item) => {
-      if (!item.count) {
+      if (!item.inStock) {
         this._item = this._renderer(item);
         this._addItem(this._item);
       }
+    });
+  }
+
+  clear() {
+    Array.from(this._container.getElementsByTagName("li")).forEach((item) => {
+      item.remove();
     });
   }
 

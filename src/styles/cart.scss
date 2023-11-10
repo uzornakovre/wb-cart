@@ -1,8 +1,20 @@
 .cart {
   display: grid;
-  grid-template-columns: auto calc(381px + 24px * 2);
+  grid-template-columns: auto 429px;
   gap: 32px;
   padding-bottom: 26px;
+
+  @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
+    grid-template-columns: auto 303px;
+  }
+
+  @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+    gap: 16px;
+  }
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    grid-template-columns: 1fr;
+  }
 
   &__order {
     margin: 0;
@@ -16,6 +28,16 @@
     font-weight: 700;
     line-height: 36px;
     letter-spacing: -0.28px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding-left: 16px;
+      padding-right: 16px;
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: -0.2px;
+    }
   }
 
   &__items {
@@ -25,6 +47,15 @@
     margin: 0 0 36px;
     padding: 0;
     border: none;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      margin-bottom: 28px;
+    }
   }
 
   &__items-top {
@@ -41,9 +72,32 @@
     font-weight: 400;
     line-height: 24px;
 
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      margin-top: -1px;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile-s)) {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      width: 192px;
+    }
+
     &_all {
       margin: -4px 0 0;
       padding-left: 33px;
+
+      @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
 
     &_not-available {
@@ -62,6 +116,12 @@
     background-position: center;
     transition: all 0.2s linear;
     cursor: pointer;
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      position: relative;
+      right: 4px;
+      top: 1px;
+    }
 
     &:hover {
       opacity: 0.7;
@@ -84,12 +144,47 @@
     padding: 0;
     list-style: none;
     border-top: 1px solid $color-background-black-transparent-10;
+    transition: all 0.4s ease-out;
+    overflow: hidden;
+    visibility: hidden;
+    max-height: 0;
+
+    &_visible {
+      max-height: 500px;
+      visibility: visible;
+
+      @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+        max-height: 800px;
+      }
+
+      @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+        gap: 0;
+      }
+    }
   }
 
   &__item {
     position: relative;
     width: 100%;
     padding-top: 12px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      padding-bottom: 16px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-background-black-transparent-10;
+      }
+    }
+
+    &_not-available {
+      @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+        padding-bottom: 19px;
+
+        &:last-of-type {
+          padding-bottom: 0;
+        }
+      }
+    }
   }
 
   &__item-not-available {
@@ -97,18 +192,58 @@
     height: fit-content;
     display: grid;
     grid-template-columns: auto 100px 110px;
+    grid-template-areas: "item-info item-order item-price";
     gap: 16px;
     color: $color-system-gray;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      grid-template-columns: auto 210px;
+      grid-template-areas:
+        "item-info item-order"
+        "item-info item-price";
+    }
   }
 
   &__item-info {
+    position: relative;
     display: grid;
-    grid-template-columns: 72px auto;
+    grid-template-columns: 72px minmax(60px, auto) 100px 110px;
+    grid-template-areas: "item-image item-description item-order item-price";
     gap: 16px;
     padding-left: 34px;
 
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+      padding-left: 0;
+      grid-template-columns: 80px minmax(0, auto) 100px;
+      grid-template-areas:
+        "item-image item-description item-price"
+        "item-image item-description item-order";
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      grid-template-columns: 80px auto;
+      row-gap: 0;
+      grid-template-areas:
+        "item-image item-price"
+        "item-image item-description"
+        "item-order item-order";
+    }
+
     &_not-available {
       padding: 0;
+      grid-template-areas:
+        "item-image item-description item-order"
+        "item-image item-description item-price";
+      color: $color-system-gray;
+
+      @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+        padding-bottom: 2px;
+        grid-template-columns: 80px auto;
+        grid-template-areas:
+          "item-image item-description"
+          "item-image item-price"
+          "item-order item-order";
+      }
     }
   }
 
@@ -117,10 +252,21 @@
     height: 96px;
     object-fit: contain;
     border-radius: 8px;
+    grid-area: item-image;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      width: 80px;
+      height: 106px;
+    }
 
     &_not-available {
       filter: grayscale(1);
     }
+  }
+
+  &__item-description {
+    grid-area: item-description;
+    width: fit-content;
   }
 
   &__item-properties {
@@ -138,6 +284,40 @@
     }
   }
 
+  &__item-properties-item {
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+      &:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  &__item-size {
+    position: absolute;
+    display: none;
+    font-size: 14px;
+    line-height: 20px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      top: calc(106px - 22px - 4px);
+      left: 4px;
+      width: 22px;
+      height: 22px;
+      background-color: $color-background-white;
+      border-radius: 6px;
+    }
+
+    &_visible {
+      display: none;
+
+      @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
   &__item-store {
     margin: 8px 0 4px;
     font-size: 13px;
@@ -152,6 +332,10 @@
   &__item-seller {
     display: flex;
     gap: 8px;
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      display: none;
+    }
 
     &_disabled {
       display: none;
@@ -207,6 +391,11 @@
     font-size: 13px;
     line-height: 16px;
 
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+
     &_empty {
       display: none;
     }
@@ -216,6 +405,14 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    grid-area: item-order;
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      margin-top: 12px;
+      gap: 16px;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   &__item-counter {
@@ -228,13 +425,32 @@
     border-radius: 8px;
     background-color: $color-background-white;
 
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      height: 32px;
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      width: 80px;
+    }
+
     &_disabled {
       display: none;
     }
   }
 
+  &__item-counter-value {
+    min-width: 30px;
+    text-align: center;
+
+    @media screen and (max-width: calc($screen-width-desktop-s - 1px)) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
   &__item-counter-button {
     padding: 0;
+    width: 30px;
     background-color: transparent;
     border: none;
     font-size: 20px;
@@ -251,7 +467,7 @@
       opacity: 0.3;
     }
 
-    &_disabled {
+    &:disabled {
       opacity: 0.2;
     }
   }
@@ -260,6 +476,23 @@
     display: flex;
     gap: 16px;
     align-self: flex-end;
+    transition: all 0.2s linear;
+    opacity: 0;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      margin-left: auto;
+      margin-right: 12px;
+      gap: 22px;
+      align-self: center;
+    }
+  }
+
+  &__item:hover &__item-actions {
+    opacity: 1;
   }
 
   &__item-button {
@@ -273,20 +506,32 @@
     transition: all 0.2s linear;
     cursor: pointer;
 
-    &:hover {
-      opacity: 0.5;
-    }
-
     &:active {
       opacity: 0.3;
     }
 
     &_type_like {
       background-image: url("./images/svg/like_icon.svg");
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &_type_like-active {
+      background-image: url("./images/svg/like_icon_violet.svg");
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
 
     &_type_remove {
       background-image: url("./images/svg/trash_icon.svg");
+
+      &:hover {
+        background-image: url("./images/svg/trash_icon_orange.svg");
+      }
     }
   }
 
@@ -294,6 +539,14 @@
     justify-self: end;
     align-self: start;
     text-align: end;
+    grid-area: item-price;
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      display: flex;
+      gap: 5px;
+      justify-self: start;
+      text-align: start;
+    }
 
     &_disabled {
       visibility: hidden;
@@ -312,6 +565,11 @@
     font-weight: 700;
     line-height: 28px;
     letter-spacing: -0.2px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      font-size: 16px;
+      line-height: 24px;
+    }
 
     &_small {
       font-size: 16px;
@@ -336,6 +594,10 @@
     text-decoration: line-through;
     border-bottom: 1px dashed $color-system-gray;
     transition: all 0.2s linear;
+
+    @media screen and (max-width: calc($screen-width-mobile - 1px)) {
+      font-size: 12px;
+    }
 
     &:hover {
       opacity: 0.7;
@@ -376,7 +638,6 @@
   &__summary {
     display: flex;
     flex-direction: column;
-    gap: 24px;
     box-sizing: border-box;
     width: 100%;
     height: fit-content;
@@ -387,6 +648,12 @@
     background-color: $color-background-white;
     box-shadow: 0px 0px 1px 0px $color-background-black-transparent-30,
       0px 2px 10px 0px $color-background-black-transparent-15;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      padding: 4px 16px 12px;
+      background-color: $color-background-smoky;
+      box-shadow: none;
+    }
   }
 
   &__summary-table {
@@ -402,6 +669,11 @@
     font-weight: 700;
     line-height: 32px;
     letter-spacing: -0.24px;
+
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
   }
 
   &__summary-table-data {
@@ -415,6 +687,12 @@
     letter-spacing: -0.2px;
   }
 
+  &__summary-delivery {
+    margin-top: 24px;
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      display: none;
+    }
+  }
   &__summary-title {
     display: inline-block;
     margin: 0;
@@ -467,20 +745,28 @@
     }
   }
 
+  &__summary-payment {
+    margin-top: 24px;
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      display: none;
+    }
+  }
+
   &__summary-payment-option {
     padding: 10px 8px 12px;
     font-size: 13px;
     line-height: 16px;
     border-radius: 8px;
     background-color: $color-background-smoky;
-  }
 
-  &__summary-tip {
-    margin: 10px 0 0;
+    @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+      background-color: $color-background-smoky-dark;
+    }
   }
 
   &__submit-button {
     width: 100%;
+    margin-top: 24px;
     padding: 10px;
     border-radius: 8px;
     border: none;
@@ -503,6 +789,7 @@
 
   &__summary-tip {
     position: relative;
+    margin: 10px 0 0;
     font-size: 13px;
     line-height: 16px;
 
@@ -524,6 +811,14 @@
     &_type_agreement {
       padding-top: 4px;
       padding-left: 21px;
+
+      @media screen and (max-width: calc($screen-width-desktop-m - 1px)) {
+        max-width: 230px;
+      }
+
+      @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+        max-width: 100%;
+      }
     }
 
     &_type_agreement::before {
