@@ -243,9 +243,15 @@ const createCartItem = (itemData) => {
   return item;
 };
 
-const createDeliveryItem = (product) => {
+const createEarliestDeliveryItem = (product) => {
   const deliveryItem = new DeliveryProduct(product, "#products_for_delivery");
-  const item = deliveryItem.createItem();
+  const item = deliveryItem.createEarliestItem();
+  return item;
+};
+
+const createLateDeliveryItem = (product) => {
+  const deliveryItem = new DeliveryProduct(product, "#products_for_delivery");
+  const item = deliveryItem.createLateItem();
   return item;
 };
 
@@ -270,7 +276,7 @@ const outOfStockSection = new CartSection(
 const deliveryEarliestSection = new CartSection(
   {
     renderer: (itemData) => {
-      return createDeliveryItem(itemData);
+      return createEarliestDeliveryItem(itemData);
     },
   },
   earliestDeliveryItemList
@@ -279,16 +285,36 @@ const deliveryEarliestSection = new CartSection(
 const deliveryLateSection = new CartSection(
   {
     renderer: (itemData) => {
-      return createDeliveryItem(itemData);
+      return createLateDeliveryItem(itemData);
     },
   },
   lateDeliveryItemList
 );
 
+const calculateDeliveryItems = (items) => {
+  let earliest = items.filter((i) => {
+    if (i.delivery && i.delivery.length && i._checkbox.checked) return i;
+  });
+
+  let late = items.filter((i) => {
+    if (i.delivery && i.delivery.length === 2 && i._checkbox.checked) return i;
+  });
+  return { earliest, late };
+};
+
+const renderDeliveryItems = () => {
+  deliveryEarliestSection.clear();
+  deliveryEarliestSection.renderItems(
+    calculateDeliveryItems(summaryCartItems).earliest
+  );
+  deliveryLateSection.clear();
+  deliveryLateSection.renderItems(
+    calculateDeliveryItems(summaryCartItems).late
+  );
+};
+
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
-deliveryEarliestSection.renderItems(summaryCartItems);
-deliveryLateSection.renderItems(summaryCartItems);
 
 // Валидация полей ввода
 
@@ -396,10 +422,8 @@ const renderSummaryData = () => {
     " " +
     declOfNum(totalItemsCount, ["товар", "товара", "товаров"]);
 
-  deliveryEarliestSection.clear();
-  deliveryEarliestSection.renderItems(summaryCartItems);
-  deliveryLateSection.clear();
-  deliveryLateSection.renderItems(summaryCartItems);
+  console.log(summaryCartItems);
+  renderDeliveryItems();
 };
 
 renderSummaryData();
