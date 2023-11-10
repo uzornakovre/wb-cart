@@ -3,6 +3,10 @@
   margin: 0 auto;
   padding: 24px;
 
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    padding-bottom: 24px + 56px;
+  }
+
   &__copyright {
     margin: 0;
     color: $color-background-white-transparent-70;

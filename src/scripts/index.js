@@ -21,6 +21,8 @@ import {
   cartProductsOutOfStockAccordionButton,
   immediatelyPaymentOption,
   cartFormSubmitElement,
+  headerCounter,
+  tabBarCounter,
 } from "../utils/constants";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
@@ -203,6 +205,7 @@ outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
 
 import { VALIDATION_SETTINGS } from "../utils/constants";
 import FormValidator from "../components/form-validator";
+import { declOfNum } from "../utils/decl-of-num";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
 
@@ -212,7 +215,6 @@ cartForm.enableValidation();
 
 const handleCartItemsCheckboxes = () => {
   const checkAllCartItems = document.querySelector(".option");
-  const headerCounter = document.querySelector("#header-counter");
 
   const getCartItemCheckboxes = () => {
     return () => document.querySelectorAll(".sub-option");
@@ -225,24 +227,34 @@ const handleCartItemsCheckboxes = () => {
   const checkedCount = getCheckedCount();
   const cartItemCheckboxes = getCartItemCheckboxes();
 
+  const renderCounter = () => {
+    headerCounter.textContent = checkedCount();
+    tabBarCounter.textContent = checkedCount();
+  };
+
+  const renderAllData = () => {
+    renderCounter();
+    getSummaryData();
+    renderSummaryData();
+  };
+
+  renderCounter();
+
   cartItemCheckboxes().forEach((checkbox) => {
     checkbox.addEventListener("input", () => {
       if (checkedCount() < cartItemCheckboxes().length) {
         checkAllCartItems.checked = false;
       } else checkAllCartItems.checked = true;
 
-      headerCounter.textContent = checkedCount();
-      getSummaryData();
-      renderSummaryData();
+      renderAllData();
     });
   });
 
   checkAllCartItems.addEventListener("input", () => {
     cartItemCheckboxes().forEach((checkbox) => {
       checkbox.checked = checkAllCartItems.checked;
-      headerCounter.textContent = checkedCount();
-      getSummaryData();
-      renderSummaryData();
+
+      renderAllData();
     });
   });
 };
@@ -291,7 +303,10 @@ const renderSummaryData = () => {
   finalPrice.textContent = (totalPrice - totalDiscount).toLocaleString();
   price.textContent = totalPrice.toLocaleString();
   discount.textContent = totalDiscount.toLocaleString();
-  totalItems.textContent = totalItemsCount;
+  totalItems.textContent =
+    totalItemsCount +
+    " " +
+    declOfNum(totalItemsCount, ["товар", "товара", "товаров"]);
 };
 
 renderSummaryData();

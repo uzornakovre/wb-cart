@@ -1,0 +1,58 @@
+.tab-bar {
+  position: fixed;
+  display: none;
+  box-sizing: border-box;
+  bottom: 0;
+  height: 56px;
+  width: 100%;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: $color-background-white;
+  box-shadow: 0px -0.5px 0px 0px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2.5px);
+
+  @media screen and (max-width: calc($screen-width-tablet - 1px)) {
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__list-item {
+    position: relative;
+  }
+
+  &__button {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover > .tab-bar__icon {
+      fill: $color-system-violet;
+    }
+
+    &_active {
+      pointer-events: none;
+      cursor: default;
+
+      & > .tab-bar__icon {
+        fill: $color-interface-accent-1;
+      }
+    }
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    fill: $color-interface-accent-2;
+    transition: all 0.2s linear;
+  }
+}
