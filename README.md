@@ -4,7 +4,7 @@ _Тестовое задание_
 
 ---
 
-[![Скриншот страницы]('./src/images/preview.jpg')](https://uzornakovre.github.io/wb-cart/)
+[![Скриншот страницы](https://github.com/uzornakovre/wb-cart/blob/main/src/images/preview.jpg?raw=true)](https://uzornakovre.github.io/wb-cart/)
 
 **Особенности:**
 
