@@ -23,6 +23,7 @@ import {
   cartFormSubmitElement,
   headerCounter,
   tabBarCounter,
+  deliveryMethodsList,
 } from "../utils/constants";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
@@ -94,13 +95,32 @@ const paymentMethodsSection = new ModalSection(
   paymentMethodsList
 );
 
+const deliverySection = new ModalSection(
+  {
+    renderer: (itemData) => {
+      return createDeliveryAddress(itemData);
+    },
+  },
+  deliveryMethodsList
+);
+
 const createCardItem = (cardData) => {
   const cardItem = new Card(cardData, "#payment-method-template");
   const item = cardItem.createItem();
   return item;
 };
 
+const createDeliveryAddress = (deliveryData) => {
+  const deliveryAddress = new Delivery(
+    deliveryData,
+    "#delivery-address-template"
+  );
+  const item = deliveryAddress.createItem();
+  return item;
+};
+
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
+deliverySection.renderItems(ADDRESSES_LIST);
 
 // Аккордеон
 
@@ -206,6 +226,7 @@ outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
 import { VALIDATION_SETTINGS } from "../utils/constants";
 import FormValidator from "../components/form-validator";
 import { declOfNum } from "../utils/decl-of-num";
+import { Delivery } from "../components/delivery";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
 

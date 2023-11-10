@@ -732,47 +732,21 @@
         </div>
         <form class="modal__form" id="delivery">
           <h3 class="modal__form-title">Мои адреса</h3>
-          <ul class="modal__list">
-            <li class="modal__list-item radio-button">
-              <input
-                class="radio-button__input modal__form-input"
-                type="radio"
-                id="address_1"
-                name="address"
-                value="Бишкек, улица Табышалиева, 57"
-                checked
-              />
-              <label class="radio-button__label" for="address_1"
-                >Бишкек, улица Табышалиева, 57</label
-              >
-              <button class="radio-button__delete" type="button"></button>
-            </li>
-            <li class="modal__list-item radio-button">
-              <input
-                class="radio-button__input modal__form-input"
-                type="radio"
-                id="address_2"
-                name="address"
-                value="Бишкек, улица Жукеева-Пудовкина, 77/1"
-              />
-              <label class="radio-button__label" for="address_2"
-                >Бишкек, улица Жукеева-Пудовкина, 77/1</label
-              >
-              <button class="radio-button__delete" type="button"></button>
-            </li>
-            <li class="modal__list-item radio-button">
-              <input
-                class="radio-button__input modal__form-input"
-                type="radio"
-                id="address_3"
-                name="address"
-                value="Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1"
-              />
-              <label class="radio-button__label" for="address_3"
-                >Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</label
-              >
-              <button class="radio-button__delete" type="button"></button>
-            </li>
+          <ul class="modal__list modal__list_type_delivery-method">
+            <template id="delivery-address-template">
+              <li class="modal__list-item radio-button">
+                <input
+                  class="radio-button__input modal__form-input"
+                  type="radio"
+                  id=""
+                  name="address"
+                  value=""
+                  checked
+                />
+                <label class="radio-button__label" for=""></label>
+                <button class="radio-button__delete" type="button"></button>
+              </li>
+            </template>
           </ul>
           <button class="modal__form-submit" type="submit">Выбрать</button>
         </form>
