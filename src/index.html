@@ -328,44 +328,22 @@
               </div>
               <h4 class="order-details__table-heading">5—6 февраля</h4>
               <div class="order-details__table-data">
-                <ul class="order-details__product-list">
-                  <li class="order-details__product">
-                    <img
-                      class="order-details__product-image"
-                      src="<%=require('./images/item_1.jpg')%>"
-                      alt=""
-                    />
-                  </li>
-                  <li class="order-details__product">
-                    <img
-                      class="order-details__product-image"
-                      src="<%=require('./images/item_2.jpg')%>"
-                      alt=""
-                    />
-                  </li>
-                  <li class="order-details__product">
-                    <img
-                      class="order-details__product-image"
-                      src="<%=require('./images/item_3.jpg')%>"
-                      alt=""
-                    />
-                  </li>
+                <ul class="order-details__product-list" id="earliest_list">
+                  <template id="products_for_delivery">
+                    <li class="order-details__product">
+                      <img class="order-details__product-image" src="" alt="" />
+                      <div class="counter counter_place_order-details">
+                        <p class="counter__value"></p>
+                      </div>
+                    </li>
+                  </template>
                 </ul>
               </div>
-              <h4 class="order-details__table-heading">7—8 февраля</h4>
+              <h4 class="order-details__table-heading" id="late-date">
+                7—8 февраля
+              </h4>
               <div class="order-details__table-data">
-                <ul class="order-details__product-list">
-                  <li class="order-details__product">
-                    <img
-                      class="order-details__product-image"
-                      src="<%=require('./images/item_1.jpg')%>"
-                      alt=""
-                    />
-                    <div class="counter counter_place_order-details">
-                      <p class="counter__value">16</p>
-                    </div>
-                  </li>
-                </ul>
+                <ul class="order-details__product-list" id="late_list"></ul>
               </div>
             </div>
             <div class="refund">

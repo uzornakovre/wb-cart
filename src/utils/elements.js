@@ -45,6 +45,9 @@ export const pickupPointDetailsElement = document.querySelector(
 export const deliveryTypeSummaryElement = document.querySelector(
   ".delivery-type_summary"
 );
+export const earliestDeliveryItemList =
+  document.querySelector("#earliest_list");
+export const lateDeliveryItemList = document.querySelector("#late_list");
 export const cartProductsInStockAccordionButton =
   document.querySelector("#in-stock");
 export const cartProductsOutOfStockAccordionButton =

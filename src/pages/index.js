@@ -31,12 +31,17 @@ import {
   deliveryTypeDetailsElement,
   deliveryTypeSummaryElement,
   pickupPointDetailsElement,
+  earliestDeliveryItemList,
+  lateDeliveryItemList,
 } from "../utils/elements";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
 import ModalWithForm from "../components/modal-with-form";
 import { ModalSection } from "../components/modal-section";
 import { Card } from "../components/card";
+import { declOfNum } from "../utils/decl-of-num";
+import { DeliveryAddress } from "../components/delivery-address";
+import { DeliveryProduct } from "../components/delivery-product";
 
 // Общие переменные
 
@@ -128,7 +133,7 @@ const paymentMethodsSection = new ModalSection(
   paymentMethodsList
 );
 
-const deliverySection = new ModalSection(
+const deliveryAddressSection = new ModalSection(
   {
     renderer: (itemData) => {
       return createDeliveryAddress(itemData);
@@ -158,7 +163,7 @@ const createDeliveryAddress = (deliveryData) => {
 };
 
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
-deliverySection.renderItems(USER_ADDRESSES_LIST);
+deliveryAddressSection.renderItems(USER_ADDRESSES_LIST);
 
 // Аккордеон
 
@@ -238,6 +243,12 @@ const createCartItem = (itemData) => {
   return item;
 };
 
+const createDeliveryItem = (product) => {
+  const deliveryItem = new DeliveryProduct(product, "#products_for_delivery");
+  const item = deliveryItem.createItem();
+  return item;
+};
+
 const productSection = new CartSection(
   {
     renderer: (itemData) => {
@@ -256,15 +267,33 @@ const outOfStockSection = new CartSection(
   cartItemsListOutOfStock
 );
 
+const deliveryEarliestSection = new CartSection(
+  {
+    renderer: (itemData) => {
+      return createDeliveryItem(itemData);
+    },
+  },
+  earliestDeliveryItemList
+);
+
+const deliveryLateSection = new CartSection(
+  {
+    renderer: (itemData) => {
+      return createDeliveryItem(itemData);
+    },
+  },
+  lateDeliveryItemList
+);
+
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
+deliveryEarliestSection.renderItems(summaryCartItems);
+deliveryLateSection.renderItems(summaryCartItems);
 
 // Валидация полей ввода
 
 import { VALIDATION_SETTINGS } from "../utils/constants";
 import FormValidator from "../components/form-validator";
-import { declOfNum } from "../utils/decl-of-num";
-import { Delivery, DeliveryAddress } from "../components/delivery-address";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
 
@@ -366,6 +395,11 @@ const renderSummaryData = () => {
     totalItemsCount +
     " " +
     declOfNum(totalItemsCount, ["товар", "товара", "товаров"]);
+
+  deliveryEarliestSection.clear();
+  deliveryEarliestSection.renderItems(summaryCartItems);
+  deliveryLateSection.clear();
+  deliveryLateSection.renderItems(summaryCartItems);
 };
 
 renderSummaryData();

@@ -24,6 +24,7 @@ export class Product {
     this.productDiscount = productData.discount;
     this._productInStock = productData.inStock;
     this.productCartCount = productData.startCartCount;
+    this.delivery = productData.delivery;
     this.userDiscount = userDiscount;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;

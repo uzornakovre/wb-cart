@@ -62,6 +62,12 @@ export const PRODUCTS_LIST = [
     discount: 50,
     inStock: 2,
     startCartCount: 1,
+    delivery: [
+      {
+        items: 2,
+        date: ["2023-02-05", "2023-02-06"],
+      },
+    ],
   },
   {
     id: "prod-2",
@@ -82,6 +88,16 @@ export const PRODUCTS_LIST = [
     discount: 55,
     inStock: 300,
     startCartCount: 200,
+    delivery: [
+      {
+        items: 150,
+        date: ["2023-02-05", "2023-02-06"],
+      },
+      {
+        items: 150,
+        date: ["2023-02-07", "2023-02-08"],
+      },
+    ],
   },
   {
     id: "prod-3",
@@ -100,6 +116,12 @@ export const PRODUCTS_LIST = [
     discount: 20,
     inStock: 3,
     startCartCount: 2,
+    delivery: [
+      {
+        items: 3,
+        date: ["2023-02-05", "2023-02-06"],
+      },
+    ],
   },
   {
     id: "prod-4",
@@ -121,6 +143,7 @@ export const PRODUCTS_LIST = [
     discount: 50,
     inStock: 0,
     startCartCount: 0,
+    delivery: null,
   },
   {
     id: "prod-5",
@@ -141,6 +164,7 @@ export const PRODUCTS_LIST = [
     discount: 55,
     inStock: 0,
     startCartCount: 0,
+    delivery: null,
   },
   {
     id: "prod-6",
@@ -159,6 +183,7 @@ export const PRODUCTS_LIST = [
     discount: 20,
     inStock: 0,
     startCartCount: 0,
+    delivery: null,
   },
 ];
 
