@@ -301,12 +301,16 @@
               </button>
             </div>
             <div class="order-details__table">
-              <h4 class="order-details__table-heading">Пункт выдачи</h4>
+              <h4
+                class="order-details__table-heading delivery-type delivery-type_details"
+              >
+                Пункт выдачи
+              </h4>
               <div class="order-details__table-data">
-                <span class="order-details__description"
+                <span class="order-details__description current-address"
                   >Бишкек, улица Ахматбека Суюмбаева, 12/1</span
                 >
-                <div class="order-details__tooltip">
+                <div class="order-details__tooltip current-address__info">
                   <img
                     class="order-details__rating-star"
                     src="<%=require('./images/svg/star_icon.svg')%>"
@@ -521,12 +525,14 @@
             </tr>
           </table>
           <div class="cart__summary-delivery">
-            <h4 class="cart__summary-title">Доставка в пункт выдачи</h4>
+            <h4 class="cart__summary-title delivery-type delivery-type_summary">
+              Доставка в пункт выдачи
+            </h4>
             <button
               class="cart__summary-edit delivery-edit"
               type="button"
             ></button>
-            <p class="cart__summary-address">
+            <p class="cart__summary-address current-address">
               Бишкек, улица Ахматбека Суюмбаева, 12/1
             </p>
             <p class="cart__summary-date">5–8 фев</p>
@@ -719,32 +725,52 @@
           <h2 class="modal__title">Способ доставки</h2>
           <button class="modal__close-button" type="button"></button>
         </div>
-        <div class="modal__delivery-type">
-          <button class="modal__delivery-type-button" type="button">
-            В пункт выдачи
-          </button>
-          <button
-            class="modal__delivery-type-button modal__delivery-type-button_active"
-            type="button"
-          >
-            Курьером
-          </button>
-        </div>
         <form class="modal__form" id="delivery">
+          <div class="modal__delivery-type">
+            <button
+              class="modal__delivery-type-button"
+              type="button"
+              id="pick_up"
+            >
+              В пункт выдачи
+            </button>
+            <button
+              class="modal__delivery-type-button modal__delivery-type-button_active"
+              type="button"
+              id="courier"
+            >
+              Курьером
+            </button>
+          </div>
           <h3 class="modal__form-title">Мои адреса</h3>
           <ul class="modal__list modal__list_type_delivery-method">
             <template id="delivery-address-template">
               <li class="modal__list-item radio-button">
-                <input
-                  class="radio-button__input modal__form-input"
-                  type="radio"
-                  id=""
-                  name="address"
-                  value=""
-                  checked
-                />
-                <label class="radio-button__label" for=""></label>
-                <button class="radio-button__delete" type="button"></button>
+                <div class="modal__list-item-top">
+                  <input
+                    class="radio-button__input modal__form-input"
+                    type="radio"
+                    id=""
+                    name="address"
+                    value=""
+                    checked
+                    required
+                  />
+                  <label
+                    class="radio-button__label radio-button__label_type_address"
+                    for=""
+                  ></label>
+                  <button class="radio-button__delete" type="button"></button>
+                </div>
+                <div class="modal__list-item-bottom">
+                  <img
+                    class="modal__list-item-icon"
+                    src="<%=require('./images/svg/star_icon.svg')%>"
+                    alt=""
+                  />
+                  <span class="modal__list-item-rating">4.99</span>
+                  <span class="modal__list-item-type">Пункт выдачи </span>
+                </div>
               </li>
             </template>
           </ul>

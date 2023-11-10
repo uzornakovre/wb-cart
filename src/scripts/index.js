@@ -3,7 +3,6 @@ import {
   PRODUCTS_LIST,
   USER_DISCOUNT,
   PAYMENT_METHODS_LIST,
-  ADDRESSES_LIST,
   paymentMethodModalElement,
   deliveryMethodModalElement,
   paymentForm,
@@ -24,6 +23,12 @@ import {
   headerCounter,
   tabBarCounter,
   deliveryMethodsList,
+  addressElements,
+  deliveryTypeDetailsElement,
+  deliveryTypeSummaryElement,
+  pickupPointDetailsElement,
+  USER_ADDRESSES_LIST,
+  PICKUP_POINTS_ADDRESSES_LIST,
 } from "../utils/constants";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
@@ -31,11 +36,23 @@ import ModalWithForm from "../components/modal-with-form";
 import { ModalSection } from "../components/modal-section";
 import { Card } from "../components/card";
 
-// Переменные для итоговых данных
+// Общие переменные
 
 let summaryCartItems = [];
+let deliveryType = "courier";
 
 // Модальные окна
+
+const changeDeliveryType = (type) => {
+  deliveryType = type;
+  if (type === "courier") {
+    deliverySection.clear();
+    deliverySection.renderItems(USER_ADDRESSES_LIST);
+  } else {
+    deliverySection.clear();
+    deliverySection.renderItems(PICKUP_POINTS_ADDRESSES_LIST);
+  }
+};
 
 const submitPaymentForm = (paymentMethod) => {
   let currentMethod = PAYMENT_METHODS_LIST.find(
@@ -59,21 +76,35 @@ const submitPaymentForm = (paymentMethod) => {
 };
 
 const submitDeliveryForm = (address) => {
-  const currentAddress = ADDRESSES_LIST.find((ad) => ad.value === address);
+  addressElements.forEach((elem) => {
+    elem.textContent = address;
+  });
+
+  if (deliveryType === "courier") {
+    deliveryTypeDetailsElement.textContent = "Курьером";
+    deliveryTypeSummaryElement.textContent = "Доставка курьером";
+    pickupPointDetailsElement.setAttribute("style", "visibility: hidden");
+  } else {
+    deliveryTypeDetailsElement.textContent = "Пункт выдачи";
+    deliveryTypeSummaryElement.textContent = "Доставка в пункт выдачи";
+    pickupPointDetailsElement.setAttribute("style", "visibility: visible");
+  }
+
   deliveryMethodModal.close();
-  console.log(currentAddress);
 };
 
 const paymentMethodModal = new ModalWithForm(
   paymentMethodModalElement,
   paymentForm,
-  submitPaymentForm
+  submitPaymentForm,
+  null
 );
 
 const deliveryMethodModal = new ModalWithForm(
   deliveryMethodModalElement,
   deliveryForm,
-  submitDeliveryForm
+  submitDeliveryForm,
+  changeDeliveryType
 );
 
 paymentMethodModal.setEventListeners();
@@ -111,8 +142,13 @@ const createCardItem = (cardData) => {
 };
 
 const createDeliveryAddress = (deliveryData) => {
-  const deliveryAddress = new Delivery(
-    deliveryData,
+  const deliveryAddress = new DeliveryAddress(
+    {
+      address: deliveryData,
+      handleDeleteClick: (id) => {
+        deliveryAddress.removeItem(id);
+      },
+    },
     "#delivery-address-template"
   );
   const item = deliveryAddress.createItem();
@@ -120,7 +156,7 @@ const createDeliveryAddress = (deliveryData) => {
 };
 
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
-deliverySection.renderItems(ADDRESSES_LIST);
+deliverySection.renderItems(USER_ADDRESSES_LIST);
 
 // Аккордеон
 
@@ -226,7 +262,7 @@ outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
 import { VALIDATION_SETTINGS } from "../utils/constants";
 import FormValidator from "../components/form-validator";
 import { declOfNum } from "../utils/decl-of-num";
-import { Delivery } from "../components/delivery";
+import { Delivery, DeliveryAddress } from "../components/delivery-address";
 
 const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
 

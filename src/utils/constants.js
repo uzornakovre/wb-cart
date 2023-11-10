@@ -43,6 +43,16 @@ export const cardNumberElements = document.querySelectorAll(
   ".current-card-number"
 );
 export const cardDateElements = document.querySelectorAll(".current-card-date");
+export const addressElements = document.querySelectorAll(".current-address");
+export const deliveryTypeDetailsElement = document.querySelector(
+  ".delivery-type_details"
+);
+export const pickupPointDetailsElement = document.querySelector(
+  ".current-address__info"
+);
+export const deliveryTypeSummaryElement = document.querySelector(
+  ".delivery-type_summary"
+);
 export const cartProductsInStockAccordionButton =
   document.querySelector("#in-stock");
 export const cartProductsOutOfStockAccordionButton =
@@ -239,7 +249,7 @@ export const PAYMENT_METHODS_LIST = [
   },
 ];
 
-export const ADDRESSES_LIST = [
+export const USER_ADDRESSES_LIST = [
   {
     id: "address_1",
     value: "Бишкек, улица Табышалиева, 57",
@@ -255,18 +265,21 @@ export const ADDRESSES_LIST = [
     value: "Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1",
     type: "courier",
   },
+];
+
+export const PICKUP_POINTS_ADDRESSES_LIST = [
   {
-    id: "address_1",
+    id: "address_4",
     value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
     type: "pickup-point",
   },
   {
-    id: "address_2",
+    id: "address_5",
     value: "г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1",
     type: "pickup-point",
   },
   {
-    id: "address_3",
+    id: "address_6",
     value: "г. Бишкек, улица Табышалиева, д. 57",
     type: "pickup-point",
   },
