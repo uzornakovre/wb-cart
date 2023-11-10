@@ -47,6 +47,8 @@ export const cartProductsInStockAccordionButton =
   document.querySelector("#in-stock");
 export const cartProductsOutOfStockAccordionButton =
   document.querySelector("#out-of-stock");
+export const headerCounter = document.querySelector("#header-counter");
+export const tabBarCounter = document.querySelector("#tab-bar-counter");
 
 export const VALIDATION_SETTINGS = {
   formSelector: "#cart-form",
