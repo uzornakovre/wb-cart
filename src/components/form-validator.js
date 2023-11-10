@@ -1,3 +1,5 @@
+// Валидатор полей ввода
+
 export default class FormValidator {
   constructor(settingsList, formElement) {
     this._settings = settingsList;

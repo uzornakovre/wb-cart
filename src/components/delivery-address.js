@@ -1,3 +1,5 @@
+// Компонент адреса доставки
+
 export class DeliveryAddress {
   constructor({ address, handleDeleteClick }, templateSelector) {
     this._id = address.id;

@@ -1,3 +1,5 @@
+// Компонент способа оплаты (банковской карты)
+
 export class Card {
   constructor(cardData, templateSelector) {
     this._cardId = cardData.id;

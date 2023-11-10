@@ -34,6 +34,11 @@ import {
   earliestDeliveryItemList,
   lateDeliveryItemList,
 } from "../utils/elements";
+import {
+  GENITIVE_CASE_MONTH_LIST,
+  VALIDATION_SETTINGS,
+} from "../utils/constants";
+import FormValidator from "../components/form-validator";
 import { Product } from "../components/product";
 import { CartSection } from "../components/cart-section";
 import ModalWithForm from "../components/modal-with-form";
@@ -48,7 +53,9 @@ import { DeliveryProduct } from "../components/delivery-product";
 let summaryCartItems = [];
 let deliveryType = "courier";
 
-// Модальные окна
+// МОДАЛЬНЫЕ ОКНА
+
+// Обработчик выбора метода доставки
 
 const changeDeliveryType = (type) => {
   deliveryType = type;
@@ -60,6 +67,8 @@ const changeDeliveryType = (type) => {
     deliveryAddressSection.renderItems(PICKUP_POINTS_ADDRESSES_LIST);
   }
 };
+
+// Обработчик отправки формы выбора метода платежа
 
 const submitPaymentForm = (paymentMethod) => {
   let currentMethod = PAYMENT_METHODS_LIST.find(
@@ -82,6 +91,8 @@ const submitPaymentForm = (paymentMethod) => {
   paymentMethodModal.close();
 };
 
+// Обработчик отправки формы выбора метода доставки
+
 const submitDeliveryForm = (address) => {
   addressElements.forEach((elem) => {
     elem.textContent = address;
@@ -100,6 +111,8 @@ const submitDeliveryForm = (address) => {
   deliveryMethodModal.close();
 };
 
+// Экзкмпляры модальных окон
+
 const paymentMethodModal = new ModalWithForm(
   paymentMethodModalElement,
   paymentForm,
@@ -114,6 +127,8 @@ const deliveryMethodModal = new ModalWithForm(
   changeDeliveryType
 );
 
+// Слушатели событий в модальных окнах
+
 paymentMethodModal.setEventListeners();
 deliveryMethodModal.setEventListeners();
 
@@ -123,6 +138,8 @@ paymentEditButtons.forEach((button) => {
 deliveryEditButtons.forEach((button) => {
   button.addEventListener("click", () => deliveryMethodModal.open());
 });
+
+// Экземпляры секций (списков) в модальных окнах
 
 const paymentMethodsSection = new ModalSection(
   {
@@ -141,6 +158,8 @@ const deliveryAddressSection = new ModalSection(
   },
   deliveryMethodsList
 );
+
+// Функции, отвечающие за наполнение секций модальных окон
 
 const createCardItem = (cardData) => {
   const cardItem = new Card(cardData, "#payment-method-template");
@@ -165,7 +184,9 @@ const createDeliveryAddress = (deliveryData) => {
 paymentMethodsSection.renderItems(PAYMENT_METHODS_LIST);
 deliveryAddressSection.renderItems(USER_ADDRESSES_LIST);
 
-// Аккордеон
+// АККОРДЕОН
+
+// Обработчик раскрытия/закрытия списка товаров в наличии
 
 const handleCartProductsInStockAccordionButtonClick = () => {
   if (!cartItemsList.classList.contains("cart__items-list_visible")) {
@@ -181,6 +202,8 @@ const handleCartProductsInStockAccordionButtonClick = () => {
   }
 };
 
+// Обработчик раскрытия/закрытия списка отсутствующих товаров
+
 const handleCartProductsOutOfStockAccordionButtonClick = () => {
   if (!cartItemsListOutOfStock.classList.contains("cart__items-list_visible")) {
     cartItemsListOutOfStock.classList.add("cart__items-list_visible");
@@ -195,6 +218,8 @@ const handleCartProductsOutOfStockAccordionButtonClick = () => {
   }
 };
 
+// Слушатели событий для кнопок
+
 cartProductsInStockAccordionButton.addEventListener(
   "click",
   handleCartProductsInStockAccordionButtonClick
@@ -205,7 +230,9 @@ cartProductsOutOfStockAccordionButton.addEventListener(
   handleCartProductsOutOfStockAccordionButtonClick
 );
 
-// Карточки товаров
+// КАРТОЧКИ ТОВАРОВ
+
+// Функция создания экземпляра элемента корзины (продукта)
 
 const createCartItem = (itemData) => {
   const productItem = new Product(
@@ -243,6 +270,8 @@ const createCartItem = (itemData) => {
   return item;
 };
 
+// Функции создания экземпляров продуктов для отображения в блоке доставки
+
 const createEarliestDeliveryItem = (product) => {
   const deliveryItem = new DeliveryProduct(product, "#products_for_delivery");
   const item = deliveryItem.createEarliestItem();
@@ -254,6 +283,8 @@ const createLateDeliveryItem = (product) => {
   const item = deliveryItem.createLateItem();
   return item;
 };
+
+// Экзкмпляры секций (списков) в корзине
 
 const productSection = new CartSection(
   {
@@ -291,7 +322,9 @@ const deliveryLateSection = new CartSection(
   lateDeliveryItemList
 );
 
-const calculateDeliveryItems = (items) => {
+// Получение списка товаров на доставку, скрытие заголовков при отсутсвии товаров
+
+const getDeliveryItems = (items) => {
   let earliest = items.filter((i) => {
     if (i.delivery && i.delivery.length && i._checkbox.checked) return i;
   });
@@ -310,33 +343,21 @@ const calculateDeliveryItems = (items) => {
   return { earliest, late };
 };
 
+// Обработчик отображения товаров на доставку
+
 const renderDeliveryItems = () => {
   deliveryEarliestSection.clear();
   deliveryEarliestSection.renderItems(
-    calculateDeliveryItems(summaryCartItems).earliest
+    getDeliveryItems(summaryCartItems).earliest
   );
   deliveryLateSection.clear();
-  deliveryLateSection.renderItems(
-    calculateDeliveryItems(summaryCartItems).late
-  );
+  deliveryLateSection.renderItems(getDeliveryItems(summaryCartItems).late);
 };
 
 productSection.renderItems(PRODUCTS_LIST);
 outOfStockSection.renderOutOfStockItems(PRODUCTS_LIST);
 
-// Валидация полей ввода
-
-import {
-  GENITIVE_CASE_MONTH_LIST,
-  VALIDATION_SETTINGS,
-} from "../utils/constants";
-import FormValidator from "../components/form-validator";
-
-const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
-
-cartForm.enableValidation();
-
-// Чекбоксы товаров
+// Обработчик чекбоксов товаров
 
 const handleCartItemsCheckboxes = () => {
   const checkAllCartItems = document.querySelector(".option");
@@ -428,6 +449,8 @@ const getSummaryData = () => {
   return data;
 };
 
+// ИТОГОВЫЕ ДАННЫЕ ПО ЗАКАЗУ
+
 // Отображение итоговых данных корзины
 
 const renderSummaryData = () => {
@@ -465,6 +488,8 @@ const renderSummaryData = () => {
 
 renderSummaryData();
 
+// Переключение опции моментальной оплаты
+
 const toggleImmediatelyPaymentOption = () => {
   const { totalPrice, totalDiscount } = getSummaryData();
   const finalPrice = totalPrice - totalDiscount;
@@ -478,3 +503,9 @@ immediatelyPaymentOption.addEventListener(
   "change",
   toggleImmediatelyPaymentOption
 );
+
+// ВАЛИДАЦИЯ ПОЛЕЙ ВВОДА
+
+const cartForm = new FormValidator(VALIDATION_SETTINGS, cartFormElement);
+
+cartForm.enableValidation();

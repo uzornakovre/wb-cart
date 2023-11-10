@@ -1,5 +1,7 @@
 import { GENITIVE_CASE_MONTH_LIST } from "../utils/constants";
 
+// Компонент карточки товара в блоке доставки
+
 export class DeliveryProduct {
   constructor(product, templateSelector) {
     this._id = product.id;
