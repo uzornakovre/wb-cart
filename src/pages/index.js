@@ -5,7 +5,7 @@ import {
   PAYMENT_METHODS_LIST,
   USER_ADDRESSES_LIST,
   PICKUP_POINTS_ADDRESSES_LIST,
-} from "../utils/constants";
+} from "../utils/mock-data";
 import {
   paymentMethodModalElement,
   deliveryMethodModalElement,
@@ -53,11 +53,11 @@ let deliveryType = "courier";
 const changeDeliveryType = (type) => {
   deliveryType = type;
   if (type === "courier") {
-    deliverySection.clear();
-    deliverySection.renderItems(USER_ADDRESSES_LIST);
+    deliveryAddressSection.clear();
+    deliveryAddressSection.renderItems(USER_ADDRESSES_LIST);
   } else {
-    deliverySection.clear();
-    deliverySection.renderItems(PICKUP_POINTS_ADDRESSES_LIST);
+    deliveryAddressSection.clear();
+    deliveryAddressSection.renderItems(PICKUP_POINTS_ADDRESSES_LIST);
   }
 };
 
