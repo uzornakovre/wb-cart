@@ -198,6 +198,7 @@
   }
 
   &__input {
+    box-sizing: border-box;
     width: inherit;
     margin-bottom: 4px;
     border: none;
@@ -228,6 +229,7 @@
   &__input-label {
     position: absolute;
     top: -3px;
+    left: 0;
     transition: all 0.2s linear;
     color: $color-system-gray;
   }
